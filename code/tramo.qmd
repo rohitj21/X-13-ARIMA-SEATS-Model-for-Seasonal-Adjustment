@@ -1,0 +1,245 @@
+---
+html_document:
+    self_contained: false
+editor: visual
+---
+
+# Introduction
+
+This is an example workflow of the TRAMO implemented in the seas() function in the seasnal package.
+
+We will be using the AirPassengers dataset for this purpose. This dataset contains the monthly totals of international airline passengers, 1949 to 1960.
+
+Tramo does the following things:
+
+1.  Log-level Specification: The user can input if a log transformation is required otherwise it performs a "trimmed-mean regression" test to identify if a log transformation is needed.
+
+2.  Performs pretests for the presence of Trading day effects , Easter effects.
+
+3.  Performs regression with ariam noise. It considers user given regressors. Regressors corresponding to treding day effects and easter effects, if found previously, are also added.
+
+4.  Detects outliers. Corrects for them and refits the model.
+
+5.  Calculates estimates for missing values.
+
+# Workflow of TRAMO
+
+We will describe the steps taken by the TRAMO procedure and also try to verify the results.
+
+```{r, cache=TRUE, echo=FALSE, include=TRUE}
+library(DiagrammeR)
+library(DiagrammeRsvg)
+
+# Creating the flowchart
+flowchart_script <- '
+digraph TRAMO_Workflow {
+
+  // Graph layout direction
+  rankdir=TB;
+
+  node [fontname = Arial, shape = box, style = filled, color = grey, fontsize = 14, fontcolor = black, width = 1.5, height = 0.5]
+  edge [color = black, arrowhead = vee, arrowsize = 1]
+  
+  // Define subgraphs for alignment
+  subgraph cluster_main {
+    style=invis;
+    input [label = "Univariate Time Series, \nmonthly/quarterly/annual"]
+    transformation [label = "Applies/Tests for \nLog/Level transformation"]
+    specialeffect [label = "Pretests for Trading Day \nand Easter effects"]
+    regression[label = "Performs regression with ARIMA noise \nUser Given Regressors, Trading Day, \nEaster Effect, Outlier Variables"]
+    outliers[label = "Detects outliers one \nby one using t-tests"]
+    missingvalue [label = "Corrects for missing values \nusing Kalman Filters"]
+    output[label = "Final Linearized Series, \nInput for SEATS"]
+  }
+
+  
+  subgraph cluster_model {
+    style=invis;
+    finalmodel [label = "Final ARIMA\n model", shape = ellipse, color = "lightcoral"]
+  }
+  
+  subgraph cluster_user {
+    style=invis;
+    UserRegressors [label = "User given\n Regressors", shape = ellipse, color = "lightcyan"]
+  }
+  
+  // Connections
+  input -> transformation
+  transformation -> specialeffect
+  specialeffect -> regression
+  UserRegressors ->  regression [dir=forward]
+  
+  regression -> outliers
+  outliers -> missingvalue
+  outliers -> finalmodel [dir=forward]
+  outliers -> regression
+  missingvalue -> output
+}
+'
+
+graph <- DiagrammeR::grViz(flowchart_script)
+
+# Export to SVG
+svg <- DiagrammeRsvg::export_svg(graph)
+writeLines(svg, "flowchart.svg")
+
+
+```
+
+![](flowchart.svg)
+
+## Input series
+
+We plot the original series, log of the original series and the final TRAMO output for a comparision. The plot for TRAMO output also contains the 3 year forecasts calculated by default
+
+```{r, cache=TRUE}
+library(seasonal)
+
+plot(AirPassengers)
+m <- seas((AirPassengers), seats = NULL)
+summary(m)
+tramo_output <- series(m, "ref")[,'Reg.Resids']
+
+plot(tramo_output)
+lines(log(AirPassengers), col = 'darkgreen' )
+legend("bottomright", legend = c("Tramo Output", "Log(AirPassangers)"),lwd= 1, col = c("black", "darkgreen"))
+
+plot(log(AirPassengers) - tramo_output, main = "Adjustments to the log series")
+```
+
+## Identification of log-level specification
+
+We first want to find out what transformation to apply on the data.
+
+I found no reference or any paper for exactly how they perform the test except that they use a "trimmed mean regression" and compare the slope in both cases to a fixed number close to zero
+
+*See page 21 of new tramo_seats_manual.pdf for more information.*
+
+Assuming that we can identify that we want a log transformation we proceed by applying the transformation.
+
+```{r, cache=TRUE}
+
+y <- log(AirPassengers)
+fit <- arima(y, order=c(1,1,0), seasonal = c(1,1,0))
+print(fit)
+```
+
+## Pretests for Trading day and Easter effects
+
+*The program contains a pretest for Easter and Trading Day effects; this is done by running a regression on the default model In automatic model identifcation, if the model is changed, both tests are then redone. -page 30 new_tramo_seats_manual.pdf*
+
+The default model mentioned above is the airline model, popularized by Box and Jenkins (1976), which is ARIMA(0, 1, 1)(0, 1, 1)
+
+So we will use this default model for testing weather to include trading day and Easter effects.
+
+**Easter effects:** This variable models a constant change in the level of daily activity during the $d$ days before Easter, and its typical value ranges between three and eight (default). The value of $d$ can also be supplied by the user using the $IDUR$ parameter. The variable has zeros for all months different from March and April. The value assigned to March is equal to $p_m - m_M$ , where $p_M$ is the proportion of the $d$ days that fall on that month and $m_M$ is the mean value of the proportions of the $d$ days that fall on March over a long period of time. The value assigned to April is $p_A - m_A$ , where $p_A$ and $m_A$ are defined analogously. Usually, a value of $m_M =   m_A  = 1/2$ is a good approximation.
+
+**Note:** When we look at the holiday variable regressor being using in seas() we find that it scaled version of 1 + the variable described above.
+
+```{r, cache=TRUE}
+x_easter = series(m, "hol")
+print(x_easter-1)
+```
+
+**Trading day:**
+
+So there are multiple ways trading days can be incorporated.
+
+1.  We can have 6 variables corresponding to the 7 days of the weeks i.e each day having its own independent effect. The variables in that case would be $N_{Mon}(t) - N_{Sun}(t),  N_{Tue}(t) - N_{Sun}(t)\dots N_{Sat}(t) - N_{Sun}(t)$Here, $N_{Sun}(t)$ denotes the number of Sundays in the $t^{th}$ month.
+
+2.  We can also have only one variable corresponding to the number of number of working and non-working days in a month. The variable in that case would be number of working days minus the number of non working days. Sundays, Saturdays and holidays (can also be given by the user) are considered to be non-working days.
+
+Although it is mentioned that seas can use the variables of the first kind but only found the variable of the second kind in the documentation. So for now I am only considering the variable of the second kind. When we use the above the formula the results do not match even after scaling. Maybe seas() considers other holidays too somehow.
+
+```{r, cache=TRUE}
+
+trading_day_regressors <- series(m, "regression.tradingday")
+print((trading_day_regressors-1)*365)
+calculate_td_values <- function(year) {
+  results <- numeric(12)
+  
+  for (month in 1:12) {
+    # Determine the start and end dates for the month
+    start_date <- as.Date(paste(year, month, "01", sep = "-"))
+    
+    # Handle December we transition to the next year
+    if (month == 12) {
+      end_date <- as.Date(paste(year + 1, "01", "01", sep = "-")) - 1
+    } else {
+      end_date <- as.Date(paste(year, month + 1, "01", sep = "-")) - 1
+    }
+    
+    dates <- seq.Date(start_date, end_date, by = "day")
+    
+    # Calculate the number of each weekday in the month
+    mondays <- sum(weekdays(dates) == "Monday")
+    tuesdays <- sum(weekdays(dates) == "Tuesday")
+    wednesdays <- sum(weekdays(dates) == "Wednesday")
+    thursdays <- sum(weekdays(dates) == "Thursday")
+    fridays <- sum(weekdays(dates) == "Friday")
+    saturdays <- sum(weekdays(dates) == "Saturday")
+    sundays <- sum(weekdays(dates) == "Sunday")
+    
+    
+    results[month] <- (mondays + tuesdays + wednesdays + thursdays + fridays) - (5/2) * (saturdays + sundays)
+
+  }
+  
+
+  return(results)
+}
+month_values1949 <- calculate_td_values(1949)
+month_values1950 <- calculate_td_values(1950)
+month_values1951 <- calculate_td_values(1951)
+month_values1952 <- calculate_td_values(1952)
+
+print(month_values1949)
+print(month_values1950)
+print(month_values1951)
+print(month_values1952)
+
+
+
+
+```
+
+In the original TRAMO Fortran implementation these are the following specifications.
+
+![](images/clipboard-1323771438.png)
+
+We perform a test for the significance of these variables using the default model.
+
+```{r, cache=TRUE}
+Xreg = matrix(c(trading_day_regressors, x_easter), ncol = 2)
+pretest0 <- arima(y,  order = c(0,1,1), seasonal = c(0,1,1))
+pretest <- arima(y,xreg = Xreg,  order = c(0,1,1), seasonal = c(0,1,1))
+print(pretest0)
+print(pretest)
+
+
+```
+
+Observe that the AIC value is lower in the case when regression variables are included so the model with the regressors is better.
+
+Note that the standard error of the parameter corresponding to the Easter effects is significant only at $\alpha = 0.05$ under the assumption that the estimates follow a normal distribution. This matches with the result above.
+
+Hence we take the trading day variable and not the Easter effect variable.
+
+### Outlier Detection
+
+The default model is used for outlier detection.
+
+```{r}
+model_with_td <- arima(y,xreg = trading_day_regressors,  order = c(0,1,1), seasonal = c(0,1,1))
+residuals <- residuals(model_with_td)
+std_residuals <- residuals / sqrt(model_with_td$sigma2)
+plot(std_residuals, type = 'o', main = "Standardized Residuals", xlab = "Time", ylab = "Standardized Residuals")
+
+abline(h = c(-3, 3), col = "red")
+
+outliers <- which(abs(std_residuals) > 3)
+print(paste(1949 + outliers%/%12 , ", " ,outliers %% 12))
+
+```
+
+We identified the outlier at May 1949. We incorporate this into our regression model in the next step.

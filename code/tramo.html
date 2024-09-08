@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>tramo</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="tramo_files/libs/clipboard/clipboard.min.js"></script>
+<script src="tramo_files/libs/quarto-html/quarto.js"></script>
+<script src="tramo_files/libs/quarto-html/popper.min.js"></script>
+<script src="tramo_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="tramo_files/libs/quarto-html/anchor.min.js"></script>
+<link href="tramo_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="tramo_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="tramo_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="tramo_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="tramo_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This is an example workflow of the TRAMO implemented in the seas() function in the seasnal package.</p>
+<p>We will be using the AirPassengers dataset for this purpose. This dataset contains the monthly totals of international airline passengers, 1949 to 1960.</p>
+<p>Tramo does the following things:</p>
+<ol type="1">
+<li><p>Log-level Specification: The user can input if a log transformation is required otherwise it performs a “trimmed-mean regression” test to identify if a log transformation is needed.</p></li>
+<li><p>Performs pretests for the presence of Trading day effects , Easter effects.</p></li>
+<li><p>Performs regression with ariam noise. It considers user given regressors. Regressors corresponding to treding day effects and easter effects, if found previously, are also added.</p></li>
+<li><p>Detects outliers. Corrects for them and refits the model.</p></li>
+<li><p>Calculates estimates for missing values.</p></li>
+</ol>
+</section>
+<section id="workflow-of-tramo" class="level1">
+<h1>Workflow of TRAMO</h1>
+<p>We will describe the steps taken by the TRAMO procedure and also try to verify the results.</p>
+<p><img src="flowchart.svg" class="img-fluid"></p>
+<section id="input-series" class="level2">
+<h2 class="anchored" data-anchor-id="input-series">Input series</h2>
+<p>We plot the original series, log of the original series and the final TRAMO output for a comparision. The plot for TRAMO output also contains the 3 year forecasts calculated by default</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(seasonal)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AirPassengers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tramo_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">seas</span>((AirPassengers), <span class="at">seats =</span> <span class="cn">NULL</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+seas(x = (AirPassengers), seats.noadmiss = NULL)
+
+Coefficients:
+                    Estimate Std. Error z value Pr(&gt;|z|)    
+Weekday           -0.0029497  0.0005232  -5.638 1.72e-08 ***
+Easter[1]          0.0177674  0.0071580   2.482   0.0131 *  
+AO1951.May         0.1001558  0.0204387   4.900 9.57e-07 ***
+MA-Nonseasonal-01  0.1156204  0.0858588   1.347   0.1781    
+MA-Seasonal-12     0.4973600  0.0774677   6.420 1.36e-10 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+SEATS adj.  ARIMA: (0 1 1)(0 1 1)  Obs.: 144  Transform: log
+AICc: 947.3, BIC: 963.9  QS (no seasonality in final):    0  
+Box-Ljung (no autocorr.): 26.65   Shapiro (normality): 0.9908  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tramo_output <span class="ot">&lt;-</span> <span class="fu">series</span>(m, <span class="st">"ref"</span>)[,<span class="st">'Reg.Resids'</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tramo_output)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">log</span>(AirPassengers), <span class="at">col =</span> <span class="st">'darkgreen'</span> )</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Tramo Output"</span>, <span class="st">"Log(AirPassangers)"</span>),<span class="at">lwd=</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"darkgreen"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tramo_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log</span>(AirPassengers) <span class="sc">-</span> tramo_output, <span class="at">main =</span> <span class="st">"Adjustments to the log series"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tramo_files/figure-html/unnamed-chunk-2-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="identification-of-log-level-specification" class="level2">
+<h2 class="anchored" data-anchor-id="identification-of-log-level-specification">Identification of log-level specification</h2>
+<p>We first want to find out what transformation to apply on the data.</p>
+<p>I found no reference or any paper for exactly how they perform the test except that they use a “trimmed mean regression” and compare the slope in both cases to a fixed number close to zero</p>
+<p><em>See page 21 of new tramo_seats_manual.pdf for more information.</em></p>
+<p>Assuming that we can identify that we want a log transformation we proceed by applying the transformation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">log</span>(AirPassengers)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">arima</span>(y, <span class="at">order=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="at">seasonal =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+arima(x = y, order = c(1, 1, 0), seasonal = c(1, 1, 0))
+
+Coefficients:
+          ar1     sar1
+      -0.3745  -0.4637
+s.e.   0.0808   0.0808
+
+sigma^2 estimated as 0.001457:  log likelihood = 240.41,  aic = -474.82</code></pre>
+</div>
+</div>
+</section>
+<section id="pretests-for-trading-day-and-easter-effects" class="level2">
+<h2 class="anchored" data-anchor-id="pretests-for-trading-day-and-easter-effects">Pretests for Trading day and Easter effects</h2>
+<p><em>The program contains a pretest for Easter and Trading Day effects; this is done by running a regression on the default model In automatic model identifcation, if the model is changed, both tests are then redone. -page 30 new_tramo_seats_manual.pdf</em></p>
+<p>The default model mentioned above is the airline model, popularized by Box and Jenkins (1976), which is ARIMA(0, 1, 1)(0, 1, 1)</p>
+<p>So we will use this default model for testing weather to include trading day and Easter effects.</p>
+<p><strong>Easter effects:</strong> This variable models a constant change in the level of daily activity during the <span class="math inline">\(d\)</span> days before Easter, and its typical value ranges between three and eight (default). The value of <span class="math inline">\(d\)</span> can also be supplied by the user using the <span class="math inline">\(IDUR\)</span> parameter. The variable has zeros for all months different from March and April. The value assigned to March is equal to <span class="math inline">\(p_m - m_M\)</span> , where <span class="math inline">\(p_M\)</span> is the proportion of the <span class="math inline">\(d\)</span> days that fall on that month and <span class="math inline">\(m_M\)</span> is the mean value of the proportions of the <span class="math inline">\(d\)</span> days that fall on March over a long period of time. The value assigned to April is <span class="math inline">\(p_A - m_A\)</span> , where <span class="math inline">\(p_A\)</span> and <span class="math inline">\(m_A\)</span> are defined analogously. Usually, a value of <span class="math inline">\(m_M =   m_A  = 1/2\)</span> is a good approximation.</p>
+<p><strong>Note:</strong> When we look at the holiday variable regressor being using in seas() we find that it scaled version of 1 + the variable described above.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x_easter <span class="ot">=</span> <span class="fu">series</span>(m, <span class="st">"hol"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x_easter<span class="dv">-1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              Jan          Feb          Mar          Apr          May
+1949  0.000000000  0.000000000 -0.004714971  0.004737307  0.000000000
+1950  0.000000000  0.000000000 -0.004714971  0.004737307  0.000000000
+1951  0.000000000  0.000000000  0.013126660 -0.012956584  0.000000000
+1952  0.000000000  0.000000000 -0.004714971  0.004737307  0.000000000
+1953  0.000000000  0.000000000 -0.004714971  0.004737307  0.000000000
+1954  0.000000000  0.000000000 -0.004714971  0.004737307  0.000000000
+1955  0.000000000  0.000000000 -0.004714971  0.004737307  0.000000000
+1956  0.000000000  0.000000000  0.013126660 -0.012956584  0.000000000
+1957  0.000000000  0.000000000 -0.004714971  0.004737307  0.000000000
+1958  0.000000000  0.000000000 -0.004714971  0.004737307  0.000000000
+1959  0.000000000  0.000000000  0.013126660 -0.012956584  0.000000000
+1960  0.000000000  0.000000000 -0.004714971  0.004737307  0.000000000
+              Jun          Jul          Aug          Sep          Oct
+1949  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+1950  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+1951  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+1952  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+1953  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+1954  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+1955  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+1956  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+1957  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+1958  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+1959  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+1960  0.000000000  0.000000000  0.000000000  0.000000000  0.000000000
+              Nov          Dec
+1949  0.000000000  0.000000000
+1950  0.000000000  0.000000000
+1951  0.000000000  0.000000000
+1952  0.000000000  0.000000000
+1953  0.000000000  0.000000000
+1954  0.000000000  0.000000000
+1955  0.000000000  0.000000000
+1956  0.000000000  0.000000000
+1957  0.000000000  0.000000000
+1958  0.000000000  0.000000000
+1959  0.000000000  0.000000000
+1960  0.000000000  0.000000000</code></pre>
+</div>
+</div>
+<p><strong>Trading day:</strong></p>
+<p>So there are multiple ways trading days can be incorporated.</p>
+<ol type="1">
+<li><p>We can have 6 variables corresponding to the 7 days of the weeks i.e each day having its own independent effect. The variables in that case would be <span class="math inline">\(N_{Mon}(t) - N_{Sun}(t),  N_{Tue}(t) - N_{Sun}(t)\dots N_{Sat}(t) - N_{Sun}(t)\)</span>Here, <span class="math inline">\(N_{Sun}(t)\)</span> denotes the number of Sundays in the <span class="math inline">\(t^{th}\)</span> month.</p></li>
+<li><p>We can also have only one variable corresponding to the number of number of working and non-working days in a month. The variable in that case would be number of working days minus the number of non working days. Sundays, Saturdays and holidays (can also be given by the user) are considered to be non-working days.</p></li>
+</ol>
+<p>Although it is mentioned that seas can use the variables of the first kind but only found the variable of the second kind in the documentation. So for now I am only considering the variable of the second kind. When we use the above the formula the results do not match even after scaling. Maybe seas() considers other holidays too somehow.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>trading_day_regressors <span class="ot">&lt;-</span> <span class="fu">series</span>(m, <span class="st">"regression.tradingday"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>((trading_day_regressors<span class="dv">-1</span>)<span class="sc">*</span><span class="dv">365</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Jan        Feb        Mar        Apr        May        Jun
+1949  4.3320671 -3.2300885 -3.2156717  1.6185383  0.5387173 -2.1469413
+1950  0.5387173 -3.2300885 -3.2156717  5.4230939 -3.2156717 -2.1469413
+1951 -3.2156717 -3.2300885  0.5387173  1.6185383 -3.2156717  1.6185383
+1952 -3.2156717  8.5866704  4.3320671 -2.1469413  0.5387173  1.6185383
+1953  0.5387173 -3.2300885  0.5387173 -2.1469413  4.3320671 -2.1469413
+1954  4.3320671 -3.2300885 -3.2156717 -2.1469413  4.3320671 -2.1469413
+1955  4.3320671 -3.2300885 -3.2156717  1.6185383  0.5387173 -2.1469413
+1956  0.5387173  8.5866704  0.5387173  1.6185383 -3.2156717  1.6185383
+1957 -3.2156717 -3.2300885  4.3320671 -2.1469413 -3.2156717  5.4230939
+1958 -3.2156717 -3.2300885  4.3320671 -2.1469413  0.5387173  1.6185383
+1959  0.5387173 -3.2300885  0.5387173 -2.1469413  4.3320671 -2.1469413
+1960  4.3320671  8.5866704 -3.2156717  1.6185383  0.5387173 -2.1469413
+            Jul        Aug        Sep        Oct        Nov        Dec
+1949  4.3320671 -3.2156717 -2.1469413  4.3320671 -2.1469413  0.5387173
+1950  4.3320671 -3.2156717  1.6185383  0.5387173 -2.1469413  4.3320671
+1951  0.5387173 -3.2156717  5.4230939 -3.2156717 -2.1469413  4.3320671
+1952 -3.2156717  4.3320671 -2.1469413 -3.2156717  5.4230939 -3.2156717
+1953 -3.2156717  4.3320671 -2.1469413  0.5387173  1.6185383 -3.2156717
+1954  0.5387173  0.5387173 -2.1469413  4.3320671 -2.1469413 -3.2156717
+1955  4.3320671 -3.2156717 -2.1469413  4.3320671 -2.1469413  0.5387173
+1956  0.5387173 -3.2156717  5.4230939 -3.2156717 -2.1469413  4.3320671
+1957 -3.2156717  0.5387173  1.6185383 -3.2156717  1.6185383  0.5387173
+1958 -3.2156717  4.3320671 -2.1469413 -3.2156717  5.4230939 -3.2156717
+1959 -3.2156717  4.3320671 -2.1469413  0.5387173  1.6185383 -3.2156717
+1960  4.3320671 -3.2156717 -2.1469413  4.3320671 -2.1469413  0.5387173</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>calculate_td_values <span class="ot">&lt;-</span> <span class="cf">function</span>(year) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">12</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (month <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>) {</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Determine the start and end dates for the month</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    start_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">paste</span>(year, month, <span class="st">"01"</span>, <span class="at">sep =</span> <span class="st">"-"</span>))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Handle December we transition to the next year</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (month <span class="sc">==</span> <span class="dv">12</span>) {</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>      end_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">paste</span>(year <span class="sc">+</span> <span class="dv">1</span>, <span class="st">"01"</span>, <span class="st">"01"</span>, <span class="at">sep =</span> <span class="st">"-"</span>)) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>      end_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">paste</span>(year, month <span class="sc">+</span> <span class="dv">1</span>, <span class="st">"01"</span>, <span class="at">sep =</span> <span class="st">"-"</span>)) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    dates <span class="ot">&lt;-</span> <span class="fu">seq.Date</span>(start_date, end_date, <span class="at">by =</span> <span class="st">"day"</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the number of each weekday in the month</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    mondays <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">weekdays</span>(dates) <span class="sc">==</span> <span class="st">"Monday"</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    tuesdays <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">weekdays</span>(dates) <span class="sc">==</span> <span class="st">"Tuesday"</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    wednesdays <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">weekdays</span>(dates) <span class="sc">==</span> <span class="st">"Wednesday"</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    thursdays <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">weekdays</span>(dates) <span class="sc">==</span> <span class="st">"Thursday"</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    fridays <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">weekdays</span>(dates) <span class="sc">==</span> <span class="st">"Friday"</span>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    saturdays <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">weekdays</span>(dates) <span class="sc">==</span> <span class="st">"Saturday"</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    sundays <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">weekdays</span>(dates) <span class="sc">==</span> <span class="st">"Sunday"</span>)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    results[month] <span class="ot">&lt;-</span> (mondays <span class="sc">+</span> tuesdays <span class="sc">+</span> wednesdays <span class="sc">+</span> thursdays <span class="sc">+</span> fridays) <span class="sc">-</span> (<span class="dv">5</span><span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> (saturdays <span class="sc">+</span> sundays)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(results)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>month_values1949 <span class="ot">&lt;-</span> <span class="fu">calculate_td_values</span>(<span class="dv">1949</span>)</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>month_values1950 <span class="ot">&lt;-</span> <span class="fu">calculate_td_values</span>(<span class="dv">1950</span>)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>month_values1951 <span class="ot">&lt;-</span> <span class="fu">calculate_td_values</span>(<span class="dv">1951</span>)</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>month_values1952 <span class="ot">&lt;-</span> <span class="fu">calculate_td_values</span>(<span class="dv">1952</span>)</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(month_values1949)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] -4.0  0.0  3.0 -1.5 -0.5  2.0 -4.0  3.0  2.0 -4.0  2.0 -0.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(month_values1950)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] -0.5  0.0  3.0 -5.0  3.0  2.0 -4.0  3.0 -1.5 -0.5  2.0 -4.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(month_values1951)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  3.0  0.0 -0.5 -1.5  3.0 -1.5 -0.5  3.0 -5.0  3.0  2.0 -4.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(month_values1952)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  3.0  1.0 -4.0  2.0 -0.5 -1.5  3.0 -4.0  2.0  3.0 -5.0  3.0</code></pre>
+</div>
+</div>
+<p>In the original TRAMO Fortran implementation these are the following specifications.</p>
+<p><img src="images/clipboard-1323771438.png" class="img-fluid"></p>
+<p>We perform a test for the significance of these variables using the default model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Xreg <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(trading_day_regressors, x_easter), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>pretest0 <span class="ot">&lt;-</span> <span class="fu">arima</span>(y,  <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">seasonal =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>pretest <span class="ot">&lt;-</span> <span class="fu">arima</span>(y,<span class="at">xreg =</span> Xreg,  <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">seasonal =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pretest0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+arima(x = y, order = c(0, 1, 1), seasonal = c(0, 1, 1))
+
+Coefficients:
+          ma1     sma1
+      -0.4018  -0.5569
+s.e.   0.0896   0.0731
+
+sigma^2 estimated as 0.001348:  log likelihood = 244.7,  aic = -483.4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pretest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+arima(x = y, order = c(0, 1, 1), seasonal = c(0, 1, 1), xreg = Xreg)
+
+Coefficients:
+          ma1     sma1   Xreg1   Xreg2
+      -0.2358  -0.5450  0.9704  1.2008
+s.e.   0.1051   0.0679  0.1874  0.4758
+
+sigma^2 estimated as 0.001107:  log likelihood = 257.79,  aic = -505.58</code></pre>
+</div>
+</div>
+<p>Observe that the AIC value is lower in the case when regression variables are included so the model with the regressors is better.</p>
+<p>Note that the standard error of the parameter corresponding to the Easter effects is significant only at <span class="math inline">\(\alpha = 0.05\)</span> under the assumption that the estimates follow a normal distribution. This matches with the result above.</p>
+<p>Hence we take the trading day variable and not the Easter effect variable.</p>
+<section id="outlier-detection" class="level3">
+<h3 class="anchored" data-anchor-id="outlier-detection">Outlier Detection</h3>
+<p>The default model is used for outlier detection.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>model_with_td <span class="ot">&lt;-</span> <span class="fu">arima</span>(y,<span class="at">xreg =</span> trading_day_regressors,  <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">seasonal =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>residuals <span class="ot">&lt;-</span> <span class="fu">residuals</span>(model_with_td)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>std_residuals <span class="ot">&lt;-</span> residuals <span class="sc">/</span> <span class="fu">sqrt</span>(model_with_td<span class="sc">$</span>sigma2)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(std_residuals, <span class="at">type =</span> <span class="st">'o'</span>, <span class="at">main =</span> <span class="st">"Standardized Residuals"</span>, <span class="at">xlab =</span> <span class="st">"Time"</span>, <span class="at">ylab =</span> <span class="st">"Standardized Residuals"</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>), <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tramo_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">abs</span>(std_residuals) <span class="sc">&gt;</span> <span class="dv">3</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="dv">1949</span> <span class="sc">+</span> outliers<span class="sc">%/%</span><span class="dv">12</span> , <span class="st">", "</span> ,outliers <span class="sc">%%</span> <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1951 ,  5"</code></pre>
+</div>
+</div>
+<p>We identified the outlier at May 1949. We incorporate this into our regression model in the next step.</p>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
