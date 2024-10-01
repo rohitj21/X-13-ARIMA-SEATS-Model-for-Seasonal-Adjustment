@@ -1,0 +1,377 @@
+---
+html_document:
+    self_contained: false
+editor: visual
+---
+
+# Introduction
+
+This is an example workflow of the TRAMO implemented in the seas() function in the seasnal package.
+
+We will be using the AirPassengers dataset for this purpose. This dataset contains the monthly totals of international airline passengers, 1949 to 1960.
+
+Tramo does the following things:
+
+1.  Log-level Specification: The user can input if a log transformation is required otherwise it performs a "trimmed-mean regression" test to identify if a log transformation is needed.
+
+2.  Performs pretests for the presence of Trading day effects , Easter effects.
+
+3.  Performs regression with ariam noise. It considers user given regressors. Regressors corresponding to treding day effects and easter effects, if found previously, are also added.
+
+4.  Detects outliers. Corrects for them and refits the model.
+
+5.  Calculates estimates for missing values.
+
+# Workflow of TRAMO
+
+We will describe the steps taken by the TRAMO procedure and also try to verify the results.
+
+```{r, cache=TRUE, echo=FALSE, include=TRUE}
+library(DiagrammeR)
+library(DiagrammeRsvg)
+
+# Creating the flowchart
+flowchart_script <- '
+digraph TRAMO_Workflow {
+
+  // Graph layout direction
+  rankdir=TB;
+
+  node [fontname = Arial, shape = box, style = filled, color = grey, fontsize = 14, fontcolor = black, width = 1.5, height = 0.5]
+  edge [color = black, arrowhead = vee, arrowsize = 1]
+  
+  // Define subgraphs for alignment
+  subgraph cluster_main {
+    style=invis;
+    input [label = "Univariate Time Series, \nmonthly/quarterly/annual"]
+    transformation [label = "Applies/Tests for \nLog/Level transformation"]
+    specialeffect [label = "Pretests for Trading Day \nand Easter effects"]
+    regression[label = "Performs regression with ARIMA noise \nUser Given Regressors, Trading Day, \nEaster Effect, Outlier Variables"]
+    outliers[label = "Detects outliers one \nby one using t-tests"]
+    missingvalue [label = "Corrects for missing values \nusing Kalman Filters"]
+    output[label = "Final Linearized Series, \nInput for SEATS"]
+  }
+
+  
+  subgraph cluster_model {
+    style=invis;
+    finalmodel [label = "Final ARIMA\n model", shape = ellipse, color = "lightcoral"]
+  }
+  
+  subgraph cluster_user {
+    style=invis;
+    UserRegressors [label = "User given\n Regressors", shape = ellipse, color = "lightcyan"]
+  }
+  
+  // Connections
+  input -> transformation
+  transformation -> specialeffect
+  specialeffect -> regression
+  UserRegressors ->  regression [dir=forward]
+  
+  regression -> outliers
+  outliers -> missingvalue
+  outliers -> finalmodel [dir=forward]
+  outliers -> regression
+  missingvalue -> output
+}
+'
+
+graph <- DiagrammeR::grViz(flowchart_script)
+
+# Export to SVG
+svg <- DiagrammeRsvg::export_svg(graph)
+writeLines(svg, "flowchart.svg")
+
+
+```
+
+![](flowchart.svg)
+
+## Input series
+
+We plot the original series, log of the original series and the final TRAMO output for a comparision. The plot for TRAMO output also contains the 3 year forecasts calculated by default
+
+```{r, cache=TRUE}
+library(seasonal)
+library(forecast)
+plot(AirPassengers)
+m <- seas((AirPassengers), seats = NULL)
+summary(m)
+tramo_output <- series(m, "ref")[,'Reg.Resids']
+
+plot(tramo_output)
+lines(log(AirPassengers), col = 'darkgreen' )
+legend("bottomright", legend = c("Tramo Output", "Log(AirPassangers)"),lwd= 1, col = c("black", "darkgreen"))
+
+plot(log(AirPassengers) - tramo_output, main = "Adjustments to the log series")
+```
+
+## Identification of log-level specification
+
+We first want to find out what transformation to apply on the data.
+
+I found no reference or any paper for exactly how they perform the test except that they use a "trimmed mean regression" and compare the slope in both cases to a fixed number close to zero
+
+*See page 21 of new tramo_seats_manual.pdf for more information.*
+
+Assuming that we can identify that we want a log transformation we proceed by applying the transformation.
+
+```{r, cache=TRUE}
+
+y <- log(AirPassengers)
+```
+
+## Pretests for Trading day and Easter effects
+
+*The program contains a pretest for Easter and Trading Day effects; this is done by running a regression on the default model In automatic model identifcation, if the model is changed, both tests are then redone. -page 30 new_tramo_seats_manual.pdf*
+
+The default model mentioned above is the airline model, popularized by Box and Jenkins (1976), which is ARIMA(0, 1, 1)(0, 1, 1)
+
+So we will use this default model for testing weather to include trading day and Easter effects.
+
+**Easter effects:** This variable models a constant change in the level of daily activity during the $d$ days before Easter, and its typical value ranges between three and eight (default). The value of $d$ can also be supplied by the user using the $IDUR$ parameter. The variable has zeros for all months different from March and April. The value assigned to March is equal to $p_m - m_M$ , where $p_M$ is the proportion of the $d$ days that fall on that month and $m_M$ is the mean value of the proportions of the $d$ days that fall on March over a long period of time. The value assigned to April is $p_A - m_A$ , where $p_A$ and $m_A$ are defined analogously. Usually, a value of $m_M =   m_A  = 1/2$ is a good approximation.
+
+```{r, cache=TRUE}
+regression_matrix <- series(m, "regression.regressionmatrix")
+print(colnames(regression_matrix))
+x_easter = regression_matrix[, 'Easter.1.']
+print(x_easter)
+```
+
+**Trading day:**
+
+So there are multiple ways trading days can be incorporated.
+
+1.  We can have 6 variables corresponding to the 7 days of the weeks i.e each day having its own independent effect. The variables in that case would be $N_{Mon}(t) - N_{Sun}(t),  N_{Tue}(t) - N_{Sun}(t)\dots N_{Sat}(t) - N_{Sun}(t)$Here, $N_{Sun}(t)$ denotes the number of Sundays in the $t^{th}$ month.
+
+2.  We can also have only one variable corresponding to the number of number of working and non-working days in a month. The variable in that case would be number of working days minus the number of non working days. Sundays, Saturdays and holidays (can also be given by the user) are considered to be non-working days.
+
+Although it is mentioned that seas can use the variables of the first kind but only found the variable of the second kind in the documentation. So for now I am only considering the variable of the second kind.
+
+```{r, cache=TRUE}
+
+trading_day_regressors <- regression_matrix[,'Weekday']
+print((trading_day_regressors[1:48]))
+
+calculate_td_values <- function(year) {
+  results <- numeric(12)
+  
+  for (month in 1:12) {
+    # Determine the start and end dates for the month
+    start_date <- as.Date(paste(year, month, "01", sep = "-"))
+    
+    # Handle December we transition to the next year
+    if (month == 12) {
+      end_date <- as.Date(paste(year + 1, "01", "01", sep = "-")) - 1
+    } else {
+      end_date <- as.Date(paste(year, month + 1, "01", sep = "-")) - 1
+    }
+    
+    dates <- seq.Date(start_date, end_date, by = "day")
+    
+    # Calculate the number of each weekday in the month
+    mondays <- sum(weekdays(dates) == "Monday")
+    tuesdays <- sum(weekdays(dates) == "Tuesday")
+    wednesdays <- sum(weekdays(dates) == "Wednesday")
+    thursdays <- sum(weekdays(dates) == "Thursday")
+    fridays <- sum(weekdays(dates) == "Friday")
+    saturdays <- sum(weekdays(dates) == "Saturday")
+    sundays <- sum(weekdays(dates) == "Sunday")
+    
+    
+    results[month] <- (mondays + tuesdays + wednesdays + thursdays + fridays) - (5/2) * (saturdays + sundays)
+
+  }
+  
+
+  return(results)
+}
+month_values1949 <- calculate_td_values(1949)
+month_values1950 <- calculate_td_values(1950)
+month_values1951 <- calculate_td_values(1951)
+month_values1952 <- calculate_td_values(1952)
+
+print(month_values1949)
+print(month_values1950)
+print(month_values1951)
+print(month_values1952)
+
+
+
+
+```
+
+In the original TRAMO Fortran implementation these are the following specifications.
+
+![](images/clipboard-1323771438.png)
+
+We perform a test for the significance of these variables using the default model.
+
+```{r, cache=TRUE}
+Xreg = cbind("Weekday" =  trading_day_regressors[1:144],"Easter"= x_easter[1:144])
+pretest0 <- Arima(y,  order = c(0,1,1), seasonal = c(0,1,1))
+pretest <- Arima(y,xreg = Xreg,  order = c(0,1,1), seasonal = c(0,1,1))
+print(pretest0)
+print(pretest)
+
+
+```
+
+Observe that the AIC value is lower in the case when regression variables are included so the model with the regressors is better.
+
+Note that the standard error of the parameter corresponding to the Easter effects is significant only at $\alpha = 0.05$ under the assumption that the estimates follow a normal distribution. This matches with the result above.
+
+## Outlier Detection
+In this section, we perform outlier detection and correction as per the TRAMO procedure. The process involves fitting the model with the identified regressors (Easter and trading day effects), detecting significant outliers, incorporating them into the model, and iterating this process until no significant outliers remain.
+
+Initial Model and Outlier Detection
+First, we fit the ARIMA model with the regressors for Easter and trading day effects. We then calculate the standardized residuals and identify any observations where the residuals exceed ±3 standard deviations, indicating potential outliers.
+
+```{r}
+# Initial model with regressors (Easter and trading day effects)
+model_with_regressors <- Arima(y, xreg = Xreg, order = c(0,1,1), seasonal = c(0,1,1), method = 'ML')
+
+# Calculate standardized residuals
+residuals <- residuals(model_with_regressors)
+std_residuals <- residuals / sqrt(model_with_regressors$sigma2)
+
+# Plot standardized residuals
+plot(std_residuals, type = 'o', main = "Standardized Residuals", xlab = "Time", ylab = "Standardized Residuals")
+abline(h = c(-3, 3), col = "red")
+
+# Identify outliers (standardized residuals > 3 in absolute value)
+outliers <- which(abs(std_residuals) > 3)
+if(length(outliers) > 0){
+    cat("Outliers detected at positions:\n")
+    for (idx in outliers) {
+        year <- floor(time(y)[idx])
+        month_index <- cycle(y)[idx]
+        month_name <- month.abb[month_index]
+       print(paste("Time:", year, month_name, "Residual:", std_residuals[idx]))
+
+    }
+} else {
+    print("No outliers detected")
+}
+
+```
+
+### Iterative Outlier Correction Procedure
+We proceed by iteratively incorporating the most significant outlier into the model as one of the three types: Additive Outlier (AO), Level Shift (LS), or Temporary Change (TC). At each step, we select the outlier type that results in the lowest AIC value for the model.
+
+```{r}
+# Function to create outlier regressors
+create_outlier_regressors <- function(y, idx) {
+  n <- length(y)
+  AO <- rep(0, n)
+  AO[idx] <- 1
+  LS <- rep(0, n)
+  LS[idx:n] <- 1
+  TC <- rep(0, n)
+  decay <- 0.7
+  TC[idx:n] <- decay^(0:(n - idx))
+  return(list(AO = AO, LS = LS, TC = TC))
+}
+
+# Function to select best outlier type based on AIC
+select_best_outlier <- function(y, Xreg, idx) {
+  outlier_regs <- create_outlier_regressors(y, idx)
+  AIC_values <- c()
+  models <- list()
+  for (type in names(outlier_regs)) {
+    Xreg_new <- cbind(Xreg, outlier_regs[[type]])
+    colnames(Xreg_new)[ncol(Xreg_new)] <-paste0( type,floor(time(y)[idx]), ".", month.abb[cycle(y)[idx]])
+    model <- Arima(y, xreg = Xreg_new, order = c(0,1,1), seasonal = c(0,1,1), method = 'ML')
+    AIC_values[type] <- AIC(model)
+    models[[type]] <- model
+  }
+  best_type <- names(which.min(AIC_values))
+  best_model <- models[[best_type]]
+  best_regressor <- outlier_regs[[best_type]]
+  return(list(type = best_type, model = best_model, regressor = best_regressor))
+}
+
+# Initialize variables
+Xreg_current <- Xreg
+outlier_positions <- outliers
+outlier_types <- c()
+iteration <- 1
+threshhold <- 3
+
+# Iterative outlier detection and correction
+while(length(outlier_positions) > 0) {
+  print(paste("Iteration", iteration))
+  # Get the position of the largest outlier
+  idx <- outlier_positions[which.max(abs(std_residuals[outlier_positions]))]
+  year <- floor(time(y)[idx])
+  month_index <- cycle(y)[idx]
+  month_name <- month.abb[month_index]
+print(paste("Processing outlier at time", year, month_name))
+
+  
+  # Select best outlier type
+  best_outlier <- select_best_outlier(y, Xreg_current, idx)
+  best_type <- best_outlier$type
+  best_model <- best_outlier$model
+  best_regressor <- best_outlier$regressor
+print(paste("Selected outlier type:", best_type))
+
+  
+  # Update regressors
+  Xreg_current <- cbind(Xreg_current, best_regressor)
+  colnames(Xreg_current)[ncol(Xreg_current)] <- paste0(best_type,floor(time(y)[idx]), ".", month.abb[cycle(y)[idx]])
+  outlier_types <- c(outlier_types, paste0(best_type,floor(time(y)[idx]), ".", month.abb[cycle(y)[idx]]))
+  
+  # Recalculate standardized residuals
+  residuals <- residuals(best_model)
+  std_residuals <- residuals / sqrt(best_model$sigma2)
+  
+  # Plot standardized residuals
+  plot(std_residuals, type = 'o', main = paste("Standardized Residuals after iteration ", iteration), xlab = "Time", ylab = "Standardized Residuals")
+  abline(h = c(-threshhold, threshhold), col = "red")
+  
+  # Identify outliers
+  outlier_positions <- which(abs(std_residuals) > threshhold)
+  outlier_positions <- setdiff(outlier_positions, idx)  # Exclude already processed outlier
+  if(length(outlier_positions) > 0){
+    print("Outliers detected at positions:")
+    for (idx_new in outlier_positions) {
+      year_new <- floor(time(y)[idx_new])
+      month_index_new <- cycle(y)[idx_new]
+      month_name_new <- month.abb[month_index_new]
+      print(paste("Time:", year_new, month_name_new, "Residual:", std_residuals[idx_new]))
+
+    }
+  } else {
+    print("No more outliers detected.")
+  }
+  
+  iteration <- iteration + 1
+}
+
+```
+
+#### Explanation of the Procedure
+create_outlier_regressors: This function generates regressors for the three types of outliers for a given index in the time series.
+
+Additive Outlier (AO): A spike at the outlier time point.
+Level Shift (LS): A step function starting from the outlier time point.
+Temporary Change (TC): A decay function starting from the outlier time point.
+select_best_outlier: This function fits the model with each outlier type added and selects the one with the lowest AIC value.
+
+#### Iterative Process:
+
+Iteration: In each iteration, we process the most significant outlier.
+Update Regressors: The selected outlier regressor is added to the model.
+Recalculate Residuals: We refit the model and recalculate the standardized residuals.
+Repeat: The process repeats until no residuals exceed the ±3 standard deviation threshold.
+### Final Model Summary
+After incorporating all significant outliers, we obtain the final adjusted model.
+```{r}
+# Final model
+library(broom)
+final_model <- best_model
+print(summary(final_model))
+print(summary(m))
+```
