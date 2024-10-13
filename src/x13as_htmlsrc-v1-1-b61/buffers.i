@@ -1,3 +1,0 @@
-C... 
-      character buffS*80
-      common /bufferS/ buffS

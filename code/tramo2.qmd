@@ -223,10 +223,10 @@ Observe that the AIC value is lower in the case when regression variables are in
 Note that the standard error of the parameter corresponding to the Easter effects is significant only at $\alpha = 0.05$ under the assumption that the estimates follow a normal distribution. This matches with the result above.
 
 ## Outlier Detection
+
 In this section, we perform outlier detection and correction as per the TRAMO procedure. The process involves fitting the model with the identified regressors (Easter and trading day effects), detecting significant outliers, incorporating them into the model, and iterating this process until no significant outliers remain.
 
-Initial Model and Outlier Detection
-First, we fit the ARIMA model with the regressors for Easter and trading day effects. We then calculate the standardized residuals and identify any observations where the residuals exceed ±3 standard deviations, indicating potential outliers.
+Initial Model and Outlier Detection First, we fit the ARIMA model with the regressors for Easter and trading day effects. We then calculate the standardized residuals and identify any observations where the residuals exceed ±3 standard deviations, indicating potential outliers.
 
 ```{r}
 # Initial model with regressors (Easter and trading day effects)
@@ -258,6 +258,7 @@ if(length(outliers) > 0){
 ```
 
 ### Iterative Outlier Correction Procedure
+
 We proceed by iteratively incorporating the most significant outlier into the model as one of the three types: Additive Outlier (AO), Level Shift (LS), or Temporary Change (TC). At each step, we select the outlier type that results in the lowest AIC value for the model.
 
 ```{r}
@@ -353,21 +354,15 @@ print(paste("Selected outlier type:", best_type))
 ```
 
 #### Explanation of the Procedure
+
 create_outlier_regressors: This function generates regressors for the three types of outliers for a given index in the time series.
 
-Additive Outlier (AO): A spike at the outlier time point.
-Level Shift (LS): A step function starting from the outlier time point.
-Temporary Change (TC): A decay function starting from the outlier time point.
-select_best_outlier: This function fits the model with each outlier type added and selects the one with the lowest AIC value.
+Additive Outlier (AO): A spike at the outlier time point. Level Shift (LS): A step function starting from the outlier time point. Temporary Change (TC): A decay function starting from the outlier time point. select_best_outlier: This function fits the model with each outlier type added and selects the one with the lowest AIC value.
 
 #### Iterative Process:
 
-Iteration: In each iteration, we process the most significant outlier.
-Update Regressors: The selected outlier regressor is added to the model.
-Recalculate Residuals: We refit the model and recalculate the standardized residuals.
-Repeat: The process repeats until no residuals exceed the ±3 standard deviation threshold.
-### Final Model Summary
-After incorporating all significant outliers, we obtain the final adjusted model.
+Iteration: In each iteration, we process the most significant outlier. Update Regressors: The selected outlier regressor is added to the model. Recalculate Residuals: We refit the model and recalculate the standardized residuals. Repeat: The process repeats until no residuals exceed the ±3 standard deviation threshold. \### Final Model Summary After incorporating all significant outliers, we obtain the final adjusted model.
+
 ```{r}
 # Final model
 library(broom)

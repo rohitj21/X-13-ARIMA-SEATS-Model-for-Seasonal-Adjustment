@@ -1,6 +1,0 @@
-c-----------------------------------------------------------------------
-      DOUBLE PRECISION Sfpv,Sfval,Usfpv,Usfval,Tdfpv,Tdfval,Utdfpv,
-     &                 Utdfvl,Treg(PB)
-c-----------------------------------------------------------------------
-      COMMON /cmdldg/ Treg,Sfpv,Sfval,Usfpv,Usfval,Tdfpv,Tdfval,Utdfpv,
-     &                Utdfvl

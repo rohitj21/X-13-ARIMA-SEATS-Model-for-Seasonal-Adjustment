@@ -1,4 +1,0 @@
-      DOUBLE PRECISION Orixs,Fctses
-      DIMENSION Orixs(PLEN),Fctses(PFCST)
-c-----------------------------------------------------------------------
-      COMMON / adseat / Orixs,Fctses

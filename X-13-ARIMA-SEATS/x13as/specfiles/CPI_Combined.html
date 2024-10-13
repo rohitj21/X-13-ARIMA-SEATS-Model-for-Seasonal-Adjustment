@@ -1,0 +1,2084 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>CPI_Combined.html</title>
+<meta name="keywords"  content="seasonal adjustment, X-13ARIMA-SEATS, regARIMA modeling">  
+<meta name="description"  content="X-13ARIMA-SEATS Output File (CPI_Combined.html)">  
+<meta name="generator"  content="X-13ARIMA-SEATS">  
+<meta name="author"  content="Time Series Research Staff, CSRM, US Census Bureau">  
+<meta http-equiv="Content-Type"  content="text/html; charset=ISO-8859-1">  
+<style type="text/css">
+  #rightnavigation {
+   position : absolute;
+   top : 0px;
+   right : 0;
+   width : 300px;
+   margin-left : 10px;
+   margin-top : 20px;
+   color : #000000;
+   padding : 3px;
+      background-color: #CCFFFF;
+   border: 1px solid #666;
+  }
+  #content{
+   top : 0px;
+    margin : 0px 350px 0px 0;
+    padding : 3px;
+    color : #000000;
+  }
+  p,ul,h1,h2,h3,h4,h5 {margin-left : 5%; margin-right : 5%;}
+  .indent {  margin-left : 7.5%;  margin-right : 7.5%;  }
+  .indentnav {  margin-left : 7.5%;  margin-right : 7.5%; font-size: 75%; }
+  .bold {   font-weight: bold;   }
+  .em {   font-style:italic;   }
+  .center { text-align : center; }
+  .left {   text-align: left;    }
+  .right {   text-align: right;    }
+  pre {margin-left : 5%; margin-right : 5%;}
+  ul.nob { list-style:none }
+  .ub {text-decoration:underline; font-weight: bold; }
+  table {
+    border-width: thin thin thin thin;
+    border-spacing: 0px;
+    border-color: black black black black;
+    border-collapse: collapse;
+    background-color: white;
+    font-size: 80%;
+  }
+  th {
+    border-width: thin thin thin thin;
+    padding: 3px 3px 3px 3px;
+    border-style: inset inset inset inset;
+    border-color: gray gray gray gray;
+    background-color: #BDBDBD;
+  }
+  td {
+    border-width: thin thin thin thin;
+    padding: 3px 3px 3px 3px;
+    border-style: inset inset inset inset;
+    border-color: gray gray gray gray;
+    background-color: white;
+    text-align: right;
+  }
+  table.x11 {
+    margin-left : 7.5%;
+    margin-right : 7.5%;
+    width : 85%;
+  }
+  td.nowrap {  white-space: nowrap;  }
+  td.nowrapcenter {
+    white-space: nowrap;
+    text-align : center;
+  }
+  td.head {
+    background-color: #BDBDBD;
+    text-align : center;
+    font-weight: bold;
+  }
+  td.headleft {
+    background-color: #BDBDBD;
+    text-align : left;
+    font-weight: bold;
+  }
+  table td:hover,th:hover {
+    background:#FFCC99; cursor: crosshair;
+    font-weight:bold; font-size:1.5em;
+  }
+ .w65 {  margin-left : 17.5%;  margin-right : 17.5%;  width : 65%  }
+  th.iter {  width : 35%;  text-align: left;  }
+ .w90 {  margin-left : 5%;  margin-right : 5%;  width : 90%  }
+ .w80 {  margin-left : 10%;  margin-right : 10%;  width : 80%  }
+ .w70 {  margin-left : 15%;  margin-right : 15%;  width : 70%  }
+ .w60 {  margin-left : 20%;  margin-right : 20%;  width : 60%  }
+ .w50 {  margin-left : 25%;  margin-right : 25%;  width : 50%  }
+ .w40 {  margin-left : 30%;  margin-right : 30%;  width : 40%  }
+ .w30 {  margin-left : 35%;  margin-right : 35%;  width : 30%  }
+ .w20 {  margin-left : 40%;  margin-right : 40%;  width : 20%  }
+  a.skiplinks {color: #FFFFFF; font-size: xx-small;}
+  a.longdesc {
+    position : absolute; left : -1010em; 
+    width : 900em; font-size : 10%;
+  }
+  dl#content-footnotes {
+    position : absolute; left : -9999px;
+  }
+  dt {
+    clear : both; padding : .5em 0 0 0;
+    margin : 0; font-weight : bold; 
+    font-size : 10%; 
+  }
+  dd {
+    padding : 0; margin : 0; font-size : 10%; 
+  }
+</style>
+</head>
+<body>
+
+<div id="content">
+  <p>Reading input spec file from <em>./specfiles/CPI_Combined.spc</em></p>
+
+<a name="pos00001"></a>
+
+<p class="right"><a href="#skip00001" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00000">Previous Table</a> | <a href="#index00001">Index</a> | <a href="#pos00002">Next Table</a></p>
+
+<a name="skip00001"></a>
+
+<h1 class="center">U. S. Department of Commerce, U. S. Census Bureau</h1>
+
+<h2 class="center">           X-13ARIMA-SEATS monthly regARIMA model estimation Method, <br> 
+  Release Version 1.1 Build 61</h2>
+
+<p>&nbsp;</p>
+<p class="center">This software application provides an enhanced version of
+ <br> Statistics Canada's X-11-ARIMA extension (Dagum, 1980)
+ <br> of the X-11 variant of the Census Method II of
+ <br> Shiskin, Young and Musgrave (1967).</p>
+
+<p class="center">It also provides an ARIMA model-based method following
+ <br> Hillmer and Tiao (1982) and Burman (1980) that is very similar
+ <br> to the update of the method of SEATS (<span lang="es">G&oacute;mez</span> and Maravall, 1996)
+ <br> produced at the Bank of Spain by G. Caporello and
+ <br> A. Maravall for TSW (Caporello and Maravall, 2004).
+ <br> The present application includes additional enhancements.</p>
+
+<p class="center">X-13ARIMA-SEATS includes an automatic ARIMA model selection procedure
+ <br> based largely on the procedure of <span lang="es">G&oacute;mez</span> and <span lang="es">Maravall</span> (1998)
+ <br> as implemented in TRAMO (1996) and subsequent revisions.</p>
+
+<p class="center">Primary Programmers: Brian Monsell, Mark Otto and,
+ <br> for the ARIMA model-based signal extraction,
+ <br> <span lang="it">Gianluca Caporello</span> and 
+<span lang="es">V&iacute;ctor G&oacute;mez</span></p>
+
+ <p><strong>Series Title-</strong> Consumer Food Price Index - All India Combined <br> 
+ <strong>Series Name-</strong> CPI_Combined <br> 
+ Oct  5, 2024  12.18.46 </p>
+<ul class="indent">
+<li>Period covered-  1st month,2013 to  8th month,2024</li>
+<li>Spectral plot of the original series generated</li>
+</ul>
+
+<p><strong>FILE SAVE REQUESTS</strong> (* indicates file exists and will be overwritten)</p>
+
+<p class="indent">
+  ./specfiles/CPI_Combined.html* program output file <br> 
+  ./specfiles/CPI_Combined_err.html* program error file <br> 
+</p>
+
+<p>&nbsp;</p>
+
+<h3>LINKS TO OTHER HTML FILES</h3>
+<ul class="indent">
+<li><a href="CPI_Combined_err.html">Error file for CPI_Combined</a></li>
+<li><a href="./specfiles/CPI_Combined_log.html#pos00001">Log entry for CPI_Combined</a></li>
+</ul>
+
+<a name="pos00002"></a>
+
+<p class="right"><a href="#skip00002" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00001">Previous Table</a> | <a href="#index00002">Index</a> | <a href="#pos00003">Next Table</a></p>
+
+<a name="skip00002"></a>
+
+<p class="right"><a href="#pos00003" title="Skip CONTENTS OF INPUT SPECIFICATION FILE" class="skiplinks">&nbsp;</a></p>
+
+<p>Contents of spc file ./specfiles/CPI_Combined.spc</p>
+<pre>
+ Line #
+ ------
+      1: series{
+      2:   title="Consumer Food Price Index - All India Combined"
+      3:   start=2013.01
+      4:   data=(
+      5:     105.4 106.4 106.5 107.5 109.1 112.4 115.2 117.3 119.0 121.1 123.9 118.7
+      6:     115.6 114.8 115.7 117.4 118.8 120.5 125.4 127.5 126.4 125.8 125.3 123.4
+      7:     122.7 122.7 122.8 123.4 124.5 127.1 128.1 130.3 131.3 132.4 132.9 131.3
+      8:     131.1 129.2 129.2 131.3 133.8 137.0 138.8 138.0 136.5 136.8 135.6 133.1
+      9:     131.9 131.8 131.8 132.1 132.4 134.1 138.3 140.1 138.2 139.4 141.5 139.7
+     10:     138.1 136.1 135.5 135.8 136.5 138.0 140.1 140.5 138.9 138.2 137.8 136.0
+     11:     135.0 135.1 135.9 137.3 139.0 141.1 143.4 144.7 146.0 149.1 151.6 155.3
+     12:     153.4 149.7 147.8 153.4 151.8 153.4 156.7 157.8 161.6 165.5 166.0 160.6
+     13:     156.4 155.5 155.0 156.4 159.4 161.3 162.9 162.7 162.7 166.9 169.1 167.1
+     14:     164.9 164.6 166.9 169.4 172.1 173.8 173.8 175.1 176.7 178.6 177.0 174.1
+     15:     174.8 174.4 174.9 175.9 177.2 181.7 193.8 192.5 188.4 190.4 192.4 190.7
+     16:     189.3 189.5 189.8 191.2 192.6 198.7 204.3 203.4
+     17:   )
+     18:   span=(2013.01, 2024.08)
+     19: }
+     20:  
+     21: spectrum{
+     22:   savelog=peaks
+     23: }
+     24:  
+     25: transform{
+     26:   function=auto
+     27:   savelog=autotransform
+     28: }
+     29:  
+     30: regression{
+     31:   aictest=(td easter)
+     32:   savelog=aictest
+     33: }
+     34:  
+     35: automdl{
+     36:   savelog=automodel
+     37: }
+     38:  
+     39: outlier{ }
+     40:  
+</pre>
+
+<a name="pos00003"></a>
+
+<p class="right"><a href="#skip00003" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00002">Previous Table</a> | <a href="#index00003">Index</a> | <a href="#pos00004">Next Table</a></p>
+
+<a name="skip00003"></a>
+
+<h3> Likelihood statistics for model fit to untransformed series.</h3>
+<div id="lkhd001">
+<table class="w60"
+  summary ="Likelihood Statistics" >
+<caption><strong>Likelihood Statistics</strong></caption>
+<tr><th scope="row">Number of observations (nobs)</th><td>   140</td></tr>
+<tr><th scope="row">Effective number of observations (nefobs)</th><td>   127</td></tr>
+<tr><th scope="row">Number of parameters estimated (np)</th><td>     3</td></tr>
+<tr><th scope="row"> Log likelihood (L)</th><td>                               -261.7271</td></tr>
+<tr><th scope="row"> <abbr title="Akaike information criterion">AIC</abbr></th><td>                                529.4543  </td></tr>
+<tr><th scope="row"> <abbr title="corrected Akaike information criterion">AICC</abbr> (F-corrected-<abbr title="Akaike information criterion">AIC</abbr>)</th><td>                                529.6494  </td></tr>
+<tr><th scope="row"> Hannan Quinn </th><td>                                532.9210  </td></tr>
+<tr><th scope="row"> <abbr title="Bayesian information criterion">BIC</abbr> </th><td>                                537.9869  </td></tr>
+</table></div>
+
+<p>&nbsp;</p>
+
+<h3> Likelihood statistics for model fit to log transformed series.</h3>
+<div id="lkhd002">
+<table class="w60"
+  summary ="Likelihood Statistics" >
+<caption><strong>Likelihood Statistics</strong></caption>
+<tr><th scope="row">Number of observations (nobs)</th><td>   140</td></tr>
+<tr><th scope="row">Effective number of observations (nefobs)</th><td>   127</td></tr>
+<tr><th scope="row">Number of parameters estimated (np)</th><td>     3</td></tr>
+<tr><th scope="row"> Log likelihood</th><td>                                381.2523</td></tr>
+<tr><th scope="row"> Transformation Adjustment</th><td>                               -635.4861</td></tr>
+<tr><th scope="row"> Adjusted Log likelihood (L)</th><td>                               -254.2338</td></tr>
+<tr><th scope="row"> <abbr title="Akaike information criterion">AIC</abbr></th><td>                                514.4677  </td></tr>
+<tr><th scope="row"> <abbr title="corrected Akaike information criterion">AICC</abbr> (F-corrected-<abbr title="Akaike information criterion">AIC</abbr>)</th><td>                                514.6628  </td></tr>
+<tr><th scope="row"> Hannan Quinn </th><td>                                517.9344  </td></tr>
+<tr><th scope="row"> <abbr title="Bayesian information criterion">BIC</abbr> </th><td>                                523.0002  </td></tr>
+</table></div>
+
+<p>&nbsp;</p>
+
+<p class="center">***** <abbr title="corrected Akaike information criterion">AICC</abbr>
+ (with aicdiff=-2.00) prefers <strong>log transformation</strong> *****</p>
+
+
+<p>&nbsp;</p>
+<th scope="row">Automatic transformation test</th>
+<td>Log Transformation</td>
+
+<a name="pos00004"></a>
+
+<p class="right"><a href="#skip00004" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00003">Previous Table</a> | <a href="#index00004">Index</a> | <a href="#pos00005">Next Table</a></p>
+
+<a name="skip00004"></a>
+
+<h3>A 1  Time series data (for the span analyzed)</h3>
+ <p>From  2013.Jan to 2024.Aug <br> 
+  Observations        140</p>
+
+<div id="a1">
+<table class="x11"
+  summary ="A 1  Time series data (for the span analyzed)" >
+<caption><strong>A 1  Time series data (for the span analyzed)</strong></caption>
+<tr>
+<td class="head">&nbsp;</td>
+<th scope="col"><abbr title="January">   Jan                </abbr></th>
+<th scope="col"><abbr title="February">   Feb                </abbr></th>
+<th scope="col"><abbr title="March">   Mar                </abbr></th>
+<th scope="col"><abbr title="April">   Apr                </abbr></th>
+<th scope="col">   May                </th>
+<th scope="col"><abbr title="June">   Jun                </abbr></th>
+<th scope="col"><abbr title="July">   Jul                </abbr></th>
+<th scope="col"><abbr title="August">   Aug                </abbr></th>
+<th scope="col"><abbr title="September">   Sep                </abbr></th>
+<th scope="col"><abbr title="October">   Oct                </abbr></th>
+<th scope="col"><abbr title="November">   Nov                </abbr></th>
+<th scope="col"><abbr title="December">   Dec                </abbr></th>
+<th scope="col">TOTAL</th>
+</tr>
+<tr>
+<th scope="row">2013</th>
+<td>   105.</td>
+<td>   106.</td>
+<td>   107.</td>
+<td>   108.</td>
+<td>   109.</td>
+<td>   112.</td>
+<td>   115.</td>
+<td>   117.</td>
+<td>   119.</td>
+<td>   121.</td>
+<td>   124.</td>
+<td>   119.</td>
+<td>  1363.</td>
+</tr>
+<tr>
+<th scope="row">2014</th>
+<td>   116.</td>
+<td>   115.</td>
+<td>   116.</td>
+<td>   117.</td>
+<td>   119.</td>
+<td>   121.</td>
+<td>   125.</td>
+<td>   128.</td>
+<td>   126.</td>
+<td>   126.</td>
+<td>   125.</td>
+<td>   123.</td>
+<td>  1457.</td>
+</tr>
+<tr>
+<th scope="row">2015</th>
+<td>   123.</td>
+<td>   123.</td>
+<td>   123.</td>
+<td>   123.</td>
+<td>   125.</td>
+<td>   127.</td>
+<td>   128.</td>
+<td>   130.</td>
+<td>   131.</td>
+<td>   132.</td>
+<td>   133.</td>
+<td>   131.</td>
+<td>  1530.</td>
+</tr>
+<tr>
+<th scope="row">2016</th>
+<td>   131.</td>
+<td>   129.</td>
+<td>   129.</td>
+<td>   131.</td>
+<td>   134.</td>
+<td>   137.</td>
+<td>   139.</td>
+<td>   138.</td>
+<td>   137.</td>
+<td>   137.</td>
+<td>   136.</td>
+<td>   133.</td>
+<td>  1610.</td>
+</tr>
+<tr>
+<th scope="row">2017</th>
+<td>   132.</td>
+<td>   132.</td>
+<td>   132.</td>
+<td>   132.</td>
+<td>   132.</td>
+<td>   134.</td>
+<td>   138.</td>
+<td>   140.</td>
+<td>   138.</td>
+<td>   139.</td>
+<td>   142.</td>
+<td>   140.</td>
+<td>  1631.</td>
+</tr>
+<tr>
+<th scope="row">2018</th>
+<td>   138.</td>
+<td>   136.</td>
+<td>   136.</td>
+<td>   136.</td>
+<td>   137.</td>
+<td>   138.</td>
+<td>   140.</td>
+<td>   141.</td>
+<td>   139.</td>
+<td>   138.</td>
+<td>   138.</td>
+<td>   136.</td>
+<td>  1652.</td>
+</tr>
+<tr>
+<th scope="row">2019</th>
+<td>   135.</td>
+<td>   135.</td>
+<td>   136.</td>
+<td>   137.</td>
+<td>   139.</td>
+<td>   141.</td>
+<td>   143.</td>
+<td>   145.</td>
+<td>   146.</td>
+<td>   149.</td>
+<td>   152.</td>
+<td>   155.</td>
+<td>  1713.</td>
+</tr>
+<tr>
+<th scope="row">2020</th>
+<td>   153.</td>
+<td>   150.</td>
+<td>   148.</td>
+<td>   153.</td>
+<td>   152.</td>
+<td>   153.</td>
+<td>   157.</td>
+<td>   158.</td>
+<td>   162.</td>
+<td>   166.</td>
+<td>   166.</td>
+<td>   161.</td>
+<td>  1878.</td>
+</tr>
+<tr>
+<th scope="row">2021</th>
+<td>   156.</td>
+<td>   156.</td>
+<td>   155.</td>
+<td>   156.</td>
+<td>   159.</td>
+<td>   161.</td>
+<td>   163.</td>
+<td>   163.</td>
+<td>   163.</td>
+<td>   167.</td>
+<td>   169.</td>
+<td>   167.</td>
+<td>  1935.</td>
+</tr>
+<tr>
+<th scope="row">2022</th>
+<td>   165.</td>
+<td>   165.</td>
+<td>   167.</td>
+<td>   169.</td>
+<td>   172.</td>
+<td>   174.</td>
+<td>   174.</td>
+<td>   175.</td>
+<td>   177.</td>
+<td>   179.</td>
+<td>   177.</td>
+<td>   174.</td>
+<td>  2067.</td>
+</tr>
+<tr>
+<th scope="row">2023</th>
+<td>   175.</td>
+<td>   174.</td>
+<td>   175.</td>
+<td>   176.</td>
+<td>   177.</td>
+<td>   182.</td>
+<td>   194.</td>
+<td>   193.</td>
+<td>   188.</td>
+<td>   190.</td>
+<td>   192.</td>
+<td>   191.</td>
+<td>  2207.</td>
+</tr>
+<tr>
+<th scope="row">2024</th>
+<td>   189.</td>
+<td>   190.</td>
+<td>   190.</td>
+<td>   191.</td>
+<td>   193.</td>
+<td>   199.</td>
+<td>   204.</td>
+<td>   203.</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">  1559.</td>
+</tr>
+<tr>
+<th scope="row"> AVGE</th>
+<td>     143.</td>
+<td>     142.</td>
+<td>     143.</td>
+<td>     144.</td>
+<td>     146.</td>
+<td>     148.</td>
+<td>     152.</td>
+<td>     152.</td>
+<td>     148.</td>
+<td>     149.</td>
+<td>     150.</td>
+<td>     148.</td>
+<td>&nbsp;</td>
+</tr>
+</table></div>
+
+<p class="center">
+Table Total-              20601. &nbsp;&nbsp;&nbsp; Mean-                     147. &nbsp;&nbsp;&nbsp; Standard Deviation-        24.  <br> 
+Minimum-                  105. &nbsp;&nbsp;&nbsp; Maximum-                  204. </p>
+
+<p>&nbsp;</p>
+
+<a name="pos00005"></a>
+
+<p class="right"><a href="#skip00005" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00004">Previous Table</a> | <a href="#index00005">Index</a> | <a href="#pos00006">Next Table</a></p>
+
+<a name="skip00005"></a>
+
+<h3>Automatic ARIMA Model Selection</h3>
+
+<p class="center">Procedure based closely on TRAMO ,method of Gomez and Maravall (2000) <br> 
+"Automatic Modeling Methods for Univariate Series", <br> 
+A Course in Time Series (Edited by D. Pena, G. C. Tiao, R. S. Tsay), <br> 
+New York : J. Wiley and Sons</p>
+
+<p><strong>Maximum order for regular <abbr title="autoregressive moving average">ARMA</abbr> parameters :</strong>   2</p>
+<p><strong>Maximum order for seasonal <abbr title="autoregressive moving average">ARMA</abbr> parameters :</strong>   1</p>
+<p><strong>Maximum order for regular differencing :</strong>   2</p>
+<p><strong>Maximum order for seasonal differencing :</strong>   1</p>
+
+<p>Results of Unit Root Test for identifying orders of differencing:</p>
+
+<p class="indent">
+Regular difference order :   1
+Seasonal difference order :   1
+</p>
+
+<p>Mean is not significant.</p>
+
+<p class="center">Preliminary model choice : (2 1 0)(0 1 1)</p>
+
+<p>&nbsp;</p>
+
+<p>Final Checks for Identified Model</p>
+
+<p>&nbsp;</p>
+
+<p>Checking for Unit Roots.</p>
+
+<p>No unit root found.</p>
+<p>Nonseasonal <abbr title="moving average">MA</abbr> not within  0.001 of 1.0 - model passes test.</p>
+
+<p>&nbsp;</p>
+
+<p> Checking for insignificant <abbr title="autoregressive moving average">ARMA</abbr> coefficients.</p>
+
+<p class="center"><strong>Final automatic model choice :</strong> (2 1 0)(0 1 1)</p>
+
+<p>End of automatic model selection procedure.</p>
+
+
+<p>Average absolute percentage error in within-sample forecasts:</p>
+
+<p class="indent">
+ Last year:   0.97 <br>  Last-1 year:   0.77 <br>      Last-2 year:   2.59 <br> 
+  Last three years:    1.44</p>
+
+<p>Estimation converged in    21 <abbr title="autoregressive moving average">ARMA</abbr> iterations,   118 function evaluations.</p>
+
+<a name="pos00006"></a>
+
+<p class="right"><a href="#skip00006" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00005">Previous Table</a> | <a href="#index00006">Index</a> | <a href="#pos00007">Next Table</a></p>
+
+<a name="skip00006"></a>
+
+<h3>Regression Model</h3>
+<div id="mdl001.reg">
+<table class="w70"
+  summary ="Regression Model" >
+<caption><strong>Regression Model</strong></caption>
+<tr>
+<td class="head">&nbsp;</td>
+<th id="pe0001">Parameter <br> Estimate</th>
+<th id="se0001">Standard <br> Error</th>
+<th id="tv0001">t-value</th>
+</tr>
+<tr>
+<th colspan="4" id="gr0001" class="left">Automatically Identified Outliers</th>
+</tr>
+<tr>
+<th id="vl0001">AO2013.Nov</th>
+<td headers="gr0001 vl0001 pe0001" class="right">          0.0184</td>
+<td headers="gr0001 vl0001 se0001" class="right">         0.00365</td>
+<td headers="gr0001 vl0001 tv0001" class="right">            5.05</td>
+</tr>
+<tr>
+<th id="vl0002">LS2019.Dec</th>
+<td headers="gr0001 vl0002 pe0001" class="right">          0.0317</td>
+<td headers="gr0001 vl0002 se0001" class="right">         0.00642</td>
+<td headers="gr0001 vl0002 tv0001" class="right">            4.94</td>
+</tr>
+<tr>
+<th id="vl0003">AO2020.Apr</th>
+<td headers="gr0001 vl0003 pe0001" class="right">          0.0248</td>
+<td headers="gr0001 vl0003 se0001" class="right">         0.00362</td>
+<td headers="gr0001 vl0003 tv0001" class="right">            6.85</td>
+</tr>
+<tr>
+<th id="vl0004">LS2023.Jul</th>
+<td headers="gr0001 vl0004 pe0001" class="right">          0.0417</td>
+<td headers="gr0001 vl0004 se0001" class="right">         0.00637</td>
+<td headers="gr0001 vl0004 tv0001" class="right">            6.55</td>
+</tr>
+</table></div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<a name="pos00007"></a>
+
+<p class="right"><a href="#skip00007" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00006">Previous Table</a> | <a href="#index00007">Index</a> | <a href="#pos00008">Next Table</a></p>
+
+<a name="skip00007"></a>
+
+<h3>ARIMA Model</h3>
+
+<p>ARIMA Model:  (2 1 0)(0 1 1)</p>
+
+<p class="indent">
+   Nonseasonal differences: 1
+ <br> 
+   Seasonal differences:    1
+</p>
+<div id="mdl001.arma">
+<table class="w70"
+  summary ="ARIMA Model" >
+<caption><strong>ARIMA Model</strong></caption>
+<tr>
+<td class="head">&nbsp;</td>
+<th id="pe0002">Estimate</th>
+<th id="se0002">Standard Error</th>
+</tr>
+<tr>
+<th colspan="2" id="gr0002" class="left">Nonseasonal AR</th>
+<td class="head"> &nbsp;</td>
+</tr>
+<tr>
+<th id="vl0005">Lag  1</th>
+<td headers="gr0002 vl0005 pe0002" class="right">         0.58028</td>
+<td headers="gr0002 vl0005 se0002" class="right">         0.07350</td>
+</tr>
+<tr>
+<th id="vl0006">Lag  2</th>
+<td headers="gr0002 vl0006 pe0002" class="right">        -0.41506</td>
+<td headers="gr0002 vl0006 se0002" class="right">         0.07320</td>
+</tr>
+<tr>
+<th colspan="2" id="gr0003" class="left">Seasonal MA</th>
+<td class="head"> &nbsp;</td>
+</tr>
+<tr>
+<th id="vl0007">Lag 12</th>
+<td headers="gr0003 vl0007 pe0002" class="right">         0.99927</td>
+<td headers="gr0003 vl0007 se0002" class="right">         0.06455</td>
+</tr>
+</table></div>
+
+<p>&nbsp;</p>
+<div id="mdl001.var">
+<table class="w60"
+  summary ="Innovation Variance of the regARIMA model" >
+<caption><strong>Model Innovation Variance</strong></caption>
+<tr><th scope="row"> Variance </th><td>                      0.56106E-04</td></tr>
+<tr><th scope="row"> Standard Error of Variance </th><td>                      0.70408E-05</td></tr>
+</table></div>
+
+<p>&nbsp;</p>
+
+<a name="pos00008"></a>
+
+<p class="right"><a href="#skip00008" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00007">Previous Table</a> | <a href="#index00008">Index</a> | <a href="#pos00009">Next Table</a></p>
+
+<a name="skip00008"></a>
+<div id="lkhd003">
+<table class="w60"
+  summary ="Likelihood Statistics" >
+<caption><strong>Likelihood Statistics</strong></caption>
+<tr><th scope="row">Number of observations (nobs)</th><td>   140</td></tr>
+<tr><th scope="row">Effective number of observations (nefobs)</th><td>   127</td></tr>
+<tr><th scope="row">Number of parameters estimated (np)</th><td>     8</td></tr>
+<tr><th scope="row"> Log likelihood</th><td>                                426.4309</td></tr>
+<tr><th scope="row"> Transformation Adjustment</th><td>                               -635.4861</td></tr>
+<tr><th scope="row"> Adjusted Log likelihood (L)</th><td>                               -209.0552</td></tr>
+<tr><th scope="row"> <abbr title="Akaike information criterion">AIC</abbr></th><td>                                434.1104  </td></tr>
+<tr><th scope="row"> <abbr title="corrected Akaike information criterion">AICC</abbr> (F-corrected-<abbr title="Akaike information criterion">AIC</abbr>)</th><td>                                435.3308  </td></tr>
+<tr><th scope="row"> Hannan Quinn </th><td>                                443.3549  </td></tr>
+<tr><th scope="row"> <abbr title="Bayesian information criterion">BIC</abbr> </th><td>                                456.8639  </td></tr>
+</table></div>
+
+<p>&nbsp;</p>
+
+<a name="pos00009"></a>
+
+<p class="right"><a href="#skip00009" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00008">Previous Table</a> | <a href="#index00009">Index</a> | <a href="#pos00010">Next Table</a></p>
+
+<a name="skip00009"></a>
+
+<h3>QS Statistic for regARIMA Model Residuals</h3>
+
+ <p>QS Statistic for regARIMA Model Residuals (full series):              0.00  (P-Value =     1.0000)</p>
+
+ <p>QS Statistic for regARIMA Model Residuals (starting 2016.Sep):              0.00  (P-Value =     1.0000)</p>
+
+<a name="pos00010"></a>
+
+<p class="right"><a href="#skip00010" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00009">Previous Table</a> | <a href="#index00010">Index</a> | <a href="#pos00011">Next Table</a></p>
+
+<a name="skip00010"></a>
+
+<p class="right"><a href="#pos00011" title="Skip ASCII plot of Table      10*LOG(SPECTRUM) of the regARIMA model residuals" class="skiplinks">&nbsp;</a></p>
+
+<h3>     10*LOG(SPECTRUM) of the regARIMA model residuals</h3>
+
+<h3 class="indent">     Spectrum estimated from 2016.Sep to 2024.Aug.</h3>
+<pre>
+ ++++++++++I+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++I
+     -38.35I                                                *            I    -38.35
+           I                                                *            I
+           I                                                *            I
+           I                                               **            I
+     -39.29I                                               **            I    -39.29
+           I                                               **            I
+           I                                               **            I
+           I                                               **            I
+     -40.23I         *                           *         **            I    -40.23
+           I        **   *              *        *         **            I
+           I        **   *       *      *        *         **            I
+           I        **   *       *      *        *         **            I
+     -41.17I        **   *       *      *        *         **            I    -41.17
+           I     *  **   *       *      *        **        **            I
+           I     *  **   **     S*      **       **        **            I
+           I     *  **   **     S**    ***       **        **            I
+     -42.10I     *  **   **     S**    ***       **        **            I    -42.10
+           I     *  **   **     S** ** ***       **        **            I
+           I     *  **   **     S*********       **        **            I
+           I     *  **   **     S*********    *  **       ***            I
+     -43.04I     *****   **     S*********    *  **       ***            I    -43.04
+           I    ******   **     S*********   **  **       ****           I
+           I*   ******   **     S*********   ** ***       ****           I
+           I*   ******S ***     S*********   ** ***       ****      *    I
+     -43.98I*   ******S ***     S*********   ******       ****      *   SI    -43.98
+           I*   ******S ***    *S*********   ******       ****      ** *SI
+           I*   ******S ***    *S*********S  ******       ****     *****SI
+           I*   ******S ***    *S*********S  ******       ****     *****SI
+     -44.92I*   ******S****    *S*********S  ******      *****     *****SI    -44.92
+           I*   ******S*****   *S*********S *******      *****     *****SI
+           I**  ******S*****   *S*********S *******      *****     *****SI
+           I**  ******S*****   *S*********S *******      *****     *****SI
+     -45.86I**  ******S*****   *S*********S********      *****     *****SI    -45.86
+           I**  ******S*****   *S*********S********      *****    ******SI
+           I** *******S*****  **S*********S********      *****S   ******SI
+           I** *******S*****  **S*********S********     ******S   ******SI
+     -46.80I** *******S****** **S*********S*********    ******S   ******SI    -46.80
+           I**********S*********S*********S*********    ******S   ******SI
+           I**********S*********S*********S*********    ******S   ******SI
+           I**********S*********S*********S*********    ******S* *******SI
+     -47.74I**********S*********S*********S*********    ******S* *******SI    -47.74
+           I**********S*********S*********S*********    ******S*T*******SI
+           I**********S*********S*********S*********    ******S*T*******SI
+           I**********S*********S*********S*********    ******S*T*******SI
+     -48.68I**********S*********S*********S*********    ******S*T*******SI    -48.68
+           I**********S*********S*********S*********   *******S*T*******SI
+           I**********S*********S*********S*********   *******S*T*******SI
+           I**********S*********S*********S*********   *******S*T*******SI
+     -49.61I**********S*********S*********S*********   *******S*T*******SI    -49.61
+           I**********S*********S*********S*********S  *******S*T*******SI
+           I**********S*********S*********S*********S  *******S*T*******SI
+           I**********S*********S*********S*********S T*******S*T*******SI
+     -50.55I**********S*********S*********S*********S*T*******S*T*******SI    -50.55
+ ++++++++++I+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++I
+            S=SEASONAL FREQUENCIES, T=TRADING DAY FREQUENCIES
+</pre>
+
+<a name="pos00011"></a>
+
+<p class="right"><a href="#skip00011" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00010">Previous Table</a> | <a href="#index00011">Index</a> | <a href="#pos00012">Next Table</a></p>
+
+<a name="skip00011"></a>
+
+<h3>A 8  RegARIMA combined outlier component <br>      (AO, LS outliers included)</h3>
+ <p>From  2013.Jan to 2024.Aug <br> 
+  Observations        140</p>
+
+<div id="otl">
+<table class="x11"
+  summary ="A 8  RegARIMA combined outlier component" >
+<caption><strong>A 8  RegARIMA combined outlier component</strong></caption>
+<tr>
+<td class="head">&nbsp;</td>
+<th scope="col"><abbr title="January">   Jan                </abbr></th>
+<th scope="col"><abbr title="February">   Feb                </abbr></th>
+<th scope="col"><abbr title="March">   Mar                </abbr></th>
+<th scope="col"><abbr title="April">   Apr                </abbr></th>
+<th scope="col">   May                </th>
+<th scope="col"><abbr title="June">   Jun                </abbr></th>
+<th scope="col"><abbr title="July">   Jul                </abbr></th>
+<th scope="col"><abbr title="August">   Aug                </abbr></th>
+<th scope="col"><abbr title="September">   Sep                </abbr></th>
+<th scope="col"><abbr title="October">   Oct                </abbr></th>
+<th scope="col"><abbr title="November">   Nov                </abbr></th>
+<th scope="col"><abbr title="December">   Dec                </abbr></th>
+<th scope="col"><abbr title="Average                         "> AVGE</abbr></th>
+</tr>
+<tr>
+<th scope="row">2013</th>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   94.6</td>
+<td>   92.9</td>
+<td>   93.1</td>
+</tr>
+<tr>
+<th scope="row">2014</th>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+</tr>
+<tr>
+<th scope="row">2015</th>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+</tr>
+<tr>
+<th scope="row">2016</th>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+</tr>
+<tr>
+<th scope="row">2017</th>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+</tr>
+<tr>
+<th scope="row">2018</th>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+</tr>
+<tr>
+<th scope="row">2019</th>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   95.9</td>
+<td>   93.2</td>
+</tr>
+<tr>
+<th scope="row">2020</th>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   98.3</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   96.1</td>
+</tr>
+<tr>
+<th scope="row">2021</th>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+</tr>
+<tr>
+<th scope="row">2022</th>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+</tr>
+<tr>
+<th scope="row">2023</th>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>   98.0</td>
+</tr>
+<tr>
+<th scope="row">2024</th>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">  100.0</td>
+</tr>
+<tr>
+<th scope="row"> AVGE</th>
+<td>     94.5</td>
+<td>     94.5</td>
+<td>     94.5</td>
+<td>     94.7</td>
+<td>     94.5</td>
+<td>     94.5</td>
+<td>     94.8</td>
+<td>     94.8</td>
+<td>     94.4</td>
+<td>     94.4</td>
+<td>     94.5</td>
+<td>     94.7</td>
+<td>&nbsp;</td>
+</tr>
+</table></div>
+
+<p class="center">
+Table Total-              13241. &nbsp;&nbsp;&nbsp; Mean-                      95. &nbsp;&nbsp;&nbsp; Standard Deviation-         6.  <br> 
+Minimum-                   93. &nbsp;&nbsp;&nbsp; Maximum-                  100. </p>
+
+<p>&nbsp;</p>
+
+<h3>A 8.A  RegARIMA outlier component</h3>
+ <p>From  2024.Sep to 2025.Aug <br> 
+  Observations         12</p>
+
+<div id="otl.fct">
+<table class="x11"
+  summary ="A 8.A  RegARIMA outlier component" >
+<caption><strong>A 8.A  RegARIMA outlier component</strong></caption>
+<tr>
+<td class="head">&nbsp;</td>
+<th scope="col"><abbr title="January">   Jan                </abbr></th>
+<th scope="col"><abbr title="February">   Feb                </abbr></th>
+<th scope="col"><abbr title="March">   Mar                </abbr></th>
+<th scope="col"><abbr title="April">   Apr                </abbr></th>
+<th scope="col">   May                </th>
+<th scope="col"><abbr title="June">   Jun                </abbr></th>
+<th scope="col"><abbr title="July">   Jul                </abbr></th>
+<th scope="col"><abbr title="August">   Aug                </abbr></th>
+<th scope="col"><abbr title="September">   Sep                </abbr></th>
+<th scope="col"><abbr title="October">   Oct                </abbr></th>
+<th scope="col"><abbr title="November">   Nov                </abbr></th>
+<th scope="col"><abbr title="December">   Dec                </abbr></th>
+<th scope="col"><abbr title="Average                         "> AVGE</abbr></th>
+</tr>
+<tr>
+<th scope="row">2024</th>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">  100.0</td>
+<td class="nowrap">  100.0</td>
+<td class="nowrap">  100.0</td>
+<td class="nowrap">  100.0</td>
+<td class="nowrap">  100.0</td>
+</tr>
+<tr>
+<th scope="row">2025</th>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">  100.0</td>
+</tr>
+</table></div>
+
+<p>&nbsp;</p>
+
+<a name="pos00012"></a>
+
+<p class="right"><a href="#skip00012" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00011">Previous Table</a> | <a href="#index00012">Index</a> | <a href="#pos00013">Next Table</a></p>
+
+<a name="skip00012"></a>
+
+<h3>A 8.AO  RegARIMA AO outlier component</h3>
+ <p>From  2013.Jan to 2024.Aug <br> 
+  Observations        140</p>
+
+<div id="ao">
+<table class="x11"
+  summary ="A 8.AO  RegARIMA AO outlier component" >
+<caption><strong>A 8.AO  RegARIMA AO outlier component</strong></caption>
+<tr>
+<td class="head">&nbsp;</td>
+<th scope="col"><abbr title="January">   Jan                </abbr></th>
+<th scope="col"><abbr title="February">   Feb                </abbr></th>
+<th scope="col"><abbr title="March">   Mar                </abbr></th>
+<th scope="col"><abbr title="April">   Apr                </abbr></th>
+<th scope="col">   May                </th>
+<th scope="col"><abbr title="June">   Jun                </abbr></th>
+<th scope="col"><abbr title="July">   Jul                </abbr></th>
+<th scope="col"><abbr title="August">   Aug                </abbr></th>
+<th scope="col"><abbr title="September">   Sep                </abbr></th>
+<th scope="col"><abbr title="October">   Oct                </abbr></th>
+<th scope="col"><abbr title="November">   Nov                </abbr></th>
+<th scope="col"><abbr title="December">   Dec                </abbr></th>
+<th scope="col"><abbr title="Average                         "> AVGE</abbr></th>
+</tr>
+<tr>
+<th scope="row">2013</th>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  101.9</td>
+<td>  100.0</td>
+<td>  100.2</td>
+</tr>
+<tr>
+<th scope="row">2014</th>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+</tr>
+<tr>
+<th scope="row">2015</th>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+</tr>
+<tr>
+<th scope="row">2016</th>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+</tr>
+<tr>
+<th scope="row">2017</th>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+</tr>
+<tr>
+<th scope="row">2018</th>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+</tr>
+<tr>
+<th scope="row">2019</th>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+</tr>
+<tr>
+<th scope="row">2020</th>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  102.5</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.2</td>
+</tr>
+<tr>
+<th scope="row">2021</th>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+</tr>
+<tr>
+<th scope="row">2022</th>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+</tr>
+<tr>
+<th scope="row">2023</th>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+</tr>
+<tr>
+<th scope="row">2024</th>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">  100.0</td>
+</tr>
+<tr>
+<th scope="row"> AVGE</th>
+<td>    100.0</td>
+<td>    100.0</td>
+<td>    100.0</td>
+<td>    100.2</td>
+<td>    100.0</td>
+<td>    100.0</td>
+<td>    100.0</td>
+<td>    100.0</td>
+<td>    100.0</td>
+<td>    100.0</td>
+<td>    100.2</td>
+<td>    100.0</td>
+<td>&nbsp;</td>
+</tr>
+</table></div>
+
+<p class="center">
+Table Total-              14004. &nbsp;&nbsp;&nbsp; Mean-                     100. &nbsp;&nbsp;&nbsp; Standard Deviation-         0.  <br> 
+Minimum-                  100. &nbsp;&nbsp;&nbsp; Maximum-                  103. </p>
+
+<p>&nbsp;</p>
+
+<a name="pos00013"></a>
+
+<p class="right"><a href="#skip00013" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00012">Previous Table</a> | <a href="#index00013">Index</a> | <a href="#pos00014">Next Table</a></p>
+
+<a name="skip00013"></a>
+
+<h3>A 8.LS  RegARIMA level change outlier component</h3>
+ <p>From  2013.Jan to 2024.Aug <br> 
+  Observations        140</p>
+
+<div id="ls">
+<table class="x11"
+  summary ="A 8.LS  RegARIMA level change outlier component" >
+<caption><strong>A 8.LS  RegARIMA level change outlier component</strong></caption>
+<tr>
+<td class="head">&nbsp;</td>
+<th scope="col"><abbr title="January">   Jan                </abbr></th>
+<th scope="col"><abbr title="February">   Feb                </abbr></th>
+<th scope="col"><abbr title="March">   Mar                </abbr></th>
+<th scope="col"><abbr title="April">   Apr                </abbr></th>
+<th scope="col">   May                </th>
+<th scope="col"><abbr title="June">   Jun                </abbr></th>
+<th scope="col"><abbr title="July">   Jul                </abbr></th>
+<th scope="col"><abbr title="August">   Aug                </abbr></th>
+<th scope="col"><abbr title="September">   Sep                </abbr></th>
+<th scope="col"><abbr title="October">   Oct                </abbr></th>
+<th scope="col"><abbr title="November">   Nov                </abbr></th>
+<th scope="col"><abbr title="December">   Dec                </abbr></th>
+<th scope="col"><abbr title="Average                         "> AVGE</abbr></th>
+</tr>
+<tr>
+<th scope="row">2013</th>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+</tr>
+<tr>
+<th scope="row">2014</th>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+</tr>
+<tr>
+<th scope="row">2015</th>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+</tr>
+<tr>
+<th scope="row">2016</th>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+</tr>
+<tr>
+<th scope="row">2017</th>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+</tr>
+<tr>
+<th scope="row">2018</th>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+</tr>
+<tr>
+<th scope="row">2019</th>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   92.9</td>
+<td>   95.9</td>
+<td>   93.2</td>
+</tr>
+<tr>
+<th scope="row">2020</th>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+</tr>
+<tr>
+<th scope="row">2021</th>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+</tr>
+<tr>
+<th scope="row">2022</th>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+</tr>
+<tr>
+<th scope="row">2023</th>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>   95.9</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>   98.0</td>
+</tr>
+<tr>
+<th scope="row">2024</th>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td>  100.0</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">  100.0</td>
+</tr>
+<tr>
+<th scope="row"> AVGE</th>
+<td>     94.5</td>
+<td>     94.5</td>
+<td>     94.5</td>
+<td>     94.5</td>
+<td>     94.5</td>
+<td>     94.5</td>
+<td>     94.8</td>
+<td>     94.8</td>
+<td>     94.4</td>
+<td>     94.4</td>
+<td>     94.4</td>
+<td>     94.7</td>
+<td>&nbsp;</td>
+</tr>
+</table></div>
+
+<p class="center">
+Table Total-              13237. &nbsp;&nbsp;&nbsp; Mean-                      95. &nbsp;&nbsp;&nbsp; Standard Deviation-         6.  <br> 
+Minimum-                   93. &nbsp;&nbsp;&nbsp; Maximum-                  100. </p>
+
+<p>&nbsp;</p>
+
+<a name="pos00014"></a>
+
+<p class="right"><a href="#skip00014" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00013">Previous Table</a> | <a href="#index00014">Index</a> | <a href="#pos00015">Next Table</a></p>
+
+<a name="skip00014"></a>
+
+<h3>B 1  Original series (prior adjusted) <br>      (adjusted for regARIMA factors)</h3>
+ <p>From  2013.Jan to 2024.Aug <br> 
+  Observations        140</p>
+
+<div id="b1">
+<table class="x11"
+  summary ="B 1  Original series (prior adjusted)" >
+<caption><strong>B 1  Original series (prior adjusted)</strong></caption>
+<tr>
+<td class="head">&nbsp;</td>
+<th scope="col"><abbr title="January">   Jan                </abbr></th>
+<th scope="col"><abbr title="February">   Feb                </abbr></th>
+<th scope="col"><abbr title="March">   Mar                </abbr></th>
+<th scope="col"><abbr title="April">   Apr                </abbr></th>
+<th scope="col">   May                </th>
+<th scope="col"><abbr title="June">   Jun                </abbr></th>
+<th scope="col"><abbr title="July">   Jul                </abbr></th>
+<th scope="col"><abbr title="August">   Aug                </abbr></th>
+<th scope="col"><abbr title="September">   Sep                </abbr></th>
+<th scope="col"><abbr title="October">   Oct                </abbr></th>
+<th scope="col"><abbr title="November">   Nov                </abbr></th>
+<th scope="col"><abbr title="December">   Dec                </abbr></th>
+<th scope="col">TOTAL</th>
+</tr>
+<tr>
+<th scope="row">2013</th>
+<td>   113.</td>
+<td>   115.</td>
+<td>   115.</td>
+<td>   116.</td>
+<td>   117.</td>
+<td>   121.</td>
+<td>   124.</td>
+<td>   126.</td>
+<td>   128.</td>
+<td>   130.</td>
+<td>   131.</td>
+<td>   128.</td>
+<td>  1464.</td>
+</tr>
+<tr>
+<th scope="row">2014</th>
+<td>   124.</td>
+<td>   124.</td>
+<td>   125.</td>
+<td>   126.</td>
+<td>   128.</td>
+<td>   130.</td>
+<td>   135.</td>
+<td>   137.</td>
+<td>   136.</td>
+<td>   135.</td>
+<td>   135.</td>
+<td>   133.</td>
+<td>  1568.</td>
+</tr>
+<tr>
+<th scope="row">2015</th>
+<td>   132.</td>
+<td>   132.</td>
+<td>   132.</td>
+<td>   133.</td>
+<td>   134.</td>
+<td>   137.</td>
+<td>   138.</td>
+<td>   140.</td>
+<td>   141.</td>
+<td>   142.</td>
+<td>   143.</td>
+<td>   141.</td>
+<td>  1646.</td>
+</tr>
+<tr>
+<th scope="row">2016</th>
+<td>   141.</td>
+<td>   139.</td>
+<td>   139.</td>
+<td>   141.</td>
+<td>   144.</td>
+<td>   147.</td>
+<td>   149.</td>
+<td>   149.</td>
+<td>   147.</td>
+<td>   147.</td>
+<td>   146.</td>
+<td>   143.</td>
+<td>  1733.</td>
+</tr>
+<tr>
+<th scope="row">2017</th>
+<td>   142.</td>
+<td>   142.</td>
+<td>   142.</td>
+<td>   142.</td>
+<td>   142.</td>
+<td>   144.</td>
+<td>   149.</td>
+<td>   151.</td>
+<td>   149.</td>
+<td>   150.</td>
+<td>   152.</td>
+<td>   150.</td>
+<td>  1756.</td>
+</tr>
+<tr>
+<th scope="row">2018</th>
+<td>   149.</td>
+<td>   146.</td>
+<td>   146.</td>
+<td>   146.</td>
+<td>   147.</td>
+<td>   149.</td>
+<td>   151.</td>
+<td>   151.</td>
+<td>   149.</td>
+<td>   149.</td>
+<td>   148.</td>
+<td>   146.</td>
+<td>  1777.</td>
+</tr>
+<tr>
+<th scope="row">2019</th>
+<td>   145.</td>
+<td>   145.</td>
+<td>   146.</td>
+<td>   148.</td>
+<td>   150.</td>
+<td>   152.</td>
+<td>   154.</td>
+<td>   156.</td>
+<td>   157.</td>
+<td>   160.</td>
+<td>   163.</td>
+<td>   162.</td>
+<td>  1839.</td>
+</tr>
+<tr>
+<th scope="row">2020</th>
+<td>   160.</td>
+<td>   156.</td>
+<td>   154.</td>
+<td>   156.</td>
+<td>   158.</td>
+<td>   160.</td>
+<td>   163.</td>
+<td>   165.</td>
+<td>   168.</td>
+<td>   173.</td>
+<td>   173.</td>
+<td>   167.</td>
+<td>  1954.</td>
+</tr>
+<tr>
+<th scope="row">2021</th>
+<td>   163.</td>
+<td>   162.</td>
+<td>   162.</td>
+<td>   163.</td>
+<td>   166.</td>
+<td>   168.</td>
+<td>   170.</td>
+<td>   170.</td>
+<td>   170.</td>
+<td>   174.</td>
+<td>   176.</td>
+<td>   174.</td>
+<td>  2018.</td>
+</tr>
+<tr>
+<th scope="row">2022</th>
+<td>   172.</td>
+<td>   172.</td>
+<td>   174.</td>
+<td>   177.</td>
+<td>   179.</td>
+<td>   181.</td>
+<td>   181.</td>
+<td>   183.</td>
+<td>   184.</td>
+<td>   186.</td>
+<td>   185.</td>
+<td>   182.</td>
+<td>  2155.</td>
+</tr>
+<tr>
+<th scope="row">2023</th>
+<td>   182.</td>
+<td>   182.</td>
+<td>   182.</td>
+<td>   183.</td>
+<td>   185.</td>
+<td>   189.</td>
+<td>   194.</td>
+<td>   193.</td>
+<td>   188.</td>
+<td>   190.</td>
+<td>   192.</td>
+<td>   191.</td>
+<td>  2252.</td>
+</tr>
+<tr>
+<th scope="row">2024</th>
+<td>   189.</td>
+<td>   189.</td>
+<td>   190.</td>
+<td>   191.</td>
+<td>   193.</td>
+<td>   199.</td>
+<td>   204.</td>
+<td>   203.</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">&nbsp;</td>
+<td class="nowrap">  1559.</td>
+</tr>
+<tr>
+<th scope="row"> AVGE</th>
+<td>     151.</td>
+<td>     150.</td>
+<td>     151.</td>
+<td>     152.</td>
+<td>     154.</td>
+<td>     156.</td>
+<td>     159.</td>
+<td>     160.</td>
+<td>     156.</td>
+<td>     158.</td>
+<td>     159.</td>
+<td>     156.</td>
+<td>&nbsp;</td>
+</tr>
+</table></div>
+
+<p class="center">
+Table Total-              21720. &nbsp;&nbsp;&nbsp; Mean-                     155. &nbsp;&nbsp;&nbsp; Standard Deviation-        22.  <br> 
+Minimum-                  113. &nbsp;&nbsp;&nbsp; Maximum-                  204. </p>
+
+<p>&nbsp;</p>
+
+<a name="pos00015"></a>
+
+<p class="right"><a href="#skip00015" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00014">Previous Table</a> | <a href="#index00015">Index</a> | <a href="#pos00016">Next Table</a></p>
+
+<a name="skip00015"></a>
+
+<h3>QS Statistics for seasonality</h3>
+<div id="qs001">
+<table class="w60"
+  summary ="QS Statistics for seasonality (Full series)" >
+<caption><strong>QS statistic for seasonality (Full series)</strong></caption>
+<tr>
+
+<td class="head">&nbsp;</td>
+<th scope="col"><abbr title="QS seasonality diagnostic">QS</abbr></th>
+<th scope="col">p-value</th>
+</tr>
+<tr><th scope="row">Original Series</th><td>           10.02</td><td>    0.0067</td></tr>
+<tr><th scope="row">Original Series (extreme value adjusted)</th><td>           36.58</td><td>    0.0000</td></tr>
+<tr><th scope="row">Residuals</th><td>            0.00</td><td>    1.0000</td></tr>
+</table>
+
+<p>&nbsp;</p>
+<div id="qs002">
+<table class="w60"
+  summary ="QS Statistics for seasonality (Series start in 2016.Sep)" >
+<caption><strong>QS statistic for seasonality (Series start in 2016.Sep)</strong></caption>
+<tr>
+
+<td class="head">&nbsp;</td>
+<th scope="col"><abbr title="QS seasonality diagnostic">QS</abbr></th>
+<th scope="col">p-value</th>
+</tr>
+<tr><th scope="row">Original Series</th><td>            5.66</td><td>    0.0589</td></tr>
+<tr><th scope="row">Original Series (extreme value adjusted)</th><td>           26.78</td><td>    0.0000</td></tr>
+<tr><th scope="row">Residuals</th><td>            0.00</td><td>    1.0000</td></tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p>Visually significant residual seasonal peaks have been
+  found in the spectral plot of the following series starting in 2016.Sep:</p>
+
+<ul class="indent">
+<li>differenced, transformed prior adjusted series (Table B1) (3 Seasonal peak(s))</li>
+</ul>
+
+<a name="pos00016"></a>
+
+<p class="right"><a href="#skip00016" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00015">Previous Table</a> | <a href="#index00016">Index</a> | <a href="#pos00017">Next Table</a></p>
+
+<a name="skip00016"></a>
+
+<p class="right"><a href="#pos00017" title="Skip ASCII plot of Table G 0  10*LOG(SPECTRUM) of the differenced, transformed  Prior Adjusted Series (Table B1)" class="skiplinks">&nbsp;</a></p>
+
+<h3>G 0  10*LOG(SPECTRUM) of the differenced, transformed  Prior Adjusted Series (Table B1)</h3>
+
+<h3 class="indent">     Spectrum estimated from 2016.Sep to 2024.Aug.</h3>
+<pre>
+ ++++++++++I+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++I
+     -23.13I          S                                                  I    -23.13
+           I          S                                                  I
+           I          S                                                  I
+           I          S                                                  I
+     -25.34I          S                                                  I    -25.34
+           I          S                                                  I
+           I          S                                                  I
+           I          S                                                  I
+     -27.55I          S                                                  I    -27.55
+           I          S                                                  I
+           I          S                                                  I
+           I          S                                                  I
+     -29.76I          S                                                  I    -29.76
+           I          S                                                  I
+           I          S                                                  I
+           I          S                                                  I
+     -31.97I          S                   S                              I    -31.97
+           I          S         S         S                              I
+           I          S         S         S                              I
+           I          S         S         S                              I
+     -34.17I          S*        S*        S                              I    -34.17
+           I          S*       *S*        S                              I
+           I         *S*       *S*        S                              I
+           I         *S*       *S*        S         S                    I
+     -36.38I         *S*       *S*    *   S         S                    I    -36.38
+           I         *S* *     *S**  **  *S         S                    I
+           I         *S***     *S**  **  *S*        S*                   I
+           I      *  *S****    *S**  **  *S*        S*                   I
+     -38.59I      *  *S****    *S**  *** *S*        S*                   I    -38.59
+           I     *****S****   **S*********S*        S*                   I
+           I     *****S****   **S*********S*        S*                   I
+           I     *****S****   **S*********S*        S*                   I
+     -40.80I     *****S*****  **S*********S*        S*                   I    -40.80
+           I    ******S*****  **S*********S*        S*                   I
+           I*   ******S***** ***S*********S**  *   *S*      *            I
+           I**  ******S*********S*********S** ***  *S*      *            I
+     -43.01I**********S*********S*********S******  *S*      *            I    -43.01
+           I**********S*********S*********S******  *S*     **            I
+           I**********S*********S*********S*********S*T    **            I
+           I**********S*********S*********S*********S*T    **            I
+     -45.21I**********S*********S*********S*********S*T    **            I    -45.21
+           I**********S*********S*********S*********S*T    **            I
+           I**********S*********S*********S*********S*T   ***            I
+           I**********S*********S*********S*********S*T*  ****           I
+     -47.42I**********S*********S*********S*********S*T* *****           I    -47.42
+           I**********S*********S*********S*********S*T*******           I
+           I**********S*********S*********S*********S*T*******           I
+           I**********S*********S*********S*********S*T*******    *      I
+     -49.63I**********S*********S*********S*********S*T*******    *    *SI    -49.63
+           I**********S*********S*********S*********S*T*******   **   **SI
+           I**********S*********S*********S*********S*T*******S  ***  **SI
+           I**********S*********S*********S*********S*T*******S  *** ***SI
+     -51.84I**********S*********S*********S*********S*T*******S*T*******SI    -51.84
+ ++++++++++I+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++I
+            S=SEASONAL FREQUENCIES, T=TRADING DAY FREQUENCIES
+</pre>
+
+<a name="pos00017"></a>
+
+<p class="right"><a href="#skip00017" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00016">Previous Table</a> | <a href="#index00017">Index</a> | <a href="#pos00018">Next Table</a></p>
+
+<a name="skip00017"></a>
+
+<h3>  Peak probabilities for Tukey spectrum estimator</h3>
+
+<p>Tukey spectrum estimated from 2016.Sep to 2024.Aug.</p>
+<div id="spc0001">
+<table class="w60"
+  summary ="Peak probabilities for Tukey spectrum estimator" >
+<caption><strong>Peak probabilities for Tukey spectrum estimator</strong></caption>
+<tr>
+
+<td class="head">&nbsp;</td>
+<th scope="col"><abbr title="Seasonal Frequency 1">S1</abbr></th>
+<th scope="col"><abbr title="Seasonal Frequency 2">S2</abbr></th>
+<th scope="col"><abbr title="Seasonal Frequency 3">S3</abbr></th>
+<th scope="col"><abbr title="Seasonal Frequency 4">S4</abbr></th>
+<th scope="col"><abbr title="Seasonal Frequency 5">S5</abbr></th>
+<th scope="col"><abbr title="Seasonal Frequency 6">S6</abbr></th>
+<th scope="col"><abbr title="Trading Day">TD</abbr></th>
+</tr>
+<tr>
+<th scope="row"> Model Residuals</th>
+<td class="center"> 0.798</td>
+<td class="center"> 0.107</td>
+<td class="center"> 0.592</td>
+<td class="center"> 0.000</td>
+<td class="center"> 0.336</td>
+<td class="center"> 0.772</td>
+<td class="center"> 0.107</td>
+</tr>
+<tr>
+<th scope="row"> Prior Adjusted Series (Table B1)</th>
+<td class="center"> 0.969
+<a href="#footnote0001" class="longdesc">Link to definition of   *   </a>
+<a name="foot0001"></a>  *   </td>
+<td class="center"> 0.780</td>
+<td class="center"> 0.980
+<a href="#footnote0002" class="longdesc">Link to definition of   *   </a>
+<a name="foot0002"></a>  *   </td>
+<td class="center"> 0.857</td>
+<td class="center"> 0.062</td>
+<td class="center"> 0.830</td>
+<td class="center"> 0.057</td>
+</tr>
+</table></div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp; ---------- <br> &nbsp; ** - Peak Probability > 0.99, <br> &nbsp; * - 0.90 < Peak Probability < 0.99</p>
+
+<a name="pos00018"></a>
+
+<dl id="content-footnotes">
+<dt id="footnote0001">Definition of *</dt>
+<dd>
+<p>Tukey spectral peak probability greater than 0.99</p>
+<p><a href="#foot0001">Back to Tukey Spectral Peaks Table</a></p>
+</dd>
+<dt id="footnote0002">Definition of *</dt>
+<dd>
+<p>Tukey spectral peak probability greater than 0.99</p>
+<p><a href="#foot0002">Back to Tukey Spectral Peaks Table</a></p>
+</dd>
+</dl>
+</div>
+
+<div id="rightnavigation">
+
+<a name="index"></a>
+
+<h2>Index for CPI_Combined.html</h2>
+<ul class="indentnav">
+<li><a name="index00001" href="#pos00001">Program Header</a></li>
+<li><a name="index00002" href="#pos00002">Content of input specification file</a></li>
+<li><a name="index00003" href="#pos00003"><abbr title="Akaike information criterion">AIC</abbr> test for transformation</a></li>
+<li><a name="index00004" href="#pos00004">A 1  Time series data (for the span analyzed)</a></li>
+<li><a name="index00005" href="#pos00005">Automatic ARIMA model selection</a></li>
+<li><a name="index00006" href="#pos00006">Regression model</a></li>
+<li><a name="index00007" href="#pos00007">ARIMA model</a></li>
+<li><a name="index00008" href="#pos00008">Maximized log-likelihood and model selection criteria</a></li>
+<li><a name="index00009" href="#pos00009">QS Statistic for regARIMA Model Residuals</a></li>
+<li><a name="index00010" href="#pos00010">Plot of Spectrum of the regARIMA model residuals</a></li>
+<li><a name="index00011" href="#pos00011">A 8  RegARIMA combined outlier component</a></li>
+<li><a name="index00012" href="#pos00012">A 8.AO  RegARIMA AO outlier component</a></li>
+<li><a name="index00013" href="#pos00013">A 8.LS  RegARIMA level change outlier component</a></li>
+<li><a name="index00014" href="#pos00014">B 1  Original series (prior adjusted)</a></li>
+<li><a name="index00015" href="#pos00015">QS diagnostic to detect seasonality</a></li>
+<li><a name="index00016" href="#pos00016">Plot of Spectrum of the original series</a></li>
+<li><a name="index00017" href="#pos00017">Peak probabilties for the Tukey spectrum</a></li>
+</ul>
+
+<p>&nbsp;</p>
+ <hr> 
+<ul class="indentnav">
+<li> <a href="CPI_Combined_err.html"> Error Messages </a> </li>
+<li> <a href="./specfiles/CPI_Combined_log.html#pos00001"> Log Entry </a> </li>
+</ul>
+
+<p>&nbsp;</p>
+</div>
+</body>
+</html>
