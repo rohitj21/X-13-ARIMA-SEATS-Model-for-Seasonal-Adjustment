@@ -49,3 +49,6 @@ The `papers` folder contains a collection of referenced research papers relevant
 15. **U.S. Census Bureau (2024)** - [X-13ARIMA-SEATS Reference Manual](./papers/X13ARIMASEATS_MANUAL.pdf)  
     The official manual for the X-13ARIMA-SEATS software, detailing seasonal adjustment, ARIMA modeling, and diagnostics.
 
+16. **Bell (1987)** - [A Note on Overdifferencing and the Equivalence of Seasonal Time Series Models](./papers/bell%201987%20-%20Notes%20on%20Overdifferencing.pdf)  
+   This paper discusses the equivalence of seasonal time series models with monthly means and models with seasonal ARIMA structures. It highlights the issue of overdifferencing and analyzes the role of initial observations in model equivalence.
+

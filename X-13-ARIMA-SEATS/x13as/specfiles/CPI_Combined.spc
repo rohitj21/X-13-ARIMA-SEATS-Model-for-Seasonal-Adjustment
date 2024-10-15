@@ -1,7 +1,8 @@
 series{
-  title="Consumer Food Price Index - All India Combined"
-  start=2013.01
-  data=(
+  title = "Consumer Food Price Index - All India Combined"
+  start = 2013.01
+  span = (2013.01, 2024.08)
+  data = (
     105.4 106.4 106.5 107.5 109.1 112.4 115.2 117.3 119.0 121.1 123.9 118.7
     115.6 114.8 115.7 117.4 118.8 120.5 125.4 127.5 126.4 125.8 125.3 123.4
     122.7 122.7 122.8 123.4 124.5 127.1 128.1 130.3 131.3 132.4 132.9 131.3
@@ -15,26 +16,61 @@ series{
     174.8 174.4 174.9 175.9 177.2 181.7 193.8 192.5 188.4 190.4 192.4 190.7
     189.3 189.5 189.8 191.2 192.6 198.7 204.3 203.4
   )
-  span=(2013.01, 2024.08)
-}
-
-spectrum{
-  savelog=peaks
 }
 
 transform{
-  function=auto
-  savelog=autotransform  
+  function = auto
+  savelog = autotransform
 }
 
-regression{
-  aictest=(td easter)
-  savelog=aictest  
+regression {
+  user = (diwali)
+  start = 2013.01
+  data = (
+    0 0 0 0 0 0 0 0 0 0 1 0   # 2013 (Diwali in November)
+    0 0 0 0 0 0 0 0 0 1 0 0   # 2014 (Diwali in October)
+    0 0 0 0 0 0 0 0 0 0 1 0   # 2015 (Diwali in November)
+    0 0 0 0 0 0 0 0 0 1 0 0   # 2016 (Diwali in October)
+    0 0 0 0 0 0 0 0 0 1 0 0   # 2017 (Diwali in October)
+    0 0 0 0 0 0 0 0 0 0 1 0   # 2018 (Diwali in November)
+    0 0 0 0 0 0 0 0 0 1 0 0   # 2019 (Diwali in October)
+    0 0 0 0 0 0 0 0 0 0 1 0   # 2020 (Diwali in November)
+    0 0 0 0 0 0 0 0 0 0 1 0   # 2021 (Diwali in November)
+    0 0 0 0 0 0 0 0 0 1 0 0   # 2022 (Diwali in October)
+    0 0 0 0 0 0 0 0 0 0 1 0   # 2023 (Diwali in November)
+    0 0 0 0 0 0 0 0 0 0 1 0   # 2024 (Diwali in November)
+    0 0 0 0 0 0 0 0 0 1 0 0   # 2025 (Diwali in October)
+    0 0 0 0 0 0 0 0 0 0 1 0   # 2026 (Diwali in November)
+    0 0 0 0 0 0 0 0 0 1 0 0)  # 2027 (Diwali in October)
 }
 
-automdl{  
-  savelog=automodel  
+
+automdl{
+  savelog = automodel
 }
 
-outlier{ }
+outlier{
+  print = all
+  savelog = id
+}
 
+
+seats{
+  print = all
+  savelog = seatsmodel
+}
+
+spectrum{
+  savelog = peaks
+}
+
+estimate{
+  print = all
+  savelog = (aic bic)
+}
+
+
+forecast{
+  maxlead = 12
+  print = all
+}
