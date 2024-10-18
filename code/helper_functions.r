@@ -157,3 +157,5 @@ detect_outlier <- function(default_model, t_outlier, type = c("AO", "LS")) {
     names(t_value) <- var_name
     return(t_value)
 }
+
+
