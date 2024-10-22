@@ -154,7 +154,7 @@
 
  <p><strong>Series Title-</strong> Consumer Food Price Index - All India Combined <br> 
  <strong>Series Name-</strong> CPI <br> 
- Oct 18, 2024  10.27.47 </p>
+ Oct 22, 2024  07.26.54 </p>
 <ul class="indent">
 <li>Period covered-  1st month,2013 to  8th month,2024</li>
 <li>Spectral plot of the original series generated</li>
@@ -210,37 +210,38 @@
      20:  
      21: transform{
      22:   function = auto
-     23: }
-     24:  
+     23:   print = all
+     24: }
      25:  
-     26: regression {
-     27: #  variables = (const)
-     28:   user = (diwali)
-     29:   start = 2013.01
-     30:   data = (
-     31:     0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0405 -0.0405  0.0000
-     32:     0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3405 -0.3405  0.0000
-     33:     0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000 -0.6595  0.6595  0.0000
-     34:     0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3405 -0.3405  0.0000
-     35:     0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3405 -0.3405  0.0000
-     36:     0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000 -0.3595  0.3595  0.0000
-     37:     0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3405 -0.3405  0.0000
-     38:     0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000 -0.6595  0.6595  0.0000
-     39:     0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000 -0.0595  0.0595  0.0000
-     40:     0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3405 -0.3405  0.0000
-     41:     0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000 -0.6595  0.6595  0.0000
-     42:     0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3405 -0.3405  0.0000
-     43:     0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3405 -0.3405  0.0000)
-     44: print = rmx
-     45: }
-     46:  
-     47:  
-     48: automdl{print = all}
-     49:  
-     50: outlier{}
-     51:  
-     52: estimate{}
-     53:  
+     26: automdl{print = all}
+     27:  
+     28: outlier{types = (ls ao)
+     29: print = all
+     30: }
+     31:  
+     32: estimate{
+     33:  
+     34:     print = all
+     35: }
+     36:  
+     37: regression {
+     38:   user = (diwali)
+     39:   start = 2013.01
+     40:   data = (
+     41:    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0405 -0.0405  0.0
+     42:    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.3405 -0.3405  0.0
+     43:    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 -0.6595  0.6595  0.0
+     44:    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.3405 -0.3405  0.0
+     45:    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.3405 -0.3405  0.0
+     46:    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 -0.3595  0.3595  0.0
+     47:    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.3405 -0.3405  0.0
+     48:    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 -0.6595  0.6595  0.0
+     49:    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 -0.0595  0.0595  0.0
+     50:    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.3405 -0.3405  0.0
+     51:    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 -0.6595  0.6595  0.0
+     52:    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.3405 -0.3405  0.0
+     53:    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.3405 -0.3405  0.0)
+     54: }
 </pre>
 
 <a name="pos00003"></a>
@@ -285,6 +286,24 @@
 </table></div>
 
 <p>&nbsp;</p>
+ <hr> 
+<p>nobs   = number of observations <br> 
+ nefobs = nobs  - total order of differencing operators <br> 
+ np     = number of estimated regression and ARIMA model
+            parameters including the variance <br> 
+ V      = Covariance matrix of z's <br> 
+ z      = Vector of data - regression values <br> 
+ c      = Vector of prior adjustment factors <br> 
+ Log likelihood =
+          -[nefobs*log(2*pi)+log|V|+z'(V-inverse)z]/2 <br> 
+ Transformation Adjustment = sum(ln(|(ci*(ci*yi)^(lam-1))|))
+ where the sum is over the last nefobs observations <br> 
+ <abbr title="Akaike information criterion">AIC</abbr>
+
+ = -2*L+2*np <br> 
+ <abbr title="corrected Akaike information criterion">AICC</abbr> = -2*L+2*np*[nefobs/(nefobs-np-1)] <br> 
+ Hannan Quinn = -2*L+2*np*log[log(nefobs)] <br> 
+ <abbr title="Bayesian information criterion">BIC</abbr> = -2*L+np*log(nefobs)</p>
 
 <p class="center">***** <abbr title="corrected Akaike information criterion">AICC</abbr>
  (with aicdiff=-2.00) prefers <strong>log transformation</strong> *****</p>
@@ -546,6 +565,224 @@ Minimum-                  105. &nbsp;&nbsp;&nbsp; Maximum-                  204.
 
 <a name="skip00005"></a>
 
+<h3>Transformed (prior-adjusted) data for regARIMA modeling</h3>
+ <p>From  2013.Jan to 2024.Aug <br> 
+  Observations        140</p>
+
+<h3>Data</h3>
+<table class="x11"
+  summary ="Data" >
+<caption><strong>Data</strong></caption>
+<thead>
+<tr>
+<td class="head">&nbsp;</td>
+<th scope="col"><abbr title="January">Jan</abbr></th>
+<th scope="col"><abbr title="February">Feb</abbr></th>
+<th scope="col"><abbr title="March">Mar</abbr></th>
+<th scope="col"><abbr title="April">Apr</abbr></th>
+<th scope="col">May</th>
+<th scope="col"><abbr title="June">Jun</abbr></th>
+<th scope="col"><abbr title="July">Jul</abbr></th>
+<th scope="col"><abbr title="August">Aug</abbr></th>
+<th scope="col"><abbr title="September">Sep</abbr></th>
+<th scope="col"><abbr title="October">Oct</abbr></th>
+<th scope="col"><abbr title="November">Nov</abbr></th>
+<th scope="col"><abbr title="December">Dec</abbr></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">2013</th>
+<td> 4.658                        </td>
+<td> 4.667                        </td>
+<td> 4.668                        </td>
+<td> 4.677                        </td>
+<td> 4.692                        </td>
+<td> 4.722                        </td>
+<td> 4.747                        </td>
+<td> 4.765                        </td>
+<td> 4.779                        </td>
+<td> 4.797                        </td>
+<td> 4.819                        </td>
+<td> 4.777                        </td>
+</tr>
+<tr>
+<th scope="row">2014</th>
+<td> 4.750                        </td>
+<td> 4.743                        </td>
+<td> 4.751                        </td>
+<td> 4.766                        </td>
+<td> 4.777                        </td>
+<td> 4.792                        </td>
+<td> 4.832                        </td>
+<td> 4.848                        </td>
+<td> 4.839                        </td>
+<td> 4.835                        </td>
+<td> 4.831                        </td>
+<td> 4.815                        </td>
+</tr>
+<tr>
+<th scope="row">2015</th>
+<td> 4.810                        </td>
+<td> 4.810                        </td>
+<td> 4.811                        </td>
+<td> 4.815                        </td>
+<td> 4.824                        </td>
+<td> 4.845                        </td>
+<td> 4.853                        </td>
+<td> 4.870                        </td>
+<td> 4.877                        </td>
+<td> 4.886                        </td>
+<td> 4.890                        </td>
+<td> 4.877                        </td>
+</tr>
+<tr>
+<th scope="row">2016</th>
+<td> 4.876                        </td>
+<td> 4.861                        </td>
+<td> 4.861                        </td>
+<td> 4.877                        </td>
+<td> 4.896                        </td>
+<td> 4.920                        </td>
+<td> 4.933                        </td>
+<td> 4.927                        </td>
+<td> 4.916                        </td>
+<td> 4.919                        </td>
+<td> 4.910                        </td>
+<td> 4.891                        </td>
+</tr>
+<tr>
+<th scope="row">2017</th>
+<td> 4.882                        </td>
+<td> 4.881                        </td>
+<td> 4.881                        </td>
+<td> 4.884                        </td>
+<td> 4.886                        </td>
+<td> 4.899                        </td>
+<td> 4.929                        </td>
+<td> 4.942                        </td>
+<td> 4.929                        </td>
+<td> 4.937                        </td>
+<td> 4.952                        </td>
+<td> 4.939                        </td>
+</tr>
+<tr>
+<th scope="row">2018</th>
+<td> 4.928                        </td>
+<td> 4.913                        </td>
+<td> 4.909                        </td>
+<td> 4.911                        </td>
+<td> 4.916                        </td>
+<td> 4.927                        </td>
+<td> 4.942                        </td>
+<td> 4.945                        </td>
+<td> 4.934                        </td>
+<td> 4.929                        </td>
+<td> 4.926                        </td>
+<td> 4.913                        </td>
+</tr>
+<tr>
+<th scope="row">2019</th>
+<td> 4.905                        </td>
+<td> 4.906                        </td>
+<td> 4.912                        </td>
+<td> 4.922                        </td>
+<td> 4.934                        </td>
+<td> 4.949                        </td>
+<td> 4.966                        </td>
+<td> 4.975                        </td>
+<td> 4.984                        </td>
+<td> 5.005                        </td>
+<td> 5.021                        </td>
+<td> 5.045                        </td>
+</tr>
+<tr>
+<th scope="row">2020</th>
+<td> 5.033                        </td>
+<td> 5.009                        </td>
+<td> 4.996                        </td>
+<td> 5.033                        </td>
+<td> 5.023                        </td>
+<td> 5.033                        </td>
+<td> 5.054                        </td>
+<td> 5.061                        </td>
+<td> 5.085                        </td>
+<td> 5.109                        </td>
+<td> 5.112                        </td>
+<td> 5.079                        </td>
+</tr>
+<tr>
+<th scope="row">2021</th>
+<td> 5.052                        </td>
+<td> 5.047                        </td>
+<td> 5.043                        </td>
+<td> 5.052                        </td>
+<td> 5.071                        </td>
+<td> 5.083                        </td>
+<td> 5.093                        </td>
+<td> 5.092                        </td>
+<td> 5.092                        </td>
+<td> 5.117                        </td>
+<td> 5.130                        </td>
+<td> 5.119                        </td>
+</tr>
+<tr>
+<th scope="row">2022</th>
+<td> 5.105                        </td>
+<td> 5.104                        </td>
+<td> 5.117                        </td>
+<td> 5.132                        </td>
+<td> 5.148                        </td>
+<td> 5.158                        </td>
+<td> 5.158                        </td>
+<td> 5.165                        </td>
+<td> 5.174                        </td>
+<td> 5.185                        </td>
+<td> 5.176                        </td>
+<td> 5.160                        </td>
+</tr>
+<tr>
+<th scope="row">2023</th>
+<td> 5.164                        </td>
+<td> 5.161                        </td>
+<td> 5.164                        </td>
+<td> 5.170                        </td>
+<td> 5.177                        </td>
+<td> 5.202                        </td>
+<td> 5.267                        </td>
+<td> 5.260                        </td>
+<td> 5.239                        </td>
+<td> 5.249                        </td>
+<td> 5.260                        </td>
+<td> 5.251                        </td>
+</tr>
+<tr>
+<th scope="row">2024</th>
+<td> 5.243                        </td>
+<td> 5.244                        </td>
+<td> 5.246                        </td>
+<td> 5.253                        </td>
+<td> 5.261                        </td>
+<td> 5.292                        </td>
+<td> 5.320                        </td>
+<td> 5.315                        </td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<a name="pos00006"></a>
+
+<p class="right"><a href="#skip00006" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00005">Previous Table</a> | <a href="#index00006">Index</a> | <a href="#pos00007">Next Table</a></p>
+
+<a name="skip00006"></a>
+
 <h3>Automatic ARIMA Model Selection</h3>
 
 <p class="center">Procedure based closely on TRAMO ,method of Gomez and Maravall (2000) <br> 
@@ -558,12 +795,12 @@ New York : J. Wiley and Sons</p>
 <p><strong>Maximum order for regular differencing :</strong>   2</p>
 <p><strong>Maximum order for seasonal differencing :</strong>   1</p>
 
-<a name="pos00006"></a>
+<a name="pos00007"></a>
 
-<p class="right"><a href="#skip00006" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00005">Previous Table</a> | <a href="#index00006">Index</a> | <a href="#pos00007">Next Table</a></p>
+<p class="right"><a href="#skip00007" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00006">Previous Table</a> | <a href="#index00007">Index</a> | <a href="#pos00008">Next Table</a></p>
 
-<a name="skip00006"></a>
+<a name="skip00007"></a>
 
 <h3>OUTLIER DETECTION</h3>
  <p>From  2013.Jan to 2024.Aug <br> 
@@ -576,14 +813,16 @@ New York : J. Wiley and Sons</p>
  <br>  Critical |t| for LS outliers :         3.88
 </p>
 
+<p>&nbsp;</p>
+
 <p>Estimation converged in    42 <abbr title="autoregressive moving average">ARMA</abbr> iterations,   145 function evaluations.</p>
 
-<a name="pos00007"></a>
+<a name="pos00008"></a>
 
-<p class="right"><a href="#skip00007" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00006">Previous Table</a> | <a href="#index00007">Index</a> | <a href="#pos00008">Next Table</a></p>
+<p class="right"><a href="#skip00008" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00007">Previous Table</a> | <a href="#index00008">Index</a> | <a href="#pos00009">Next Table</a></p>
 
-<a name="skip00007"></a>
+<a name="skip00008"></a>
 
 <h3>Regression Model</h3>
 <div id="mdl001.reg">
@@ -609,16 +848,38 @@ New York : J. Wiley and Sons</p>
 
 <p>&nbsp;</p>
 
+<a name="pos00009"></a>
+
+<p class="right"><a href="#skip00009" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00008">Previous Table</a> | <a href="#index00009">Index</a> | <a href="#pos00010">Next Table</a></p>
+
+<a name="skip00009"></a>
+
+<h3>Regression Parameter Correlation Matrix</h3>
+<table class="w90">
+<caption><strong>Regression Parameter Correlation Matrix</strong></caption>
+<tr>
+<td class="head">&nbsp;</td>
+<th scope="col">diwali</th>
+</tr>
+<tr>
+<th scope="row">diwali</th>
+<td class="nowrap">    1.0000</td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+
 <p>&nbsp;</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00008"></a>
+<a name="pos00010"></a>
 
-<p class="right"><a href="#skip00008" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00007">Previous Table</a> | <a href="#index00008">Index</a> | <a href="#pos00009">Next Table</a></p>
+<p class="right"><a href="#skip00010" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00009">Previous Table</a> | <a href="#index00010">Index</a> | <a href="#pos00011">Next Table</a></p>
 
-<a name="skip00008"></a>
+<a name="skip00010"></a>
 
 <h3>ARIMA Model</h3>
 
@@ -669,12 +930,12 @@ New York : J. Wiley and Sons</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00009"></a>
+<a name="pos00011"></a>
 
-<p class="right"><a href="#skip00009" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00008">Previous Table</a> | <a href="#index00009">Index</a> | <a href="#pos00010">Next Table</a></p>
+<p class="right"><a href="#skip00011" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00010">Previous Table</a> | <a href="#index00011">Index</a> | <a href="#pos00012">Next Table</a></p>
 
-<a name="skip00009"></a>
+<a name="skip00011"></a>
 
 
 <h3>Forward addition pass  1</h3>
@@ -734,12 +995,12 @@ New York : J. Wiley and Sons</p>
 <p class="center"> <strong>Add</strong>
  +<strong>LS2023.Jul            </strong> (                          6.19                 )</p>
 
-<a name="pos00010"></a>
+<a name="pos00012"></a>
 
-<p class="right"><a href="#skip00010" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00009">Previous Table</a> | <a href="#index00010">Index</a> | <a href="#pos00011">Next Table</a></p>
+<p class="right"><a href="#skip00012" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00011">Previous Table</a> | <a href="#index00012">Index</a> | <a href="#pos00013">Next Table</a></p>
 
-<a name="skip00010"></a>
+<a name="skip00012"></a>
 
 <h3>AO Outlier t-values</h3>
 <table class="x11"
@@ -948,12 +1209,12 @@ New York : J. Wiley and Sons</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00011"></a>
+<a name="pos00013"></a>
 
-<p class="right"><a href="#skip00011" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00010">Previous Table</a> | <a href="#index00011">Index</a> | <a href="#pos00012">Next Table</a></p>
+<p class="right"><a href="#skip00013" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00012">Previous Table</a> | <a href="#index00013">Index</a> | <a href="#pos00014">Next Table</a></p>
 
-<a name="skip00011"></a>
+<a name="skip00013"></a>
 
 <h3>LS Outlier t-values</h3>
 <table class="x11"
@@ -1171,12 +1432,12 @@ New York : J. Wiley and Sons</p>
 
 <p>Estimation converged in    54 <abbr title="autoregressive moving average">ARMA</abbr> iterations,   186 function evaluations.</p>
 
-<a name="pos00012"></a>
+<a name="pos00014"></a>
 
-<p class="right"><a href="#skip00012" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00011">Previous Table</a> | <a href="#index00012">Index</a> | <a href="#pos00013">Next Table</a></p>
+<p class="right"><a href="#skip00014" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00013">Previous Table</a> | <a href="#index00014">Index</a> | <a href="#pos00015">Next Table</a></p>
 
-<a name="skip00012"></a>
+<a name="skip00014"></a>
 
 <h3>Regression Model</h3>
 <div id="mdl002.reg">
@@ -1215,12 +1476,12 @@ New York : J. Wiley and Sons</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00013"></a>
+<a name="pos00015"></a>
 
-<p class="right"><a href="#skip00013" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00012">Previous Table</a> | <a href="#index00013">Index</a> | <a href="#pos00014">Next Table</a></p>
+<p class="right"><a href="#skip00015" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00014">Previous Table</a> | <a href="#index00015">Index</a> | <a href="#pos00016">Next Table</a></p>
 
-<a name="skip00013"></a>
+<a name="skip00015"></a>
 
 <h3>ARIMA Model</h3>
 
@@ -1271,12 +1532,12 @@ New York : J. Wiley and Sons</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00014"></a>
+<a name="pos00016"></a>
 
-<p class="right"><a href="#skip00014" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00013">Previous Table</a> | <a href="#index00014">Index</a> | <a href="#pos00015">Next Table</a></p>
+<p class="right"><a href="#skip00016" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00015">Previous Table</a> | <a href="#index00016">Index</a> | <a href="#pos00017">Next Table</a></p>
 
-<a name="skip00014"></a>
+<a name="skip00016"></a>
 
 
 <h3>Forward addition pass  2</h3>
@@ -1331,12 +1592,12 @@ New York : J. Wiley and Sons</p>
 <p class="center"> <strong>Add</strong>
  +<strong>AO2020.Apr            </strong> (          6.28                                 )</p>
 
-<a name="pos00015"></a>
+<a name="pos00017"></a>
 
-<p class="right"><a href="#skip00015" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00014">Previous Table</a> | <a href="#index00015">Index</a> | <a href="#pos00016">Next Table</a></p>
+<p class="right"><a href="#skip00017" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00016">Previous Table</a> | <a href="#index00017">Index</a> | <a href="#pos00018">Next Table</a></p>
 
-<a name="skip00015"></a>
+<a name="skip00017"></a>
 
 <h3>AO Outlier t-values</h3>
 <table class="x11"
@@ -1545,12 +1806,12 @@ New York : J. Wiley and Sons</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00016"></a>
+<a name="pos00018"></a>
 
-<p class="right"><a href="#skip00016" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00015">Previous Table</a> | <a href="#index00016">Index</a> | <a href="#pos00017">Next Table</a></p>
+<p class="right"><a href="#skip00018" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00017">Previous Table</a> | <a href="#index00018">Index</a> | <a href="#pos00019">Next Table</a></p>
 
-<a name="skip00016"></a>
+<a name="skip00018"></a>
 
 <h3>LS Outlier t-values</h3>
 <table class="x11"
@@ -1774,12 +2035,12 @@ New York : J. Wiley and Sons</p>
 
 <p>Estimation converged in    45 <abbr title="autoregressive moving average">ARMA</abbr> iterations,   170 function evaluations.</p>
 
-<a name="pos00017"></a>
+<a name="pos00019"></a>
 
-<p class="right"><a href="#skip00017" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00016">Previous Table</a> | <a href="#index00017">Index</a> | <a href="#pos00018">Next Table</a></p>
+<p class="right"><a href="#skip00019" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00018">Previous Table</a> | <a href="#index00019">Index</a> | <a href="#pos00020">Next Table</a></p>
 
-<a name="skip00017"></a>
+<a name="skip00019"></a>
 
 <h3>Regression Model</h3>
 <div id="mdl003.reg">
@@ -1824,12 +2085,12 @@ New York : J. Wiley and Sons</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00018"></a>
+<a name="pos00020"></a>
 
-<p class="right"><a href="#skip00018" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00017">Previous Table</a> | <a href="#index00018">Index</a> | <a href="#pos00019">Next Table</a></p>
+<p class="right"><a href="#skip00020" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00019">Previous Table</a> | <a href="#index00020">Index</a> | <a href="#pos00021">Next Table</a></p>
 
-<a name="skip00018"></a>
+<a name="skip00020"></a>
 
 <h3>ARIMA Model</h3>
 
@@ -1880,12 +2141,12 @@ New York : J. Wiley and Sons</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00019"></a>
+<a name="pos00021"></a>
 
-<p class="right"><a href="#skip00019" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00018">Previous Table</a> | <a href="#index00019">Index</a> | <a href="#pos00020">Next Table</a></p>
+<p class="right"><a href="#skip00021" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00020">Previous Table</a> | <a href="#index00021">Index</a> | <a href="#pos00022">Next Table</a></p>
 
-<a name="skip00019"></a>
+<a name="skip00021"></a>
 
 
 <h3>Forward addition pass  3</h3>
@@ -1925,12 +2186,12 @@ New York : J. Wiley and Sons</p>
 <p class="center"> <strong>Add</strong>
  +<strong>AO2013.Nov            </strong> (          5.55                                 )</p>
 
-<a name="pos00020"></a>
+<a name="pos00022"></a>
 
-<p class="right"><a href="#skip00020" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00019">Previous Table</a> | <a href="#index00020">Index</a> | <a href="#pos00021">Next Table</a></p>
+<p class="right"><a href="#skip00022" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00021">Previous Table</a> | <a href="#index00022">Index</a> | <a href="#pos00023">Next Table</a></p>
 
-<a name="skip00020"></a>
+<a name="skip00022"></a>
 
 <h3>AO Outlier t-values</h3>
 <table class="x11"
@@ -2145,12 +2406,12 @@ New York : J. Wiley and Sons</p>
        2020.Apr 
 </p>
 
-<a name="pos00021"></a>
+<a name="pos00023"></a>
 
-<p class="right"><a href="#skip00021" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00020">Previous Table</a> | <a href="#index00021">Index</a> | <a href="#pos00022">Next Table</a></p>
+<p class="right"><a href="#skip00023" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00022">Previous Table</a> | <a href="#index00023">Index</a> | <a href="#pos00024">Next Table</a></p>
 
-<a name="skip00021"></a>
+<a name="skip00023"></a>
 
 <h3>LS Outlier t-values</h3>
 <table class="x11"
@@ -2374,12 +2635,12 @@ New York : J. Wiley and Sons</p>
 
 <p>Estimation converged in    18 <abbr title="autoregressive moving average">ARMA</abbr> iterations,    88 function evaluations.</p>
 
-<a name="pos00022"></a>
+<a name="pos00024"></a>
 
-<p class="right"><a href="#skip00022" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00021">Previous Table</a> | <a href="#index00022">Index</a> | <a href="#pos00023">Next Table</a></p>
+<p class="right"><a href="#skip00024" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00023">Previous Table</a> | <a href="#index00024">Index</a> | <a href="#pos00025">Next Table</a></p>
 
-<a name="skip00022"></a>
+<a name="skip00024"></a>
 
 <h3>Regression Model</h3>
 <div id="mdl004.reg">
@@ -2430,12 +2691,12 @@ New York : J. Wiley and Sons</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00023"></a>
+<a name="pos00025"></a>
 
-<p class="right"><a href="#skip00023" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00022">Previous Table</a> | <a href="#index00023">Index</a> | <a href="#pos00024">Next Table</a></p>
+<p class="right"><a href="#skip00025" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00024">Previous Table</a> | <a href="#index00025">Index</a> | <a href="#pos00026">Next Table</a></p>
 
-<a name="skip00023"></a>
+<a name="skip00025"></a>
 
 <h3>ARIMA Model</h3>
 
@@ -2486,12 +2747,12 @@ New York : J. Wiley and Sons</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00024"></a>
+<a name="pos00026"></a>
 
-<p class="right"><a href="#skip00024" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00023">Previous Table</a> | <a href="#index00024">Index</a> | <a href="#pos00025">Next Table</a></p>
+<p class="right"><a href="#skip00026" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00025">Previous Table</a> | <a href="#index00026">Index</a> | <a href="#pos00027">Next Table</a></p>
 
-<a name="skip00024"></a>
+<a name="skip00026"></a>
 
 
 <h3>Forward addition pass  4</h3>
@@ -2516,12 +2777,12 @@ New York : J. Wiley and Sons</p>
 <p class="center"> <strong>Add</strong>
  +<strong>LS2019.Dec            </strong> (                          5.10                 )</p>
 
-<a name="pos00025"></a>
+<a name="pos00027"></a>
 
-<p class="right"><a href="#skip00025" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00024">Previous Table</a> | <a href="#index00025">Index</a> | <a href="#pos00026">Next Table</a></p>
+<p class="right"><a href="#skip00027" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00026">Previous Table</a> | <a href="#index00027">Index</a> | <a href="#pos00028">Next Table</a></p>
 
-<a name="skip00025"></a>
+<a name="skip00027"></a>
 
 <h3>AO Outlier t-values</h3>
 <table class="x11"
@@ -2736,12 +2997,12 @@ New York : J. Wiley and Sons</p>
        2013.Nov  2020.Apr 
 </p>
 
-<a name="pos00026"></a>
+<a name="pos00028"></a>
 
-<p class="right"><a href="#skip00026" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00025">Previous Table</a> | <a href="#index00026">Index</a> | <a href="#pos00027">Next Table</a></p>
+<p class="right"><a href="#skip00028" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00027">Previous Table</a> | <a href="#index00028">Index</a> | <a href="#pos00029">Next Table</a></p>
 
-<a name="skip00026"></a>
+<a name="skip00028"></a>
 
 <h3>LS Outlier t-values</h3>
 <table class="x11"
@@ -2965,12 +3226,12 @@ New York : J. Wiley and Sons</p>
 
 <p>Estimation converged in    29 <abbr title="autoregressive moving average">ARMA</abbr> iterations,   142 function evaluations.</p>
 
-<a name="pos00027"></a>
+<a name="pos00029"></a>
 
-<p class="right"><a href="#skip00027" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00026">Previous Table</a> | <a href="#index00027">Index</a> | <a href="#pos00028">Next Table</a></p>
+<p class="right"><a href="#skip00029" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00028">Previous Table</a> | <a href="#index00029">Index</a> | <a href="#pos00030">Next Table</a></p>
 
-<a name="skip00027"></a>
+<a name="skip00029"></a>
 
 <h3>Regression Model</h3>
 <div id="mdl005.reg">
@@ -3027,12 +3288,12 @@ New York : J. Wiley and Sons</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00028"></a>
+<a name="pos00030"></a>
 
-<p class="right"><a href="#skip00028" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00027">Previous Table</a> | <a href="#index00028">Index</a> | <a href="#pos00029">Next Table</a></p>
+<p class="right"><a href="#skip00030" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00029">Previous Table</a> | <a href="#index00030">Index</a> | <a href="#pos00031">Next Table</a></p>
 
-<a name="skip00028"></a>
+<a name="skip00030"></a>
 
 <h3>ARIMA Model</h3>
 
@@ -3083,12 +3344,12 @@ New York : J. Wiley and Sons</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00029"></a>
+<a name="pos00031"></a>
 
-<p class="right"><a href="#skip00029" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00028">Previous Table</a> | <a href="#index00029">Index</a> | <a href="#pos00030">Next Table</a></p>
+<p class="right"><a href="#skip00031" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00030">Previous Table</a> | <a href="#index00031">Index</a> | <a href="#pos00032">Next Table</a></p>
 
-<a name="skip00029"></a>
+<a name="skip00031"></a>
 
 
 <h3>Forward addition pass  5</h3>
@@ -3118,12 +3379,12 @@ New York : J. Wiley and Sons</p>
 <p class="center"> <strong>Add</strong>
  +<strong>LS2020.Sep            </strong> (                          4.13                 )</p>
 
-<a name="pos00030"></a>
+<a name="pos00032"></a>
 
-<p class="right"><a href="#skip00030" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00029">Previous Table</a> | <a href="#index00030">Index</a> | <a href="#pos00031">Next Table</a></p>
+<p class="right"><a href="#skip00032" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00031">Previous Table</a> | <a href="#index00032">Index</a> | <a href="#pos00033">Next Table</a></p>
 
-<a name="skip00030"></a>
+<a name="skip00032"></a>
 
 <h3>AO Outlier t-values</h3>
 <table class="x11"
@@ -3338,12 +3599,12 @@ New York : J. Wiley and Sons</p>
        2013.Nov  2020.Apr 
 </p>
 
-<a name="pos00031"></a>
+<a name="pos00033"></a>
 
-<p class="right"><a href="#skip00031" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00030">Previous Table</a> | <a href="#index00031">Index</a> | <a href="#pos00032">Next Table</a></p>
+<p class="right"><a href="#skip00033" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00032">Previous Table</a> | <a href="#index00033">Index</a> | <a href="#pos00034">Next Table</a></p>
 
-<a name="skip00031"></a>
+<a name="skip00033"></a>
 
 <h3>LS Outlier t-values</h3>
 <table class="x11"
@@ -3567,12 +3828,12 @@ New York : J. Wiley and Sons</p>
 
 <p>Estimation converged in    34 <abbr title="autoregressive moving average">ARMA</abbr> iterations,   155 function evaluations.</p>
 
-<a name="pos00032"></a>
+<a name="pos00034"></a>
 
-<p class="right"><a href="#skip00032" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00031">Previous Table</a> | <a href="#index00032">Index</a> | <a href="#pos00033">Next Table</a></p>
+<p class="right"><a href="#skip00034" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00033">Previous Table</a> | <a href="#index00034">Index</a> | <a href="#pos00035">Next Table</a></p>
 
-<a name="skip00032"></a>
+<a name="skip00034"></a>
 
 <h3>Regression Model</h3>
 <div id="mdl006.reg">
@@ -3635,12 +3896,12 @@ New York : J. Wiley and Sons</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00033"></a>
+<a name="pos00035"></a>
 
-<p class="right"><a href="#skip00033" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00032">Previous Table</a> | <a href="#index00033">Index</a> | <a href="#pos00034">Next Table</a></p>
+<p class="right"><a href="#skip00035" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00034">Previous Table</a> | <a href="#index00035">Index</a> | <a href="#pos00036">Next Table</a></p>
 
-<a name="skip00033"></a>
+<a name="skip00035"></a>
 
 <h3>ARIMA Model</h3>
 
@@ -3691,24 +3952,24 @@ New York : J. Wiley and Sons</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00034"></a>
+<a name="pos00036"></a>
 
-<p class="right"><a href="#skip00034" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00033">Previous Table</a> | <a href="#index00034">Index</a> | <a href="#pos00035">Next Table</a></p>
+<p class="right"><a href="#skip00036" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00035">Previous Table</a> | <a href="#index00036">Index</a> | <a href="#pos00037">Next Table</a></p>
 
-<a name="skip00034"></a>
+<a name="skip00036"></a>
 
 
 <h3>Forward addition pass  6</h3>
  <p>Robust root mse :   6.82E-03 <br> 
   Normal root mse :   7.28E-03</p>
 
-<a name="pos00035"></a>
+<a name="pos00037"></a>
 
-<p class="right"><a href="#skip00035" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00034">Previous Table</a> | <a href="#index00035">Index</a> | <a href="#pos00036">Next Table</a></p>
+<p class="right"><a href="#skip00037" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00036">Previous Table</a> | <a href="#index00037">Index</a> | <a href="#pos00038">Next Table</a></p>
 
-<a name="skip00035"></a>
+<a name="skip00037"></a>
 
 <h3>AO Outlier t-values</h3>
 <table class="x11"
@@ -3923,12 +4184,12 @@ New York : J. Wiley and Sons</p>
        2013.Nov  2020.Apr 
 </p>
 
-<a name="pos00036"></a>
+<a name="pos00038"></a>
 
-<p class="right"><a href="#skip00036" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00035">Previous Table</a> | <a href="#index00036">Index</a> | <a href="#pos00037">Next Table</a></p>
+<p class="right"><a href="#skip00038" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00037">Previous Table</a> | <a href="#index00038">Index</a> | <a href="#pos00039">Next Table</a></p>
 
-<a name="skip00036"></a>
+<a name="skip00038"></a>
 
 <h3>LS Outlier t-values</h3>
 <table class="x11"
@@ -4145,12 +4406,12 @@ New York : J. Wiley and Sons</p>
 
 <p> No more outliers identified</p>
 
-<a name="pos00037"></a>
+<a name="pos00039"></a>
 
-<p class="right"><a href="#skip00037" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00036">Previous Table</a> | <a href="#index00037">Index</a> | <a href="#pos00038">Next Table</a></p>
+<p class="right"><a href="#skip00039" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00038">Previous Table</a> | <a href="#index00039">Index</a> | <a href="#pos00040">Next Table</a></p>
 
-<a name="skip00037"></a>
+<a name="skip00039"></a>
 
 <h3>Backward deletion pass  1</h3>
 <table class="w70">
@@ -4169,12 +4430,12 @@ New York : J. Wiley and Sons</p>
 
 <p>Estimation converged in    26 <abbr title="autoregressive moving average">ARMA</abbr> iterations,   125 function evaluations.</p>
 
-<a name="pos00038"></a>
+<a name="pos00040"></a>
 
-<p class="right"><a href="#skip00038" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00037">Previous Table</a> | <a href="#index00038">Index</a> | <a href="#pos00039">Next Table</a></p>
+<p class="right"><a href="#skip00040" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00039">Previous Table</a> | <a href="#index00040">Index</a> | <a href="#pos00041">Next Table</a></p>
 
-<a name="skip00038"></a>
+<a name="skip00040"></a>
 
 <h3>Regression Model</h3>
 <div id="mdl007.reg">
@@ -4231,12 +4492,12 @@ New York : J. Wiley and Sons</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00039"></a>
+<a name="pos00041"></a>
 
-<p class="right"><a href="#skip00039" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00038">Previous Table</a> | <a href="#index00039">Index</a> | <a href="#pos00040">Next Table</a></p>
+<p class="right"><a href="#skip00041" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00040">Previous Table</a> | <a href="#index00041">Index</a> | <a href="#pos00042">Next Table</a></p>
 
-<a name="skip00039"></a>
+<a name="skip00041"></a>
 
 <h3>ARIMA Model</h3>
 
@@ -4287,12 +4548,12 @@ New York : J. Wiley and Sons</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00040"></a>
+<a name="pos00042"></a>
 
-<p class="right"><a href="#skip00040" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00039">Previous Table</a> | <a href="#index00040">Index</a> | <a href="#pos00041">Next Table</a></p>
+<p class="right"><a href="#skip00042" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00041">Previous Table</a> | <a href="#index00042">Index</a> | <a href="#pos00043">Next Table</a></p>
 
-<a name="skip00040"></a>
+<a name="skip00042"></a>
 
 <h3>Final AO Outlier t-values</h3>
 
@@ -4509,12 +4770,12 @@ New York : J. Wiley and Sons</p>
        2013.Nov  2020.Apr 
 </p>
 
-<a name="pos00041"></a>
+<a name="pos00043"></a>
 
-<p class="right"><a href="#skip00041" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00040">Previous Table</a> | <a href="#index00041">Index</a> | <a href="#pos00042">Next Table</a></p>
+<p class="right"><a href="#skip00043" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00042">Previous Table</a> | <a href="#index00043">Index</a> | <a href="#pos00044">Next Table</a></p>
 
-<a name="skip00041"></a>
+<a name="skip00043"></a>
 
 <h3>Final LS Outlier t-values</h3>
 
@@ -4945,12 +5206,12 @@ Seasonal difference order :   1
 
 <p class="center">Preliminary model choice : (2 1 0)(0 1 1)</p>
 
-<a name="pos00042"></a>
+<a name="pos00044"></a>
 
-<p class="right"><a href="#skip00042" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00041">Previous Table</a> | <a href="#index00042">Index</a> | <a href="#pos00043">Next Table</a></p>
+<p class="right"><a href="#skip00044" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00043">Previous Table</a> | <a href="#index00044">Index</a> | <a href="#pos00045">Next Table</a></p>
 
-<a name="skip00042"></a>
+<a name="skip00044"></a>
 
 <h3>OUTLIER DETECTION</h3>
  <p>From  2013.Jan to 2024.Aug <br> 
@@ -4963,14 +5224,16 @@ Seasonal difference order :   1
  <br>  Critical |t| for LS outliers :         3.88
 </p>
 
+<p>&nbsp;</p>
+
 <p>Estimation converged in    73 <abbr title="autoregressive moving average">ARMA</abbr> iterations,   315 function evaluations.</p>
 
-<a name="pos00043"></a>
+<a name="pos00045"></a>
 
-<p class="right"><a href="#skip00043" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00042">Previous Table</a> | <a href="#index00043">Index</a> | <a href="#pos00044">Next Table</a></p>
+<p class="right"><a href="#skip00045" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00044">Previous Table</a> | <a href="#index00045">Index</a> | <a href="#pos00046">Next Table</a></p>
 
-<a name="skip00043"></a>
+<a name="skip00045"></a>
 
 <h3>Regression Model</h3>
 <div id="mdl008.reg">
@@ -4996,16 +5259,38 @@ Seasonal difference order :   1
 
 <p>&nbsp;</p>
 
+<a name="pos00046"></a>
+
+<p class="right"><a href="#skip00046" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00045">Previous Table</a> | <a href="#index00046">Index</a> | <a href="#pos00047">Next Table</a></p>
+
+<a name="skip00046"></a>
+
+<h3>Regression Parameter Correlation Matrix</h3>
+<table class="w90">
+<caption><strong>Regression Parameter Correlation Matrix</strong></caption>
+<tr>
+<td class="head">&nbsp;</td>
+<th scope="col">diwali</th>
+</tr>
+<tr>
+<th scope="row">diwali</th>
+<td class="nowrap">    1.0000</td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+
 <p>&nbsp;</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00044"></a>
+<a name="pos00047"></a>
 
-<p class="right"><a href="#skip00044" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00043">Previous Table</a> | <a href="#index00044">Index</a> | <a href="#pos00045">Next Table</a></p>
+<p class="right"><a href="#skip00047" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00046">Previous Table</a> | <a href="#index00047">Index</a> | <a href="#pos00048">Next Table</a></p>
 
-<a name="skip00044"></a>
+<a name="skip00047"></a>
 
 <h3>ARIMA Model</h3>
 
@@ -5061,12 +5346,12 @@ Seasonal difference order :   1
 
 <p>&nbsp;</p>
 
-<a name="pos00045"></a>
+<a name="pos00048"></a>
 
-<p class="right"><a href="#skip00045" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00044">Previous Table</a> | <a href="#index00045">Index</a> | <a href="#pos00046">Next Table</a></p>
+<p class="right"><a href="#skip00048" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00047">Previous Table</a> | <a href="#index00048">Index</a> | <a href="#pos00049">Next Table</a></p>
 
-<a name="skip00045"></a>
+<a name="skip00048"></a>
 
 
 <h3>Forward addition pass  1</h3>
@@ -5126,12 +5411,12 @@ Seasonal difference order :   1
 <p class="center"> <strong>Add</strong>
  +<strong>LS2023.Jul            </strong> (                          5.57                 )</p>
 
-<a name="pos00046"></a>
+<a name="pos00049"></a>
 
-<p class="right"><a href="#skip00046" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00045">Previous Table</a> | <a href="#index00046">Index</a> | <a href="#pos00047">Next Table</a></p>
+<p class="right"><a href="#skip00049" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00048">Previous Table</a> | <a href="#index00049">Index</a> | <a href="#pos00050">Next Table</a></p>
 
-<a name="skip00046"></a>
+<a name="skip00049"></a>
 
 <h3>AO Outlier t-values</h3>
 <table class="x11"
@@ -5340,12 +5625,12 @@ Seasonal difference order :   1
 
 <p>&nbsp;</p>
 
-<a name="pos00047"></a>
+<a name="pos00050"></a>
 
-<p class="right"><a href="#skip00047" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00046">Previous Table</a> | <a href="#index00047">Index</a> | <a href="#pos00048">Next Table</a></p>
+<p class="right"><a href="#skip00050" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00049">Previous Table</a> | <a href="#index00050">Index</a> | <a href="#pos00051">Next Table</a></p>
 
-<a name="skip00047"></a>
+<a name="skip00050"></a>
 
 <h3>LS Outlier t-values</h3>
 <table class="x11"
@@ -5563,12 +5848,12 @@ Seasonal difference order :   1
 
 <p>Estimation converged in    90 <abbr title="autoregressive moving average">ARMA</abbr> iterations,   389 function evaluations.</p>
 
-<a name="pos00048"></a>
+<a name="pos00051"></a>
 
-<p class="right"><a href="#skip00048" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00047">Previous Table</a> | <a href="#index00048">Index</a> | <a href="#pos00049">Next Table</a></p>
+<p class="right"><a href="#skip00051" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00050">Previous Table</a> | <a href="#index00051">Index</a> | <a href="#pos00052">Next Table</a></p>
 
-<a name="skip00048"></a>
+<a name="skip00051"></a>
 
 <h3>Regression Model</h3>
 <div id="mdl009.reg">
@@ -5607,12 +5892,12 @@ Seasonal difference order :   1
 
 <p>&nbsp;</p>
 
-<a name="pos00049"></a>
+<a name="pos00052"></a>
 
-<p class="right"><a href="#skip00049" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00048">Previous Table</a> | <a href="#index00049">Index</a> | <a href="#pos00050">Next Table</a></p>
+<p class="right"><a href="#skip00052" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00051">Previous Table</a> | <a href="#index00052">Index</a> | <a href="#pos00053">Next Table</a></p>
 
-<a name="skip00049"></a>
+<a name="skip00052"></a>
 
 <h3>ARIMA Model</h3>
 
@@ -5668,12 +5953,12 @@ Seasonal difference order :   1
 
 <p>&nbsp;</p>
 
-<a name="pos00050"></a>
+<a name="pos00053"></a>
 
-<p class="right"><a href="#skip00050" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00049">Previous Table</a> | <a href="#index00050">Index</a> | <a href="#pos00051">Next Table</a></p>
+<p class="right"><a href="#skip00053" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00052">Previous Table</a> | <a href="#index00053">Index</a> | <a href="#pos00054">Next Table</a></p>
 
-<a name="skip00050"></a>
+<a name="skip00053"></a>
 
 
 <h3>Forward addition pass  2</h3>
@@ -5723,12 +6008,12 @@ Seasonal difference order :   1
 <p class="center"> <strong>Add</strong>
  +<strong>AO2020.Apr            </strong> (          6.19                                 )</p>
 
-<a name="pos00051"></a>
+<a name="pos00054"></a>
 
-<p class="right"><a href="#skip00051" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00050">Previous Table</a> | <a href="#index00051">Index</a> | <a href="#pos00052">Next Table</a></p>
+<p class="right"><a href="#skip00054" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00053">Previous Table</a> | <a href="#index00054">Index</a> | <a href="#pos00055">Next Table</a></p>
 
-<a name="skip00051"></a>
+<a name="skip00054"></a>
 
 <h3>AO Outlier t-values</h3>
 <table class="x11"
@@ -5937,12 +6222,12 @@ Seasonal difference order :   1
 
 <p>&nbsp;</p>
 
-<a name="pos00052"></a>
+<a name="pos00055"></a>
 
-<p class="right"><a href="#skip00052" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00051">Previous Table</a> | <a href="#index00052">Index</a> | <a href="#pos00053">Next Table</a></p>
+<p class="right"><a href="#skip00055" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00054">Previous Table</a> | <a href="#index00055">Index</a> | <a href="#pos00056">Next Table</a></p>
 
-<a name="skip00052"></a>
+<a name="skip00055"></a>
 
 <h3>LS Outlier t-values</h3>
 <table class="x11"
@@ -6166,12 +6451,12 @@ Seasonal difference order :   1
 
 <p>Estimation converged in    32 <abbr title="autoregressive moving average">ARMA</abbr> iterations,   163 function evaluations.</p>
 
-<a name="pos00053"></a>
+<a name="pos00056"></a>
 
-<p class="right"><a href="#skip00053" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00052">Previous Table</a> | <a href="#index00053">Index</a> | <a href="#pos00054">Next Table</a></p>
+<p class="right"><a href="#skip00056" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00055">Previous Table</a> | <a href="#index00056">Index</a> | <a href="#pos00057">Next Table</a></p>
 
-<a name="skip00053"></a>
+<a name="skip00056"></a>
 
 <h3>Regression Model</h3>
 <div id="mdl010.reg">
@@ -6216,12 +6501,12 @@ Seasonal difference order :   1
 
 <p>&nbsp;</p>
 
-<a name="pos00054"></a>
+<a name="pos00057"></a>
 
-<p class="right"><a href="#skip00054" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00053">Previous Table</a> | <a href="#index00054">Index</a> | <a href="#pos00055">Next Table</a></p>
+<p class="right"><a href="#skip00057" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00056">Previous Table</a> | <a href="#index00057">Index</a> | <a href="#pos00058">Next Table</a></p>
 
-<a name="skip00054"></a>
+<a name="skip00057"></a>
 
 <h3>ARIMA Model</h3>
 
@@ -6277,12 +6562,12 @@ Seasonal difference order :   1
 
 <p>&nbsp;</p>
 
-<a name="pos00055"></a>
+<a name="pos00058"></a>
 
-<p class="right"><a href="#skip00055" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00054">Previous Table</a> | <a href="#index00055">Index</a> | <a href="#pos00056">Next Table</a></p>
+<p class="right"><a href="#skip00058" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00057">Previous Table</a> | <a href="#index00058">Index</a> | <a href="#pos00059">Next Table</a></p>
 
-<a name="skip00055"></a>
+<a name="skip00058"></a>
 
 
 <h3>Forward addition pass  3</h3>
@@ -6322,12 +6607,12 @@ Seasonal difference order :   1
 <p class="center"> <strong>Add</strong>
  +<strong>AO2013.Nov            </strong> (          5.30                                 )</p>
 
-<a name="pos00056"></a>
+<a name="pos00059"></a>
 
-<p class="right"><a href="#skip00056" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00055">Previous Table</a> | <a href="#index00056">Index</a> | <a href="#pos00057">Next Table</a></p>
+<p class="right"><a href="#skip00059" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00058">Previous Table</a> | <a href="#index00059">Index</a> | <a href="#pos00060">Next Table</a></p>
 
-<a name="skip00056"></a>
+<a name="skip00059"></a>
 
 <h3>AO Outlier t-values</h3>
 <table class="x11"
@@ -6542,12 +6827,12 @@ Seasonal difference order :   1
        2020.Apr 
 </p>
 
-<a name="pos00057"></a>
+<a name="pos00060"></a>
 
-<p class="right"><a href="#skip00057" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00056">Previous Table</a> | <a href="#index00057">Index</a> | <a href="#pos00058">Next Table</a></p>
+<p class="right"><a href="#skip00060" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00059">Previous Table</a> | <a href="#index00060">Index</a> | <a href="#pos00061">Next Table</a></p>
 
-<a name="skip00057"></a>
+<a name="skip00060"></a>
 
 <h3>LS Outlier t-values</h3>
 <table class="x11"
@@ -6771,12 +7056,12 @@ Seasonal difference order :   1
 
 <p>Estimation converged in    21 <abbr title="autoregressive moving average">ARMA</abbr> iterations,   118 function evaluations.</p>
 
-<a name="pos00058"></a>
+<a name="pos00061"></a>
 
-<p class="right"><a href="#skip00058" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00057">Previous Table</a> | <a href="#index00058">Index</a> | <a href="#pos00059">Next Table</a></p>
+<p class="right"><a href="#skip00061" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00060">Previous Table</a> | <a href="#index00061">Index</a> | <a href="#pos00062">Next Table</a></p>
 
-<a name="skip00058"></a>
+<a name="skip00061"></a>
 
 <h3>Regression Model</h3>
 <div id="mdl011.reg">
@@ -6827,12 +7112,12 @@ Seasonal difference order :   1
 
 <p>&nbsp;</p>
 
-<a name="pos00059"></a>
+<a name="pos00062"></a>
 
-<p class="right"><a href="#skip00059" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00058">Previous Table</a> | <a href="#index00059">Index</a> | <a href="#pos00060">Next Table</a></p>
+<p class="right"><a href="#skip00062" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00061">Previous Table</a> | <a href="#index00062">Index</a> | <a href="#pos00063">Next Table</a></p>
 
-<a name="skip00059"></a>
+<a name="skip00062"></a>
 
 <h3>ARIMA Model</h3>
 
@@ -6888,12 +7173,12 @@ Seasonal difference order :   1
 
 <p>&nbsp;</p>
 
-<a name="pos00060"></a>
+<a name="pos00063"></a>
 
-<p class="right"><a href="#skip00060" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00059">Previous Table</a> | <a href="#index00060">Index</a> | <a href="#pos00061">Next Table</a></p>
+<p class="right"><a href="#skip00063" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00062">Previous Table</a> | <a href="#index00063">Index</a> | <a href="#pos00064">Next Table</a></p>
 
-<a name="skip00060"></a>
+<a name="skip00063"></a>
 
 
 <h3>Forward addition pass  4</h3>
@@ -6923,12 +7208,12 @@ Seasonal difference order :   1
 <p class="center"> <strong>Add</strong>
  +<strong>LS2019.Dec            </strong> (                          5.31                 )</p>
 
-<a name="pos00061"></a>
+<a name="pos00064"></a>
 
-<p class="right"><a href="#skip00061" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00060">Previous Table</a> | <a href="#index00061">Index</a> | <a href="#pos00062">Next Table</a></p>
+<p class="right"><a href="#skip00064" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00063">Previous Table</a> | <a href="#index00064">Index</a> | <a href="#pos00065">Next Table</a></p>
 
-<a name="skip00061"></a>
+<a name="skip00064"></a>
 
 <h3>AO Outlier t-values</h3>
 <table class="x11"
@@ -7143,12 +7428,12 @@ Seasonal difference order :   1
        2013.Nov  2020.Apr 
 </p>
 
-<a name="pos00062"></a>
+<a name="pos00065"></a>
 
-<p class="right"><a href="#skip00062" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00061">Previous Table</a> | <a href="#index00062">Index</a> | <a href="#pos00063">Next Table</a></p>
+<p class="right"><a href="#skip00065" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00064">Previous Table</a> | <a href="#index00065">Index</a> | <a href="#pos00066">Next Table</a></p>
 
-<a name="skip00062"></a>
+<a name="skip00065"></a>
 
 <h3>LS Outlier t-values</h3>
 <table class="x11"
@@ -7372,12 +7657,12 @@ Seasonal difference order :   1
 
 <p>Estimation converged in    28 <abbr title="autoregressive moving average">ARMA</abbr> iterations,   151 function evaluations.</p>
 
-<a name="pos00063"></a>
+<a name="pos00066"></a>
 
-<p class="right"><a href="#skip00063" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00062">Previous Table</a> | <a href="#index00063">Index</a> | <a href="#pos00064">Next Table</a></p>
+<p class="right"><a href="#skip00066" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00065">Previous Table</a> | <a href="#index00066">Index</a> | <a href="#pos00067">Next Table</a></p>
 
-<a name="skip00063"></a>
+<a name="skip00066"></a>
 
 <h3>Regression Model</h3>
 <div id="mdl012.reg">
@@ -7434,12 +7719,12 @@ Seasonal difference order :   1
 
 <p>&nbsp;</p>
 
-<a name="pos00064"></a>
+<a name="pos00067"></a>
 
-<p class="right"><a href="#skip00064" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00063">Previous Table</a> | <a href="#index00064">Index</a> | <a href="#pos00065">Next Table</a></p>
+<p class="right"><a href="#skip00067" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00066">Previous Table</a> | <a href="#index00067">Index</a> | <a href="#pos00068">Next Table</a></p>
 
-<a name="skip00064"></a>
+<a name="skip00067"></a>
 
 <h3>ARIMA Model</h3>
 
@@ -7495,24 +7780,24 @@ Seasonal difference order :   1
 
 <p>&nbsp;</p>
 
-<a name="pos00065"></a>
+<a name="pos00068"></a>
 
-<p class="right"><a href="#skip00065" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00064">Previous Table</a> | <a href="#index00065">Index</a> | <a href="#pos00066">Next Table</a></p>
+<p class="right"><a href="#skip00068" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00067">Previous Table</a> | <a href="#index00068">Index</a> | <a href="#pos00069">Next Table</a></p>
 
-<a name="skip00065"></a>
+<a name="skip00068"></a>
 
 
 <h3>Forward addition pass  5</h3>
  <p>Robust root mse :   6.52E-03 <br> 
   Normal root mse :   7.48E-03</p>
 
-<a name="pos00066"></a>
+<a name="pos00069"></a>
 
-<p class="right"><a href="#skip00066" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00065">Previous Table</a> | <a href="#index00066">Index</a> | <a href="#pos00067">Next Table</a></p>
+<p class="right"><a href="#skip00069" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00068">Previous Table</a> | <a href="#index00069">Index</a> | <a href="#pos00070">Next Table</a></p>
 
-<a name="skip00066"></a>
+<a name="skip00069"></a>
 
 <h3>AO Outlier t-values</h3>
 <table class="x11"
@@ -7727,12 +8012,12 @@ Seasonal difference order :   1
        2013.Nov  2020.Apr 
 </p>
 
-<a name="pos00067"></a>
+<a name="pos00070"></a>
 
-<p class="right"><a href="#skip00067" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00066">Previous Table</a> | <a href="#index00067">Index</a> | <a href="#pos00068">Next Table</a></p>
+<p class="right"><a href="#skip00070" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00069">Previous Table</a> | <a href="#index00070">Index</a> | <a href="#pos00071">Next Table</a></p>
 
-<a name="skip00067"></a>
+<a name="skip00070"></a>
 
 <h3>LS Outlier t-values</h3>
 <table class="x11"
@@ -7949,12 +8234,12 @@ Seasonal difference order :   1
 
 <p> No more outliers identified</p>
 
-<a name="pos00068"></a>
+<a name="pos00071"></a>
 
-<p class="right"><a href="#skip00068" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00067">Previous Table</a> | <a href="#index00068">Index</a> | <a href="#pos00069">Next Table</a></p>
+<p class="right"><a href="#skip00071" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00070">Previous Table</a> | <a href="#index00071">Index</a> | <a href="#pos00072">Next Table</a></p>
 
-<a name="skip00068"></a>
+<a name="skip00071"></a>
 
 <h3>Final AO Outlier t-values</h3>
 
@@ -8171,12 +8456,12 @@ Seasonal difference order :   1
        2013.Nov  2020.Apr 
 </p>
 
-<a name="pos00069"></a>
+<a name="pos00072"></a>
 
-<p class="right"><a href="#skip00069" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00068">Previous Table</a> | <a href="#index00069">Index</a> | <a href="#pos00070">Next Table</a></p>
+<p class="right"><a href="#skip00072" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00071">Previous Table</a> | <a href="#index00072">Index</a> | <a href="#pos00073">Next Table</a></p>
 
-<a name="skip00069"></a>
+<a name="skip00072"></a>
 
 <h3>Final LS Outlier t-values</h3>
 
@@ -8419,14 +8704,16 @@ Seasonal difference order :   1
  Last year:   0.97 <br>  Last-1 year:   0.76 <br>      Last-2 year:   2.59 <br> 
   Last three years:    1.44</p>
 
+<p>&nbsp;</p>
+
 <p>Estimation converged in    28 <abbr title="autoregressive moving average">ARMA</abbr> iterations,   151 function evaluations.</p>
 
-<a name="pos00070"></a>
+<a name="pos00073"></a>
 
-<p class="right"><a href="#skip00070" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00069">Previous Table</a> | <a href="#index00070">Index</a> | <a href="#pos00071">Next Table</a></p>
+<p class="right"><a href="#skip00073" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00072">Previous Table</a> | <a href="#index00073">Index</a> | <a href="#pos00074">Next Table</a></p>
 
-<a name="skip00070"></a>
+<a name="skip00073"></a>
 
 <h3>Regression Model</h3>
 <div id="mdl013.reg">
@@ -8479,16 +8766,78 @@ Seasonal difference order :   1
 
 <p>&nbsp;</p>
 
+<a name="pos00074"></a>
+
+<p class="right"><a href="#skip00074" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00073">Previous Table</a> | <a href="#index00074">Index</a> | <a href="#pos00075">Next Table</a></p>
+
+<a name="skip00074"></a>
+
+<h3>Regression Parameter Correlation Matrix</h3>
+<table class="w90">
+<caption><strong>Regression Parameter Correlation Matrix</strong></caption>
+<tr>
+<td class="head">&nbsp;</td>
+<th scope="col">diwali</th>
+<th scope="col">AO2013.Nov</th>
+<th scope="col">LS2019.Dec</th>
+<th scope="col">AO2020.Apr</th>
+<th scope="col">LS2023.Jul</th>
+</tr>
+<tr>
+<th scope="row">diwali</th>
+<td class="nowrap">    1.0000</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<th scope="row">AO2013.Nov</th>
+<td class="nowrap">    0.0912</td>
+<td class="nowrap">    1.0000</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<th scope="row">LS2019.Dec</th>
+<td class="nowrap">   -0.2211</td>
+<td class="nowrap">   -0.1055</td>
+<td class="nowrap">    1.0000</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<th scope="row">AO2020.Apr</th>
+<td class="nowrap">    0.0000</td>
+<td class="nowrap">    0.0000</td>
+<td class="nowrap">    0.0000</td>
+<td class="nowrap">    1.0000</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<th scope="row">LS2023.Jul</th>
+<td class="nowrap">   -0.0000</td>
+<td class="nowrap">   -0.0000</td>
+<td class="nowrap">   -0.0000</td>
+<td class="nowrap">   -0.0142</td>
+<td class="nowrap">    1.0000</td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+
 <p>&nbsp;</p>
 
 <p>&nbsp;</p>
 
-<a name="pos00071"></a>
+<a name="pos00075"></a>
 
-<p class="right"><a href="#skip00071" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00070">Previous Table</a> | <a href="#index00071">Index</a> | <a href="#pos00072">Next Table</a></p>
+<p class="right"><a href="#skip00075" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00074">Previous Table</a> | <a href="#index00075">Index</a> | <a href="#pos00076">Next Table</a></p>
 
-<a name="skip00071"></a>
+<a name="skip00075"></a>
 
 <h3>ARIMA Model</h3>
 
@@ -8544,12 +8893,50 @@ Seasonal difference order :   1
 
 <p>&nbsp;</p>
 
-<a name="pos00072"></a>
+<a name="pos00076"></a>
 
-<p class="right"><a href="#skip00072" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00071">Previous Table</a> | <a href="#index00072">Index</a> | <a href="#pos00073">Next Table</a></p>
+<p class="right"><a href="#skip00076" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00075">Previous Table</a> | <a href="#index00076">Index</a> | <a href="#pos00077">Next Table</a></p>
 
-<a name="skip00072"></a>
+<a name="skip00076"></a>
+
+<h3><abbr title="autoregressive moving average">ARMA</abbr> Parameter Correlation Matrix</h3>
+<table class="w90">
+<caption><strong><abbr title="autoregressive moving average">ARMA</abbr> Parameter Correlation Matrix</strong></caption>
+<tr>
+<td class="head">&nbsp;</td>
+<th scope="col">Nonseasonal AR <br> Lag  1</th>
+<th scope="col">Nonseasonal AR <br> Lag  2</th>
+<th scope="col">Seasonal MA <br> Lag 12</th>
+</tr>
+<tr>
+<th scope="row">Nonseasonal AR <br> Lag  1</th>
+<td class="center">     1.0000 </td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<th scope="row">Nonseasonal AR <br> Lag  2</th>
+<td class="nowrapcenter">    -0.4201 </td>
+<td class="center">     1.0000 </td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<th scope="row">Seasonal MA <br> Lag 12</th>
+<td class="nowrapcenter">    -0.0554 </td>
+<td class="center">     0.0662 </td>
+<td class="center">     1.0000 </td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+
+<a name="pos00077"></a>
+
+<p class="right"><a href="#skip00077" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00076">Previous Table</a> | <a href="#index00077">Index</a> | <a href="#pos00078">Next Table</a></p>
+
+<a name="skip00077"></a>
 <div id="lkhd003">
 <table class="w60"
   summary ="Likelihood Statistics" >
@@ -8567,1160 +8954,297 @@ Seasonal difference order :   1
 </table></div>
 
 <p>&nbsp;</p>
+ <hr> 
+<p>nobs   = number of observations <br> 
+ nefobs = nobs  - total order of differencing operators <br> 
+ np     = number of estimated regression and ARIMA model
+            parameters including the variance <br> 
+ V      = Covariance matrix of z's <br> 
+ z      = Vector of data - regression values <br> 
+ c      = Vector of prior adjustment factors <br> 
+ Log likelihood =
+          -[nefobs*log(2*pi)+log|V|+z'(V-inverse)z]/2 <br> 
+ Transformation Adjustment = sum(ln(|(ci*(ci*yi)^(lam-1))|))
+ where the sum is over the last nefobs observations <br> 
+ <abbr title="Akaike information criterion">AIC</abbr>
 
-<a name="pos00073"></a>
+ = -2*L+2*np <br> 
+ <abbr title="corrected Akaike information criterion">AICC</abbr> = -2*L+2*np*[nefobs/(nefobs-np-1)] <br> 
+ Hannan Quinn = -2*L+2*np*log[log(nefobs)] <br> 
+ <abbr title="Bayesian information criterion">BIC</abbr> = -2*L+np*log(nefobs)</p>
 
-<p class="right"><a href="#skip00073" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00072">Previous Table</a> | <a href="#index00073">Index</a> | <a href="#pos00074">Next Table</a></p>
+<a name="pos00078"></a>
 
-<a name="skip00073"></a>
+<p class="right"><a href="#skip00078" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00077">Previous Table</a> | <a href="#index00078">Index</a> | <a href="#pos00079">Next Table</a></p>
 
-<h3>Regression Matrix</h3>
- <p>From  2013.Jan to 2024.Aug <br> 
-  Observations        140</p>
-
-<div id="rmx">
-<table class="w90"
-  summary ="Regression Matrix" >
-<caption><strong>Regression Matrix</strong></caption>
+<a name="skip00078"></a>
+<div id="mdl001">
+<table class="w70"
+  summary ="Roots of ARIMA Model" >
+<caption><strong>Roots of ARIMA Model</strong></caption>
 <tr>
 <td class="head">&nbsp;</td>
-<th scope="col">diwali</th>
-<th scope="col">AO2013.Nov</th>
-<th scope="col">LS2019.Dec</th>
-<th scope="col">AO2020.Apr</th>
-<th scope="col">LS2023.Jul</th>
+<th id="rl0001">Real</th>
+<th id="im0001">Imaginary</th>
+<th id="md0002">Modulus</th>
+<th id="fq0001">Frequency</th>
 </tr>
 <tr>
-<th scope="row">2013.Jan</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
+<th colspan="5" id="gr0051" class="left">Nonseasonal AR</th>
 </tr>
 <tr>
-<th scope="row">2013.Feb</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
+<th id="vl0079">Root  1</th>
+<td headers="gr0051 vl0079 rl0001" class="center">    0.698653    </td>
+<td headers="gr0051 vl0079 im0001" class="center">     1.38346    </td>
+<td headers="gr0051 vl0079 md0002" class="center">     1.54986    </td>
+<td headers="gr0051 vl0079 fq0001" class="center">    0.175572    </td>
 </tr>
 <tr>
-<th scope="row">2013.Mar</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
+<th id="vl0080">Root  2</th>
+<td headers="gr0051 vl0080 rl0001" class="center">    0.698653    </td>
+<td headers="gr0051 vl0080 im0001" class="center">    -1.38346    </td>
+<td headers="gr0051 vl0080 md0002" class="center">     1.54986    </td>
+<td headers="gr0051 vl0080 fq0001" class="center">   -0.175572    </td>
 </tr>
 <tr>
-<th scope="row">2013.Apr</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
+<th colspan="5" id="gr0052" class="left">Seasonal MA</th>
 </tr>
 <tr>
-<th scope="row">2013.May</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2013.Jun</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2013.Jul</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2013.Aug</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2013.Sep</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2013.Oct</th>
-<td class="right">    0.405000E-01</td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2013.Nov</th>
-<td class="nowrap">   -0.405000E-01</td>
-<td class="right">     1.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2013.Dec</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2014.Jan</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2014.Feb</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2014.Mar</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2014.Apr</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2014.May</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2014.Jun</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2014.Jul</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2014.Aug</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2014.Sep</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2014.Oct</th>
-<td class="right">    0.340500    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2014.Nov</th>
-<td class="nowrap">   -0.340500    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2014.Dec</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2015.Jan</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2015.Feb</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2015.Mar</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2015.Apr</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2015.May</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2015.Jun</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2015.Jul</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2015.Aug</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2015.Sep</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2015.Oct</th>
-<td class="nowrap">   -0.659500    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2015.Nov</th>
-<td class="right">    0.659500    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2015.Dec</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2016.Jan</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2016.Feb</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2016.Mar</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2016.Apr</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2016.May</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2016.Jun</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2016.Jul</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2016.Aug</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2016.Sep</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2016.Oct</th>
-<td class="right">    0.340500    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2016.Nov</th>
-<td class="nowrap">   -0.340500    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2016.Dec</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2017.Jan</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2017.Feb</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2017.Mar</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2017.Apr</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2017.May</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2017.Jun</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2017.Jul</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2017.Aug</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2017.Sep</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2017.Oct</th>
-<td class="right">    0.340500    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2017.Nov</th>
-<td class="nowrap">   -0.340500    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2017.Dec</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2018.Jan</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2018.Feb</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2018.Mar</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2018.Apr</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2018.May</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2018.Jun</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2018.Jul</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2018.Aug</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2018.Sep</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2018.Oct</th>
-<td class="nowrap">   -0.359500    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2018.Nov</th>
-<td class="right">    0.359500    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2018.Dec</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2019.Jan</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2019.Feb</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2019.Mar</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2019.Apr</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2019.May</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2019.Jun</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2019.Jul</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2019.Aug</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2019.Sep</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2019.Oct</th>
-<td class="right">    0.340500    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2019.Nov</th>
-<td class="nowrap">   -0.340500    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2019.Dec</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2020.Jan</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2020.Feb</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2020.Mar</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2020.Apr</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     1.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2020.May</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2020.Jun</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2020.Jul</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2020.Aug</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2020.Sep</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2020.Oct</th>
-<td class="nowrap">   -0.659500    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2020.Nov</th>
-<td class="right">    0.659500    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2020.Dec</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2021.Jan</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2021.Feb</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2021.Mar</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2021.Apr</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2021.May</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2021.Jun</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2021.Jul</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2021.Aug</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2021.Sep</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2021.Oct</th>
-<td class="nowrap">   -0.595000E-01</td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2021.Nov</th>
-<td class="right">    0.595000E-01</td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2021.Dec</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2022.Jan</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2022.Feb</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2022.Mar</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2022.Apr</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2022.May</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2022.Jun</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2022.Jul</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2022.Aug</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2022.Sep</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2022.Oct</th>
-<td class="right">    0.340500    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2022.Nov</th>
-<td class="nowrap">   -0.340500    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2022.Dec</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2023.Jan</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2023.Feb</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2023.Mar</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2023.Apr</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2023.May</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2023.Jun</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="nowrap">    -1.00000    </td>
-</tr>
-<tr>
-<th scope="row">2023.Jul</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-</tr>
-<tr>
-<th scope="row">2023.Aug</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-</tr>
-<tr>
-<th scope="row">2023.Sep</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-</tr>
-<tr>
-<th scope="row">2023.Oct</th>
-<td class="nowrap">   -0.659500    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-</tr>
-<tr>
-<th scope="row">2023.Nov</th>
-<td class="right">    0.659500    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-</tr>
-<tr>
-<th scope="row">2023.Dec</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-</tr>
-<tr>
-<th scope="row">2024.Jan</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-</tr>
-<tr>
-<th scope="row">2024.Feb</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-</tr>
-<tr>
-<th scope="row">2024.Mar</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-</tr>
-<tr>
-<th scope="row">2024.Apr</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-</tr>
-<tr>
-<th scope="row">2024.May</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-</tr>
-<tr>
-<th scope="row">2024.Jun</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-</tr>
-<tr>
-<th scope="row">2024.Jul</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-</tr>
-<tr>
-<th scope="row">2024.Aug</th>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
-<td class="right">     0.00000    </td>
+<th id="vl0081">Root  1</th>
+<td headers="gr0052 vl0081 rl0001" class="center">     1.00075    </td>
+<td headers="gr0052 vl0081 im0001" class="center">     0.00000    </td>
+<td headers="gr0052 vl0081 md0002" class="center">     1.00075    </td>
+<td headers="gr0052 vl0081 fq0001" class="center">     0.00000    </td>
 </tr>
 </table></div>
 
 <p>&nbsp;</p>
 
-<a name="pos00074"></a>
+<a name="pos00079"></a>
 
-<p class="right"><a href="#skip00074" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00073">Previous Table</a> | <a href="#index00074">Index</a> | <a href="#pos00075">Next Table</a></p>
+<p class="right"><a href="#skip00079" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00078">Previous Table</a> | <a href="#index00079">Index</a> | <a href="#pos00080">Next Table</a></p>
 
-<a name="skip00074"></a>
+<a name="skip00079"></a>
+
+<h3>Model Residuals</h3>
+ <p>From  2013.Feb to 2024.Aug <br> 
+  Observations        139</p>
+
+<h3>Model </h3>
+<table class="x11"
+  summary ="Model " >
+<caption><strong>Model </strong></caption>
+<thead>
+<tr>
+<td class="head">&nbsp;</td>
+<th scope="col"><abbr title="January">Jan</abbr></th>
+<th scope="col"><abbr title="February">Feb</abbr></th>
+<th scope="col"><abbr title="March">Mar</abbr></th>
+<th scope="col"><abbr title="April">Apr</abbr></th>
+<th scope="col">May</th>
+<th scope="col"><abbr title="June">Jun</abbr></th>
+<th scope="col"><abbr title="July">Jul</abbr></th>
+<th scope="col"><abbr title="August">Aug</abbr></th>
+<th scope="col"><abbr title="September">Sep</abbr></th>
+<th scope="col"><abbr title="October">Oct</abbr></th>
+<th scope="col"><abbr title="November">Nov</abbr></th>
+<th scope="col"><abbr title="December">Dec</abbr></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">2013</th>
+<td>&nbsp;</td>
+<td class="nowrap">   -0.0126057                 </td>
+<td>    0.0057259                 </td>
+<td>    0.0063804                 </td>
+<td>    0.0030547                 </td>
+<td>    0.0100492                 </td>
+<td class="nowrap">   -0.0000182                 </td>
+<td>    0.0137271                 </td>
+<td>    0.0107998                 </td>
+<td>    0.0027672                 </td>
+<td>    0.0028390                 </td>
+<td class="nowrap">   -0.0061835                 </td>
+</tr>
+<tr>
+<th scope="row">2014</th>
+<td class="nowrap">   -0.0105620                 </td>
+<td>    0.0049927                 </td>
+<td>    0.0004616                 </td>
+<td>    0.0007977                 </td>
+<td class="nowrap">   -0.0000556                 </td>
+<td class="nowrap">   -0.0016690                 </td>
+<td>    0.0230887                 </td>
+<td class="nowrap">   -0.0031038                 </td>
+<td class="nowrap">   -0.0050642                 </td>
+<td class="nowrap">   -0.0068615                 </td>
+<td class="nowrap">   -0.0016268                 </td>
+<td class="nowrap">   -0.0020644                 </td>
+</tr>
+<tr>
+<th scope="row">2015</th>
+<td>    0.0017784                 </td>
+<td>    0.0035325                 </td>
+<td class="nowrap">   -0.0019243                 </td>
+<td class="nowrap">   -0.0019553                 </td>
+<td class="nowrap">   -0.0002977                 </td>
+<td>    0.0024825                 </td>
+<td class="nowrap">   -0.0139488                 </td>
+<td>    0.0186358                 </td>
+<td class="nowrap">   -0.0023258                 </td>
+<td class="nowrap">   -0.0024708                 </td>
+<td>    0.0037533                 </td>
+<td>    0.0035903                 </td>
+</tr>
+<tr>
+<th scope="row">2016</th>
+<td>    0.0064812                 </td>
+<td class="nowrap">   -0.0119241                 </td>
+<td>    0.0074884                 </td>
+<td>    0.0036916                 </td>
+<td>    0.0028065                 </td>
+<td>    0.0043207                 </td>
+<td class="nowrap">   -0.0062903                 </td>
+<td class="nowrap">   -0.0059861                 </td>
+<td class="nowrap">   -0.0054590                 </td>
+<td class="nowrap">   -0.0079043                 </td>
+<td class="nowrap">   -0.0114441                 </td>
+<td>    0.0003089                 </td>
+</tr>
+<tr>
+<th scope="row">2017</th>
+<td class="nowrap">   -0.0016692                 </td>
+<td>    0.0033536                 </td>
+<td class="nowrap">   -0.0037040                 </td>
+<td class="nowrap">   -0.0043989                 </td>
+<td class="nowrap">   -0.0057321                 </td>
+<td class="nowrap">   -0.0026726                 </td>
+<td>    0.0109200                 </td>
+<td class="nowrap">   -0.0021445                 </td>
+<td class="nowrap">   -0.0116605                 </td>
+<td>    0.0079270                 </td>
+<td>    0.0074406                 </td>
+<td class="nowrap">   -0.0050229                 </td>
+</tr>
+<tr>
+<th scope="row">2018</th>
+<td>    0.0023846                 </td>
+<td class="nowrap">   -0.0066290                 </td>
+<td class="nowrap">   -0.0010998                 </td>
+<td class="nowrap">   -0.0076449                 </td>
+<td class="nowrap">   -0.0046582                 </td>
+<td class="nowrap">   -0.0061967                 </td>
+<td class="nowrap">   -0.0025648                 </td>
+<td class="nowrap">   -0.0038304                 </td>
+<td class="nowrap">   -0.0101380                 </td>
+<td class="nowrap">   -0.0108357                 </td>
+<td class="nowrap">   -0.0026105                 </td>
+<td>    0.0003948                 </td>
+</tr>
+<tr>
+<th scope="row">2019</th>
+<td class="nowrap">   -0.0012995                 </td>
+<td>    0.0063268                 </td>
+<td>    0.0020297                 </td>
+<td>    0.0007750                 </td>
+<td>    0.0021314                 </td>
+<td class="nowrap">   -0.0029477                 </td>
+<td class="nowrap">   -0.0008792                 </td>
+<td>    0.0034185                 </td>
+<td>    0.0071194                 </td>
+<td>    0.0055222                 </td>
+<td>    0.0113281                 </td>
+<td>    0.0050039                 </td>
+</tr>
+<tr>
+<th scope="row">2020</th>
+<td class="nowrap">   -0.0011124                 </td>
+<td class="nowrap">   -0.0135606                 </td>
+<td class="nowrap">   -0.0040680                 </td>
+<td>    0.0032838                 </td>
+<td class="nowrap">   -0.0048454                 </td>
+<td class="nowrap">   -0.0077560                 </td>
+<td>    0.0077060                 </td>
+<td class="nowrap">   -0.0034665                 </td>
+<td>    0.0252759                 </td>
+<td class="nowrap">   -0.0005325                 </td>
+<td>    0.0006989                 </td>
+<td class="nowrap">   -0.0104794                 </td>
+</tr>
+<tr>
+<th scope="row">2021</th>
+<td class="nowrap">   -0.0066194                 </td>
+<td>    0.0027236                 </td>
+<td class="nowrap">   -0.0112654                 </td>
+<td>    0.0021118                 </td>
+<td>    0.0057604                 </td>
+<td class="nowrap">   -0.0105030                 </td>
+<td class="nowrap">   -0.0025661                 </td>
+<td class="nowrap">   -0.0044803                 </td>
+<td>    0.0014935                 </td>
+<td>    0.0111679                 </td>
+<td>    0.0008422                 </td>
+<td>    0.0045969                 </td>
+</tr>
+<tr>
+<th scope="row">2022</th>
+<td class="nowrap">   -0.0009815                 </td>
+<td>    0.0076313                 </td>
+<td>    0.0090571                 </td>
+<td class="nowrap">   -0.0003146                 </td>
+<td>    0.0062685                 </td>
+<td class="nowrap">   -0.0082146                 </td>
+<td class="nowrap">   -0.0125866                 </td>
+<td>    0.0091045                 </td>
+<td>    0.0014298                 </td>
+<td class="nowrap">   -0.0055485                 </td>
+<td class="nowrap">   -0.0082449                 </td>
+<td>    0.0060497                 </td>
+</tr>
+<tr>
+<th scope="row">2023</th>
+<td>    0.0101136                 </td>
+<td class="nowrap">   -0.0049118                 </td>
+<td>    0.0054980                 </td>
+<td class="nowrap">   -0.0032700                 </td>
+<td class="nowrap">   -0.0014385                 </td>
+<td>    0.0081390                 </td>
+<td class="nowrap">   -0.0021933                 </td>
+<td class="nowrap">   -0.0119833                 </td>
+<td class="nowrap">   -0.0114661                 </td>
+<td>    0.0068279                 </td>
+<td class="nowrap">   -0.0030029                 </td>
+<td>    0.0038611                 </td>
+</tr>
+<tr>
+<th scope="row">2024</th>
+<td>    0.0015296                 </td>
+<td>    0.0084906                 </td>
+<td class="nowrap">   -0.0024721                 </td>
+<td>    0.0005188                 </td>
+<td class="nowrap">   -0.0029971                 </td>
+<td>    0.0149611                 </td>
+<td class="nowrap">   -0.0007482                 </td>
+<td class="nowrap">   -0.0100394                 </td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<a name="pos00080"></a>
+
+<p class="right"><a href="#skip00080" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00079">Previous Table</a> | <a href="#index00080">Index</a> | <a href="#pos00081">Next Table</a></p>
+
+<a name="skip00080"></a>
 
 <h3>QS Statistic for regARIMA Model Residuals</h3>
 
@@ -9728,14 +9252,14 @@ Seasonal difference order :   1
 
  <p>QS Statistic for regARIMA Model Residuals (starting 2016.Sep):              0.00  (P-Value =     1.0000)</p>
 
-<a name="pos00075"></a>
+<a name="pos00081"></a>
 
-<p class="right"><a href="#skip00075" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00074">Previous Table</a> | <a href="#index00075">Index</a> | <a href="#pos00076">Next Table</a></p>
+<p class="right"><a href="#skip00081" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00080">Previous Table</a> | <a href="#index00081">Index</a> | <a href="#pos00082">Next Table</a></p>
 
-<a name="skip00075"></a>
+<a name="skip00081"></a>
 
-<p class="right"><a href="#pos00076" title="Skip ASCII plot of Table      10*LOG(SPECTRUM) of the regARIMA model residuals" class="skiplinks">&nbsp;</a></p>
+<p class="right"><a href="#pos00082" title="Skip ASCII plot of Table      10*LOG(SPECTRUM) of the regARIMA model residuals" class="skiplinks">&nbsp;</a></p>
 
 <h3>     10*LOG(SPECTRUM) of the regARIMA model residuals</h3>
 
@@ -9799,12 +9323,1377 @@ Seasonal difference order :   1
             S=SEASONAL FREQUENCIES, T=TRADING DAY FREQUENCIES
 </pre>
 
-<a name="pos00076"></a>
+<a name="pos00082"></a>
 
-<p class="right"><a href="#skip00076" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00075">Previous Table</a> | <a href="#index00076">Index</a> | <a href="#pos00077">Next Table</a></p>
+<p class="right"><a href="#skip00082" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00081">Previous Table</a> | <a href="#index00082">Index</a> | <a href="#pos00083">Next Table</a></p>
 
-<a name="skip00076"></a>
+<a name="skip00082"></a>
+
+<h3>Regression Effects</h3>
+ <p>From  2013.Jan to 2024.Aug <br> 
+  Observations        140</p>
+
+<div id="ref">
+<table class="w90"
+  summary ="Regression Effects" >
+<caption><strong>Regression Effects</strong></caption>
+<tr>
+<td class="head">&nbsp;</td>
+<th scope="col">AO</th>
+<th scope="col">LS and Ramp</th>
+<th scope="col">User-defined</th>
+<th scope="col">Total Reg</th>
+<th scope="col">Reg Resids</th>
+</tr>
+<tr>
+<th scope="row">2013.Jan</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.73053    </td>
+</tr>
+<tr>
+<th scope="row">2013.Feb</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.73997    </td>
+</tr>
+<tr>
+<th scope="row">2013.Mar</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.74091    </td>
+</tr>
+<tr>
+<th scope="row">2013.Apr</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.75025    </td>
+</tr>
+<tr>
+<th scope="row">2013.May</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.76503    </td>
+</tr>
+<tr>
+<th scope="row">2013.Jun</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.79483    </td>
+</tr>
+<tr>
+<th scope="row">2013.Jul</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.81943    </td>
+</tr>
+<tr>
+<th scope="row">2013.Aug</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.83750    </td>
+</tr>
+<tr>
+<th scope="row">2013.Sep</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.85189    </td>
+</tr>
+<tr>
+<th scope="row">2013.Oct</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">    0.241895E-04</td>
+<td class="nowrap">   -0.727390E-01</td>
+<td class="right">     4.86936    </td>
+</tr>
+<tr>
+<th scope="row">2013.Nov</th>
+<td class="right">    0.185679E-01</td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="nowrap">   -0.241895E-04</td>
+<td class="nowrap">   -0.542194E-01</td>
+<td class="right">     4.87369    </td>
+</tr>
+<tr>
+<th scope="row">2013.Dec</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.84936    </td>
+</tr>
+<tr>
+<th scope="row">2014.Jan</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.82290    </td>
+</tr>
+<tr>
+<th scope="row">2014.Feb</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.81595    </td>
+</tr>
+<tr>
+<th scope="row">2014.Mar</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.82376    </td>
+</tr>
+<tr>
+<th scope="row">2014.Apr</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.83835    </td>
+</tr>
+<tr>
+<th scope="row">2014.May</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.85020    </td>
+</tr>
+<tr>
+<th scope="row">2014.Jun</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.86441    </td>
+</tr>
+<tr>
+<th scope="row">2014.Jul</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.90427    </td>
+</tr>
+<tr>
+<th scope="row">2014.Aug</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.92088    </td>
+</tr>
+<tr>
+<th scope="row">2014.Sep</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.91221    </td>
+</tr>
+<tr>
+<th scope="row">2014.Oct</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">    0.203371E-03</td>
+<td class="nowrap">   -0.725598E-01</td>
+<td class="right">     4.90725    </td>
+</tr>
+<tr>
+<th scope="row">2014.Nov</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="nowrap">   -0.203371E-03</td>
+<td class="nowrap">   -0.729666E-01</td>
+<td class="right">     4.90368    </td>
+</tr>
+<tr>
+<th scope="row">2014.Dec</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.88819    </td>
+</tr>
+<tr>
+<th scope="row">2015.Jan</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.88251    </td>
+</tr>
+<tr>
+<th scope="row">2015.Feb</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.88251    </td>
+</tr>
+<tr>
+<th scope="row">2015.Mar</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.88332    </td>
+</tr>
+<tr>
+<th scope="row">2015.Apr</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.88819    </td>
+</tr>
+<tr>
+<th scope="row">2015.May</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.89707    </td>
+</tr>
+<tr>
+<th scope="row">2015.Jun</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.91774    </td>
+</tr>
+<tr>
+<th scope="row">2015.Jul</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.92557    </td>
+</tr>
+<tr>
+<th scope="row">2015.Aug</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.94260    </td>
+</tr>
+<tr>
+<th scope="row">2015.Sep</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.95025    </td>
+</tr>
+<tr>
+<th scope="row">2015.Oct</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="nowrap">   -0.393901E-03</td>
+<td class="nowrap">   -0.731571E-01</td>
+<td class="right">     4.95898    </td>
+</tr>
+<tr>
+<th scope="row">2015.Nov</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">    0.393901E-03</td>
+<td class="nowrap">   -0.723693E-01</td>
+<td class="right">     4.96197    </td>
+</tr>
+<tr>
+<th scope="row">2015.Dec</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.95025    </td>
+</tr>
+<tr>
+<th scope="row">2016.Jan</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.94872    </td>
+</tr>
+<tr>
+<th scope="row">2016.Feb</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.93412    </td>
+</tr>
+<tr>
+<th scope="row">2016.Mar</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.93412    </td>
+</tr>
+<tr>
+<th scope="row">2016.Apr</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.95025    </td>
+</tr>
+<tr>
+<th scope="row">2016.May</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.96911    </td>
+</tr>
+<tr>
+<th scope="row">2016.Jun</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.99274    </td>
+</tr>
+<tr>
+<th scope="row">2016.Jul</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     5.00580    </td>
+</tr>
+<tr>
+<th scope="row">2016.Aug</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     5.00002    </td>
+</tr>
+<tr>
+<th scope="row">2016.Sep</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.98909    </td>
+</tr>
+<tr>
+<th scope="row">2016.Oct</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">    0.203371E-03</td>
+<td class="nowrap">   -0.725598E-01</td>
+<td class="right">     4.99108    </td>
+</tr>
+<tr>
+<th scope="row">2016.Nov</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="nowrap">   -0.203371E-03</td>
+<td class="nowrap">   -0.729666E-01</td>
+<td class="right">     4.98268    </td>
+</tr>
+<tr>
+<th scope="row">2016.Dec</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.96386    </td>
+</tr>
+<tr>
+<th scope="row">2017.Jan</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.95481    </td>
+</tr>
+<tr>
+<th scope="row">2017.Feb</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.95405    </td>
+</tr>
+<tr>
+<th scope="row">2017.Mar</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.95405    </td>
+</tr>
+<tr>
+<th scope="row">2017.Apr</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.95632    </td>
+</tr>
+<tr>
+<th scope="row">2017.May</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.95859    </td>
+</tr>
+<tr>
+<th scope="row">2017.Jun</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.97135    </td>
+</tr>
+<tr>
+<th scope="row">2017.Jul</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     5.00219    </td>
+</tr>
+<tr>
+<th scope="row">2017.Aug</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     5.01512    </td>
+</tr>
+<tr>
+<th scope="row">2017.Sep</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     5.00147    </td>
+</tr>
+<tr>
+<th scope="row">2017.Oct</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">    0.203371E-03</td>
+<td class="nowrap">   -0.725598E-01</td>
+<td class="right">     5.00991    </td>
+</tr>
+<tr>
+<th scope="row">2017.Nov</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="nowrap">   -0.203371E-03</td>
+<td class="nowrap">   -0.729666E-01</td>
+<td class="right">     5.02527    </td>
+</tr>
+<tr>
+<th scope="row">2017.Dec</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     5.01226    </td>
+</tr>
+<tr>
+<th scope="row">2018.Jan</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     5.00074    </td>
+</tr>
+<tr>
+<th scope="row">2018.Feb</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.98615    </td>
+</tr>
+<tr>
+<th scope="row">2018.Mar</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.98173    </td>
+</tr>
+<tr>
+<th scope="row">2018.Apr</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.98395    </td>
+</tr>
+<tr>
+<th scope="row">2018.May</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.98909    </td>
+</tr>
+<tr>
+<th scope="row">2018.Jun</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     5.00002    </td>
+</tr>
+<tr>
+<th scope="row">2018.Jul</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     5.01512    </td>
+</tr>
+<tr>
+<th scope="row">2018.Aug</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     5.01797    </td>
+</tr>
+<tr>
+<th scope="row">2018.Sep</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     5.00652    </td>
+</tr>
+<tr>
+<th scope="row">2018.Oct</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="nowrap">   -0.214719E-03</td>
+<td class="nowrap">   -0.729779E-01</td>
+<td class="right">     5.00168    </td>
+</tr>
+<tr>
+<th scope="row">2018.Nov</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">    0.214719E-03</td>
+<td class="nowrap">   -0.725485E-01</td>
+<td class="right">     4.99835    </td>
+</tr>
+<tr>
+<th scope="row">2018.Dec</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.98542    </td>
+</tr>
+<tr>
+<th scope="row">2019.Jan</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.97804    </td>
+</tr>
+<tr>
+<th scope="row">2019.Feb</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.97878    </td>
+</tr>
+<tr>
+<th scope="row">2019.Mar</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.98468    </td>
+</tr>
+<tr>
+<th scope="row">2019.Apr</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     4.99493    </td>
+</tr>
+<tr>
+<th scope="row">2019.May</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     5.00724    </td>
+</tr>
+<tr>
+<th scope="row">2019.Jun</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     5.02223    </td>
+</tr>
+<tr>
+<th scope="row">2019.Jul</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     5.03840    </td>
+</tr>
+<tr>
+<th scope="row">2019.Aug</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     5.04743    </td>
+</tr>
+<tr>
+<th scope="row">2019.Sep</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">     5.05637    </td>
+</tr>
+<tr>
+<th scope="row">2019.Oct</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="right">    0.203371E-03</td>
+<td class="nowrap">   -0.725598E-01</td>
+<td class="right">     5.07718    </td>
+</tr>
+<tr>
+<th scope="row">2019.Nov</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.727632E-01</td>
+<td class="nowrap">   -0.203371E-03</td>
+<td class="nowrap">   -0.729666E-01</td>
+<td class="right">     5.09421    </td>
+</tr>
+<tr>
+<th scope="row">2019.Dec</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.08706    </td>
+</tr>
+<tr>
+<th scope="row">2020.Jan</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.07475    </td>
+</tr>
+<tr>
+<th scope="row">2020.Feb</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.05033    </td>
+</tr>
+<tr>
+<th scope="row">2020.Mar</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.03756    </td>
+</tr>
+<tr>
+<th scope="row">2020.Apr</th>
+<td class="right">    0.248226E-01</td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.168755E-01</td>
+<td class="right">     5.04992    </td>
+</tr>
+<tr>
+<th scope="row">2020.May</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.06426    </td>
+</tr>
+<tr>
+<th scope="row">2020.Jun</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.07475    </td>
+</tr>
+<tr>
+<th scope="row">2020.Jul</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.09603    </td>
+</tr>
+<tr>
+<th scope="row">2020.Aug</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.10303    </td>
+</tr>
+<tr>
+<th scope="row">2020.Sep</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.12682    </td>
+</tr>
+<tr>
+<th scope="row">2020.Oct</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="nowrap">   -0.393901E-03</td>
+<td class="nowrap">   -0.420920E-01</td>
+<td class="right">     5.15106    </td>
+</tr>
+<tr>
+<th scope="row">2020.Nov</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">    0.393901E-03</td>
+<td class="nowrap">   -0.413042E-01</td>
+<td class="right">     5.15329    </td>
+</tr>
+<tr>
+<th scope="row">2020.Dec</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.12061    </td>
+</tr>
+<tr>
+<th scope="row">2021.Jan</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.09411    </td>
+</tr>
+<tr>
+<th scope="row">2021.Feb</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.08834    </td>
+</tr>
+<tr>
+<th scope="row">2021.Mar</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.08512    </td>
+</tr>
+<tr>
+<th scope="row">2021.Apr</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.09411    </td>
+</tr>
+<tr>
+<th scope="row">2021.May</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.11311    </td>
+</tr>
+<tr>
+<th scope="row">2021.Jun</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.12496    </td>
+</tr>
+<tr>
+<th scope="row">2021.Jul</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.13483    </td>
+</tr>
+<tr>
+<th scope="row">2021.Aug</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.13361    </td>
+</tr>
+<tr>
+<th scope="row">2021.Sep</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.13361    </td>
+</tr>
+<tr>
+<th scope="row">2021.Oct</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="nowrap">   -0.355377E-04</td>
+<td class="nowrap">   -0.417336E-01</td>
+<td class="right">     5.15913    </td>
+</tr>
+<tr>
+<th scope="row">2021.Nov</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">    0.355377E-04</td>
+<td class="nowrap">   -0.416625E-01</td>
+<td class="right">     5.17215    </td>
+</tr>
+<tr>
+<th scope="row">2021.Dec</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.16029    </td>
+</tr>
+<tr>
+<th scope="row">2022.Jan</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.14704    </td>
+</tr>
+<tr>
+<th scope="row">2022.Feb</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.14522    </td>
+</tr>
+<tr>
+<th scope="row">2022.Mar</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.15909    </td>
+</tr>
+<tr>
+<th scope="row">2022.Apr</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.17396    </td>
+</tr>
+<tr>
+<th scope="row">2022.May</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.18977    </td>
+</tr>
+<tr>
+<th scope="row">2022.Jun</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.19960    </td>
+</tr>
+<tr>
+<th scope="row">2022.Jul</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.19960    </td>
+</tr>
+<tr>
+<th scope="row">2022.Aug</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.20706    </td>
+</tr>
+<tr>
+<th scope="row">2022.Sep</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.21615    </td>
+</tr>
+<tr>
+<th scope="row">2022.Oct</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">    0.203371E-03</td>
+<td class="nowrap">   -0.414947E-01</td>
+<td class="right">     5.22664    </td>
+</tr>
+<tr>
+<th scope="row">2022.Nov</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="nowrap">   -0.203371E-03</td>
+<td class="nowrap">   -0.419014E-01</td>
+<td class="right">     5.21805    </td>
+</tr>
+<tr>
+<th scope="row">2022.Dec</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.20133    </td>
+</tr>
+<tr>
+<th scope="row">2023.Jan</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.20534    </td>
+</tr>
+<tr>
+<th scope="row">2023.Feb</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.20305    </td>
+</tr>
+<tr>
+<th scope="row">2023.Mar</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.20591    </td>
+</tr>
+<tr>
+<th scope="row">2023.Apr</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.21161    </td>
+</tr>
+<tr>
+<th scope="row">2023.May</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.21898    </td>
+</tr>
+<tr>
+<th scope="row">2023.Jun</th>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.416981E-01</td>
+<td class="right">     5.24406    </td>
+</tr>
+<tr>
+<th scope="row">2023.Jul</th>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     5.26683    </td>
+</tr>
+<tr>
+<th scope="row">2023.Aug</th>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     5.26010    </td>
+</tr>
+<tr>
+<th scope="row">2023.Sep</th>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     5.23857    </td>
+</tr>
+<tr>
+<th scope="row">2023.Oct</th>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="nowrap">   -0.393901E-03</td>
+<td class="nowrap">   -0.393901E-03</td>
+<td class="right">     5.24952    </td>
+</tr>
+<tr>
+<th scope="row">2023.Nov</th>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">    0.393901E-03</td>
+<td class="right">    0.393901E-03</td>
+<td class="right">     5.25918    </td>
+</tr>
+<tr>
+<th scope="row">2023.Dec</th>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     5.25070    </td>
+</tr>
+<tr>
+<th scope="row">2024.Jan</th>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     5.24333    </td>
+</tr>
+<tr>
+<th scope="row">2024.Feb</th>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     5.24439    </td>
+</tr>
+<tr>
+<th scope="row">2024.Mar</th>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     5.24597    </td>
+</tr>
+<tr>
+<th scope="row">2024.Apr</th>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     5.25332    </td>
+</tr>
+<tr>
+<th scope="row">2024.May</th>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     5.26062    </td>
+</tr>
+<tr>
+<th scope="row">2024.Jun</th>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     5.29180    </td>
+</tr>
+<tr>
+<th scope="row">2024.Jul</th>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     5.31959    </td>
+</tr>
+<tr>
+<th scope="row">2024.Aug</th>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     0.00000    </td>
+<td class="right">     5.31517    </td>
+</tr>
+</table></div>
+
+<p>&nbsp;</p>
+
+<a name="pos00083"></a>
+
+<p class="right"><a href="#skip00083" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00082">Previous Table</a> | <a href="#index00083">Index</a> | <a href="#pos00084">Next Table</a></p>
+
+<a name="skip00083"></a>
+
+<h3>Residuals from the Estimated Regression Effects</h3>
+ <p>From  2013.Jan to 2024.Aug <br> 
+  Observations        140</p>
+
+<h3>Data</h3>
+<table class="x11"
+  summary ="Data" >
+<caption><strong>Data</strong></caption>
+<thead>
+<tr>
+<td class="head">&nbsp;</td>
+<th scope="col"><abbr title="January">Jan</abbr></th>
+<th scope="col"><abbr title="February">Feb</abbr></th>
+<th scope="col"><abbr title="March">Mar</abbr></th>
+<th scope="col"><abbr title="April">Apr</abbr></th>
+<th scope="col">May</th>
+<th scope="col"><abbr title="June">Jun</abbr></th>
+<th scope="col"><abbr title="July">Jul</abbr></th>
+<th scope="col"><abbr title="August">Aug</abbr></th>
+<th scope="col"><abbr title="September">Sep</abbr></th>
+<th scope="col"><abbr title="October">Oct</abbr></th>
+<th scope="col"><abbr title="November">Nov</abbr></th>
+<th scope="col"><abbr title="December">Dec</abbr></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">2013</th>
+<td> 4.731                        </td>
+<td> 4.740                        </td>
+<td> 4.741                        </td>
+<td> 4.750                        </td>
+<td> 4.765                        </td>
+<td> 4.795                        </td>
+<td> 4.819                        </td>
+<td> 4.837                        </td>
+<td> 4.852                        </td>
+<td> 4.869                        </td>
+<td> 4.874                        </td>
+<td> 4.849                        </td>
+</tr>
+<tr>
+<th scope="row">2014</th>
+<td> 4.823                        </td>
+<td> 4.816                        </td>
+<td> 4.824                        </td>
+<td> 4.838                        </td>
+<td> 4.850                        </td>
+<td> 4.864                        </td>
+<td> 4.904                        </td>
+<td> 4.921                        </td>
+<td> 4.912                        </td>
+<td> 4.907                        </td>
+<td> 4.904                        </td>
+<td> 4.888                        </td>
+</tr>
+<tr>
+<th scope="row">2015</th>
+<td> 4.883                        </td>
+<td> 4.883                        </td>
+<td> 4.883                        </td>
+<td> 4.888                        </td>
+<td> 4.897                        </td>
+<td> 4.918                        </td>
+<td> 4.926                        </td>
+<td> 4.943                        </td>
+<td> 4.950                        </td>
+<td> 4.959                        </td>
+<td> 4.962                        </td>
+<td> 4.950                        </td>
+</tr>
+<tr>
+<th scope="row">2016</th>
+<td> 4.949                        </td>
+<td> 4.934                        </td>
+<td> 4.934                        </td>
+<td> 4.950                        </td>
+<td> 4.969                        </td>
+<td> 4.993                        </td>
+<td> 5.006                        </td>
+<td> 5.000                        </td>
+<td> 4.989                        </td>
+<td> 4.991                        </td>
+<td> 4.983                        </td>
+<td> 4.964                        </td>
+</tr>
+<tr>
+<th scope="row">2017</th>
+<td> 4.955                        </td>
+<td> 4.954                        </td>
+<td> 4.954                        </td>
+<td> 4.956                        </td>
+<td> 4.959                        </td>
+<td> 4.971                        </td>
+<td> 5.002                        </td>
+<td> 5.015                        </td>
+<td> 5.001                        </td>
+<td> 5.010                        </td>
+<td> 5.025                        </td>
+<td> 5.012                        </td>
+</tr>
+<tr>
+<th scope="row">2018</th>
+<td> 5.001                        </td>
+<td> 4.986                        </td>
+<td> 4.982                        </td>
+<td> 4.984                        </td>
+<td> 4.989                        </td>
+<td> 5.000                        </td>
+<td> 5.015                        </td>
+<td> 5.018                        </td>
+<td> 5.007                        </td>
+<td> 5.002                        </td>
+<td> 4.998                        </td>
+<td> 4.985                        </td>
+</tr>
+<tr>
+<th scope="row">2019</th>
+<td> 4.978                        </td>
+<td> 4.979                        </td>
+<td> 4.985                        </td>
+<td> 4.995                        </td>
+<td> 5.007                        </td>
+<td> 5.022                        </td>
+<td> 5.038                        </td>
+<td> 5.047                        </td>
+<td> 5.056                        </td>
+<td> 5.077                        </td>
+<td> 5.094                        </td>
+<td> 5.087                        </td>
+</tr>
+<tr>
+<th scope="row">2020</th>
+<td> 5.075                        </td>
+<td> 5.050                        </td>
+<td> 5.038                        </td>
+<td> 5.050                        </td>
+<td> 5.064                        </td>
+<td> 5.075                        </td>
+<td> 5.096                        </td>
+<td> 5.103                        </td>
+<td> 5.127                        </td>
+<td> 5.151                        </td>
+<td> 5.153                        </td>
+<td> 5.121                        </td>
+</tr>
+<tr>
+<th scope="row">2021</th>
+<td> 5.094                        </td>
+<td> 5.088                        </td>
+<td> 5.085                        </td>
+<td> 5.094                        </td>
+<td> 5.113                        </td>
+<td> 5.125                        </td>
+<td> 5.135                        </td>
+<td> 5.134                        </td>
+<td> 5.134                        </td>
+<td> 5.159                        </td>
+<td> 5.172                        </td>
+<td> 5.160                        </td>
+</tr>
+<tr>
+<th scope="row">2022</th>
+<td> 5.147                        </td>
+<td> 5.145                        </td>
+<td> 5.159                        </td>
+<td> 5.174                        </td>
+<td> 5.190                        </td>
+<td> 5.200                        </td>
+<td> 5.200                        </td>
+<td> 5.207                        </td>
+<td> 5.216                        </td>
+<td> 5.227                        </td>
+<td> 5.218                        </td>
+<td> 5.201                        </td>
+</tr>
+<tr>
+<th scope="row">2023</th>
+<td> 5.205                        </td>
+<td> 5.203                        </td>
+<td> 5.206                        </td>
+<td> 5.212                        </td>
+<td> 5.219                        </td>
+<td> 5.244                        </td>
+<td> 5.267                        </td>
+<td> 5.260                        </td>
+<td> 5.239                        </td>
+<td> 5.250                        </td>
+<td> 5.259                        </td>
+<td> 5.251                        </td>
+</tr>
+<tr>
+<th scope="row">2024</th>
+<td> 5.243                        </td>
+<td> 5.244                        </td>
+<td> 5.246                        </td>
+<td> 5.253                        </td>
+<td> 5.261                        </td>
+<td> 5.292                        </td>
+<td> 5.320                        </td>
+<td> 5.315                        </td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<a name="pos00084"></a>
+
+<p class="right"><a href="#skip00084" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00083">Previous Table</a> | <a href="#index00084">Index</a> | <a href="#pos00085">Next Table</a></p>
+
+<a name="skip00084"></a>
 
 <h3>A 8  RegARIMA combined outlier component <br>      (AO, LS outliers included)</h3>
  <p>From  2013.Jan to 2024.Aug <br> 
@@ -10106,12 +10995,12 @@ Minimum-                   93. &nbsp;&nbsp;&nbsp; Maximum-                  100.
 
 <p>&nbsp;</p>
 
-<a name="pos00077"></a>
+<a name="pos00085"></a>
 
-<p class="right"><a href="#skip00077" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00076">Previous Table</a> | <a href="#index00077">Index</a> | <a href="#pos00078">Next Table</a></p>
+<p class="right"><a href="#skip00085" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00084">Previous Table</a> | <a href="#index00085">Index</a> | <a href="#pos00086">Next Table</a></p>
 
-<a name="skip00077"></a>
+<a name="skip00085"></a>
 
 <h3>A 8.AO  RegARIMA AO outlier component</h3>
  <p>From  2013.Jan to 2024.Aug <br> 
@@ -10353,12 +11242,12 @@ Minimum-                  100. &nbsp;&nbsp;&nbsp; Maximum-                  103.
 
 <p>&nbsp;</p>
 
-<a name="pos00078"></a>
+<a name="pos00086"></a>
 
-<p class="right"><a href="#skip00078" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00077">Previous Table</a> | <a href="#index00078">Index</a> | <a href="#pos00079">Next Table</a></p>
+<p class="right"><a href="#skip00086" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00085">Previous Table</a> | <a href="#index00086">Index</a> | <a href="#pos00087">Next Table</a></p>
 
-<a name="skip00078"></a>
+<a name="skip00086"></a>
 
 <h3>A 8.LS  RegARIMA level change outlier component</h3>
  <p>From  2013.Jan to 2024.Aug <br> 
@@ -10600,12 +11489,12 @@ Minimum-                   93. &nbsp;&nbsp;&nbsp; Maximum-                  100.
 
 <p>&nbsp;</p>
 
-<a name="pos00079"></a>
+<a name="pos00087"></a>
 
-<p class="right"><a href="#skip00079" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00078">Previous Table</a> | <a href="#index00079">Index</a> | <a href="#pos00080">Next Table</a></p>
+<p class="right"><a href="#skip00087" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00086">Previous Table</a> | <a href="#index00087">Index</a> | <a href="#pos00088">Next Table</a></p>
 
-<a name="skip00079"></a>
+<a name="skip00087"></a>
 
 <h3>A 9  RegARIMA user-defined regression component</h3>
  <p>From  2013.Jan to 2024.Aug <br> 
@@ -10847,12 +11736,12 @@ Minimum-                  100. &nbsp;&nbsp;&nbsp; Maximum-                  100.
 
 <p>&nbsp;</p>
 
-<a name="pos00080"></a>
+<a name="pos00088"></a>
 
-<p class="right"><a href="#skip00080" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00079">Previous Table</a> | <a href="#index00080">Index</a> | <a href="#pos00081">Next Table</a></p>
+<p class="right"><a href="#skip00088" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00087">Previous Table</a> | <a href="#index00088">Index</a> | <a href="#pos00089">Next Table</a></p>
 
-<a name="skip00080"></a>
+<a name="skip00088"></a>
 
 <h3>B 1  Original series (prior adjusted) <br>      (adjusted for regARIMA factors)</h3>
  <p>From  2013.Jan to 2024.Aug <br> 
@@ -11094,12 +11983,12 @@ Minimum-                  113. &nbsp;&nbsp;&nbsp; Maximum-                  204.
 
 <p>&nbsp;</p>
 
-<a name="pos00081"></a>
+<a name="pos00089"></a>
 
-<p class="right"><a href="#skip00081" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00080">Previous Table</a> | <a href="#index00081">Index</a> | <a href="#pos00082">Next Table</a></p>
+<p class="right"><a href="#skip00089" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00088">Previous Table</a> | <a href="#index00089">Index</a> | <a href="#pos00090">Next Table</a></p>
 
-<a name="skip00081"></a>
+<a name="skip00089"></a>
 
 <h3>QS Statistics for seasonality</h3>
 <div id="qs001">
@@ -11142,14 +12031,14 @@ Minimum-                  113. &nbsp;&nbsp;&nbsp; Maximum-                  204.
 <li>differenced, transformed prior adjusted series (Table B1) (2 Seasonal peak(s))</li>
 </ul>
 
-<a name="pos00082"></a>
+<a name="pos00090"></a>
 
-<p class="right"><a href="#skip00082" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00081">Previous Table</a> | <a href="#index00082">Index</a> | <a href="#pos00083">Next Table</a></p>
+<p class="right"><a href="#skip00090" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00089">Previous Table</a> | <a href="#index00090">Index</a> | <a href="#pos00091">Next Table</a></p>
 
-<a name="skip00082"></a>
+<a name="skip00090"></a>
 
-<p class="right"><a href="#pos00083" title="Skip ASCII plot of Table G 0  10*LOG(SPECTRUM) of the differenced, transformed  Prior Adjusted Series (Table B1)" class="skiplinks">&nbsp;</a></p>
+<p class="right"><a href="#pos00091" title="Skip ASCII plot of Table G 0  10*LOG(SPECTRUM) of the differenced, transformed  Prior Adjusted Series (Table B1)" class="skiplinks">&nbsp;</a></p>
 
 <h3>G 0  10*LOG(SPECTRUM) of the differenced, transformed  Prior Adjusted Series (Table B1)</h3>
 
@@ -11213,12 +12102,12 @@ Minimum-                  113. &nbsp;&nbsp;&nbsp; Maximum-                  204.
             S=SEASONAL FREQUENCIES, T=TRADING DAY FREQUENCIES
 </pre>
 
-<a name="pos00083"></a>
+<a name="pos00091"></a>
 
-<p class="right"><a href="#skip00083" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
-<a href="#pos00082">Previous Table</a> | <a href="#index00083">Index</a> | <a href="#pos00084">Next Table</a></p>
+<p class="right"><a href="#skip00091" title="Skip navagation link" class="skiplinks">&nbsp;</a> 
+<a href="#pos00090">Previous Table</a> | <a href="#index00091">Index</a> | <a href="#pos00092">Next Table</a></p>
 
-<a name="skip00083"></a>
+<a name="skip00091"></a>
 
 <h3>  Peak probabilities for Tukey spectrum estimator</h3>
 
@@ -11268,7 +12157,7 @@ Minimum-                  113. &nbsp;&nbsp;&nbsp; Maximum-                  204.
 
 <p>&nbsp; ---------- <br> &nbsp; ** - Peak Probability > 0.99, <br> &nbsp; * - 0.90 < Peak Probability < 0.99</p>
 
-<a name="pos00084"></a>
+<a name="pos00092"></a>
 
 <dl id="content-footnotes">
 <dt id="footnote0001">Definition of *</dt>
@@ -11294,85 +12183,93 @@ Minimum-                  113. &nbsp;&nbsp;&nbsp; Maximum-                  204.
 <li><a name="index00002" href="#pos00002">Content of input specification file</a></li>
 <li><a name="index00003" href="#pos00003"><abbr title="Akaike information criterion">AIC</abbr> test for transformation</a></li>
 <li><a name="index00004" href="#pos00004">A 1  Time series data (for the span analyzed)</a></li>
-<li><a name="index00005" href="#pos00005">Automatic ARIMA model selection</a></li>
-<li><a name="index00006" href="#pos00006">Outlier detection</a></li>
-<li><a name="index00007" href="#pos00007">Regression model</a></li>
-<li><a name="index00008" href="#pos00008">ARIMA model</a></li>
-<li><a name="index00009" href="#pos00009">Outlier identification: Forward addition pass 1</a></li>
-<li><a name="index00010" href="#pos00010">Additive Outlier t-values</a></li>
-<li><a name="index00011" href="#pos00011">Level Change Outlier t-values</a></li>
-<li><a name="index00012" href="#pos00012">Regression model</a></li>
-<li><a name="index00013" href="#pos00013">ARIMA model</a></li>
-<li><a name="index00014" href="#pos00014">Outlier identification: Forward addition pass 2</a></li>
-<li><a name="index00015" href="#pos00015">Additive Outlier t-values</a></li>
-<li><a name="index00016" href="#pos00016">Level Change Outlier t-values</a></li>
-<li><a name="index00017" href="#pos00017">Regression model</a></li>
-<li><a name="index00018" href="#pos00018">ARIMA model</a></li>
-<li><a name="index00019" href="#pos00019">Outlier identification: Forward addition pass 3</a></li>
-<li><a name="index00020" href="#pos00020">Additive Outlier t-values</a></li>
-<li><a name="index00021" href="#pos00021">Level Change Outlier t-values</a></li>
-<li><a name="index00022" href="#pos00022">Regression model</a></li>
-<li><a name="index00023" href="#pos00023">ARIMA model</a></li>
-<li><a name="index00024" href="#pos00024">Outlier identification: Forward addition pass 4</a></li>
-<li><a name="index00025" href="#pos00025">Additive Outlier t-values</a></li>
-<li><a name="index00026" href="#pos00026">Level Change Outlier t-values</a></li>
-<li><a name="index00027" href="#pos00027">Regression model</a></li>
-<li><a name="index00028" href="#pos00028">ARIMA model</a></li>
-<li><a name="index00029" href="#pos00029">Outlier identification: Forward addition pass 5</a></li>
-<li><a name="index00030" href="#pos00030">Additive Outlier t-values</a></li>
-<li><a name="index00031" href="#pos00031">Level Change Outlier t-values</a></li>
-<li><a name="index00032" href="#pos00032">Regression model</a></li>
-<li><a name="index00033" href="#pos00033">ARIMA model</a></li>
-<li><a name="index00034" href="#pos00034">Outlier identification: Forward addition pass 6</a></li>
-<li><a name="index00035" href="#pos00035">Additive Outlier t-values</a></li>
-<li><a name="index00036" href="#pos00036">Level Change Outlier t-values</a></li>
-<li><a name="index00037" href="#pos00037">Outlier identification: Backward deletion pass 1</a></li>
-<li><a name="index00038" href="#pos00038">Regression model</a></li>
-<li><a name="index00039" href="#pos00039">ARIMA model</a></li>
-<li><a name="index00040" href="#pos00040">Final Additive Outlier t-values</a></li>
-<li><a name="index00041" href="#pos00041">Final Level Change Outlier t-values</a></li>
-<li><a name="index00042" href="#pos00042">Outlier detection</a></li>
-<li><a name="index00043" href="#pos00043">Regression model</a></li>
-<li><a name="index00044" href="#pos00044">ARIMA model</a></li>
-<li><a name="index00045" href="#pos00045">Outlier identification: Forward addition pass 1</a></li>
-<li><a name="index00046" href="#pos00046">Additive Outlier t-values</a></li>
-<li><a name="index00047" href="#pos00047">Level Change Outlier t-values</a></li>
-<li><a name="index00048" href="#pos00048">Regression model</a></li>
-<li><a name="index00049" href="#pos00049">ARIMA model</a></li>
-<li><a name="index00050" href="#pos00050">Outlier identification: Forward addition pass 2</a></li>
-<li><a name="index00051" href="#pos00051">Additive Outlier t-values</a></li>
-<li><a name="index00052" href="#pos00052">Level Change Outlier t-values</a></li>
-<li><a name="index00053" href="#pos00053">Regression model</a></li>
-<li><a name="index00054" href="#pos00054">ARIMA model</a></li>
-<li><a name="index00055" href="#pos00055">Outlier identification: Forward addition pass 3</a></li>
-<li><a name="index00056" href="#pos00056">Additive Outlier t-values</a></li>
-<li><a name="index00057" href="#pos00057">Level Change Outlier t-values</a></li>
-<li><a name="index00058" href="#pos00058">Regression model</a></li>
-<li><a name="index00059" href="#pos00059">ARIMA model</a></li>
-<li><a name="index00060" href="#pos00060">Outlier identification: Forward addition pass 4</a></li>
-<li><a name="index00061" href="#pos00061">Additive Outlier t-values</a></li>
-<li><a name="index00062" href="#pos00062">Level Change Outlier t-values</a></li>
-<li><a name="index00063" href="#pos00063">Regression model</a></li>
-<li><a name="index00064" href="#pos00064">ARIMA model</a></li>
-<li><a name="index00065" href="#pos00065">Outlier identification: Forward addition pass 5</a></li>
-<li><a name="index00066" href="#pos00066">Additive Outlier t-values</a></li>
-<li><a name="index00067" href="#pos00067">Level Change Outlier t-values</a></li>
-<li><a name="index00068" href="#pos00068">Final Additive Outlier t-values</a></li>
-<li><a name="index00069" href="#pos00069">Final Level Change Outlier t-values</a></li>
-<li><a name="index00070" href="#pos00070">Regression model</a></li>
-<li><a name="index00071" href="#pos00071">ARIMA model</a></li>
-<li><a name="index00072" href="#pos00072">Maximized log-likelihood and model selection criteria</a></li>
-<li><a name="index00073" href="#pos00073">Matrix of regression variables</a></li>
-<li><a name="index00074" href="#pos00074">QS Statistic for regARIMA Model Residuals</a></li>
-<li><a name="index00075" href="#pos00075">Plot of Spectrum of the regARIMA model residuals</a></li>
-<li><a name="index00076" href="#pos00076">A 8  RegARIMA combined outlier component</a></li>
-<li><a name="index00077" href="#pos00077">A 8.AO  RegARIMA AO outlier component</a></li>
-<li><a name="index00078" href="#pos00078">A 8.LS  RegARIMA level change outlier component</a></li>
-<li><a name="index00079" href="#pos00079">A 9  RegARIMA user-defined regression component</a></li>
-<li><a name="index00080" href="#pos00080">B 1  Original series (prior adjusted)</a></li>
-<li><a name="index00081" href="#pos00081">QS diagnostic to detect seasonality</a></li>
-<li><a name="index00082" href="#pos00082">Plot of Spectrum of the original series</a></li>
-<li><a name="index00083" href="#pos00083">Peak probabilties for the Tukey spectrum</a></li>
+<li><a name="index00005" href="#pos00005">Prior-adjusted and transformed data</a></li>
+<li><a name="index00006" href="#pos00006">Automatic ARIMA model selection</a></li>
+<li><a name="index00007" href="#pos00007">Outlier detection</a></li>
+<li><a name="index00008" href="#pos00008">Regression model</a></li>
+<li><a name="index00009" href="#pos00009">Correlation matrix of regression parameter estimates</a></li>
+<li><a name="index00010" href="#pos00010">ARIMA model</a></li>
+<li><a name="index00011" href="#pos00011">Outlier identification: Forward addition pass 1</a></li>
+<li><a name="index00012" href="#pos00012">Additive Outlier t-values</a></li>
+<li><a name="index00013" href="#pos00013">Level Change Outlier t-values</a></li>
+<li><a name="index00014" href="#pos00014">Regression model</a></li>
+<li><a name="index00015" href="#pos00015">ARIMA model</a></li>
+<li><a name="index00016" href="#pos00016">Outlier identification: Forward addition pass 2</a></li>
+<li><a name="index00017" href="#pos00017">Additive Outlier t-values</a></li>
+<li><a name="index00018" href="#pos00018">Level Change Outlier t-values</a></li>
+<li><a name="index00019" href="#pos00019">Regression model</a></li>
+<li><a name="index00020" href="#pos00020">ARIMA model</a></li>
+<li><a name="index00021" href="#pos00021">Outlier identification: Forward addition pass 3</a></li>
+<li><a name="index00022" href="#pos00022">Additive Outlier t-values</a></li>
+<li><a name="index00023" href="#pos00023">Level Change Outlier t-values</a></li>
+<li><a name="index00024" href="#pos00024">Regression model</a></li>
+<li><a name="index00025" href="#pos00025">ARIMA model</a></li>
+<li><a name="index00026" href="#pos00026">Outlier identification: Forward addition pass 4</a></li>
+<li><a name="index00027" href="#pos00027">Additive Outlier t-values</a></li>
+<li><a name="index00028" href="#pos00028">Level Change Outlier t-values</a></li>
+<li><a name="index00029" href="#pos00029">Regression model</a></li>
+<li><a name="index00030" href="#pos00030">ARIMA model</a></li>
+<li><a name="index00031" href="#pos00031">Outlier identification: Forward addition pass 5</a></li>
+<li><a name="index00032" href="#pos00032">Additive Outlier t-values</a></li>
+<li><a name="index00033" href="#pos00033">Level Change Outlier t-values</a></li>
+<li><a name="index00034" href="#pos00034">Regression model</a></li>
+<li><a name="index00035" href="#pos00035">ARIMA model</a></li>
+<li><a name="index00036" href="#pos00036">Outlier identification: Forward addition pass 6</a></li>
+<li><a name="index00037" href="#pos00037">Additive Outlier t-values</a></li>
+<li><a name="index00038" href="#pos00038">Level Change Outlier t-values</a></li>
+<li><a name="index00039" href="#pos00039">Outlier identification: Backward deletion pass 1</a></li>
+<li><a name="index00040" href="#pos00040">Regression model</a></li>
+<li><a name="index00041" href="#pos00041">ARIMA model</a></li>
+<li><a name="index00042" href="#pos00042">Final Additive Outlier t-values</a></li>
+<li><a name="index00043" href="#pos00043">Final Level Change Outlier t-values</a></li>
+<li><a name="index00044" href="#pos00044">Outlier detection</a></li>
+<li><a name="index00045" href="#pos00045">Regression model</a></li>
+<li><a name="index00046" href="#pos00046">Correlation matrix of regression parameter estimates</a></li>
+<li><a name="index00047" href="#pos00047">ARIMA model</a></li>
+<li><a name="index00048" href="#pos00048">Outlier identification: Forward addition pass 1</a></li>
+<li><a name="index00049" href="#pos00049">Additive Outlier t-values</a></li>
+<li><a name="index00050" href="#pos00050">Level Change Outlier t-values</a></li>
+<li><a name="index00051" href="#pos00051">Regression model</a></li>
+<li><a name="index00052" href="#pos00052">ARIMA model</a></li>
+<li><a name="index00053" href="#pos00053">Outlier identification: Forward addition pass 2</a></li>
+<li><a name="index00054" href="#pos00054">Additive Outlier t-values</a></li>
+<li><a name="index00055" href="#pos00055">Level Change Outlier t-values</a></li>
+<li><a name="index00056" href="#pos00056">Regression model</a></li>
+<li><a name="index00057" href="#pos00057">ARIMA model</a></li>
+<li><a name="index00058" href="#pos00058">Outlier identification: Forward addition pass 3</a></li>
+<li><a name="index00059" href="#pos00059">Additive Outlier t-values</a></li>
+<li><a name="index00060" href="#pos00060">Level Change Outlier t-values</a></li>
+<li><a name="index00061" href="#pos00061">Regression model</a></li>
+<li><a name="index00062" href="#pos00062">ARIMA model</a></li>
+<li><a name="index00063" href="#pos00063">Outlier identification: Forward addition pass 4</a></li>
+<li><a name="index00064" href="#pos00064">Additive Outlier t-values</a></li>
+<li><a name="index00065" href="#pos00065">Level Change Outlier t-values</a></li>
+<li><a name="index00066" href="#pos00066">Regression model</a></li>
+<li><a name="index00067" href="#pos00067">ARIMA model</a></li>
+<li><a name="index00068" href="#pos00068">Outlier identification: Forward addition pass 5</a></li>
+<li><a name="index00069" href="#pos00069">Additive Outlier t-values</a></li>
+<li><a name="index00070" href="#pos00070">Level Change Outlier t-values</a></li>
+<li><a name="index00071" href="#pos00071">Final Additive Outlier t-values</a></li>
+<li><a name="index00072" href="#pos00072">Final Level Change Outlier t-values</a></li>
+<li><a name="index00073" href="#pos00073">Regression model</a></li>
+<li><a name="index00074" href="#pos00074">Correlation matrix of regression parameter estimates</a></li>
+<li><a name="index00075" href="#pos00075">ARIMA model</a></li>
+<li><a name="index00076" href="#pos00076">Correlation matrix of ARMA parameter estimates</a></li>
+<li><a name="index00077" href="#pos00077">Maximized log-likelihood and model selection criteria</a></li>
+<li><a name="index00078" href="#pos00078">Roots of the AR and MA operators</a></li>
+<li><a name="index00079" href="#pos00079">Residuals from the estimated model</a></li>
+<li><a name="index00080" href="#pos00080">QS Statistic for regARIMA Model Residuals</a></li>
+<li><a name="index00081" href="#pos00081">Plot of Spectrum of the regARIMA model residuals</a></li>
+<li><a name="index00082" href="#pos00082">Estimated regression effects (X'beta)</a></li>
+<li><a name="index00083" href="#pos00083">Residuals from the estimated regression effects</a></li>
+<li><a name="index00084" href="#pos00084">A 8  RegARIMA combined outlier component</a></li>
+<li><a name="index00085" href="#pos00085">A 8.AO  RegARIMA AO outlier component</a></li>
+<li><a name="index00086" href="#pos00086">A 8.LS  RegARIMA level change outlier component</a></li>
+<li><a name="index00087" href="#pos00087">A 9  RegARIMA user-defined regression component</a></li>
+<li><a name="index00088" href="#pos00088">B 1  Original series (prior adjusted)</a></li>
+<li><a name="index00089" href="#pos00089">QS diagnostic to detect seasonality</a></li>
+<li><a name="index00090" href="#pos00090">Plot of Spectrum of the original series</a></li>
+<li><a name="index00091" href="#pos00091">Peak probabilties for the Tukey spectrum</a></li>
 </ul>
 
 <p>&nbsp;</p>

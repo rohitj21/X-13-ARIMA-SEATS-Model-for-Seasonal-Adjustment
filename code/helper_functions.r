@@ -112,7 +112,7 @@ plot_model_output <- function(model, series_name = "Series", adj_inf_criteria_fo
 const_term <-  function(y, d, D){
     return(diffinv(diffinv(rep(1, length(y)), lag = 1, differences =d), lag = 12, differences = D)[-(1:(d+D*frequency(y)))])
 }
-OA <- function(y, t_oa) {
+AO <- function(y, t_oa) {
     as.integer(seq_along(y) == t_oa)
 }
 LS <- function(y, t_ls) {
@@ -123,9 +123,6 @@ get_time <- function(t){
     return(c(floor(t), (t-floor(t))*12))
 }
 detect_outlier <- function(default_model, t_outlier, type = c("AO", "LS")) {
-    type <- match.arg(type)
-    
-    # Extract the time series and its starting time from the default model
     y <- default_model$x
     outlier_time <- time(y)[t_outlier]  # Find the time corresponding to the outlier index
     
@@ -138,7 +135,7 @@ detect_outlier <- function(default_model, t_outlier, type = c("AO", "LS")) {
     var_name <- paste0(type, year, ".", month)
     
     # Generate the regression variable based on outlier type
-    reg_var <- if (type == "AO") OA(y, t_outlier) else LS(y, t_outlier)
+    reg_var <- if (type == "AO") AO(y, t_outlier) else LS(y, t_outlier)
     reg_var <- cbind(reg_var) # Assign the dynamically created name to the variable
     colnames(reg_var) <- var_name
     # Fit the RegARIMA model with the new regression variable

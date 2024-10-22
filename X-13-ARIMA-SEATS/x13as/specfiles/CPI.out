@@ -1,0 +1,763 @@
+  Reading input spec file from ./specfiles/tramo_only.spc
+
+1
+
+               U. S. Department of Commerce, U. S. Census Bureau
+
+           X-13ARIMA-SEATS monthly regARIMA model estimation Method,
+                          Release Version 1.1 Build 61
+
+
+           This software application provides an enhanced version of
+             Statistics Canada's X-11-ARIMA extension (Dagum, 1980)
+                 of the X-11 variant of the Census Method II of
+                      Shiskin, Young and Musgrave (1967).
+
+            It also provides an ARIMA model-based method following
+       Hillmer and Tiao (1982) and Burman (1980) that is very similar
+       to the update of the method of SEATS (Gomez and Maravall, 1996)
+                produced at the Bank of Spain by G. Caporello and
+               A. Maravall for TSW (Caporello and Maravall, 2004).
+          The present application includes additional enhancements.
+
+         X-13ARIMA-SEATS includes an automatic ARIMA model selection procedure
+          based largely on the procedure of Gomez and Maravall (1998)
+            as implemented in TRAMO (1996) and subsequent revisions.
+
+              Primary Programmers: Brian Monsell, Mark Otto and,
+                 for the ARIMA model-based signal extraction,
+                      Gianluca Caporello and Victor Gomez
+
+
+     Series Title- Consumer Food Price Index - All India Combined
+     Series Name- CPI
+     Oct 20, 2024  03.54.31 
+
+        -Period covered-  1st month,2013 to  8th month,2024
+        -Spectral plot of the original series generated
+        Consumer Food Price Index - All India Combined            PAGE   1, SERIES CPI
+
+     Contents of spc file ./specfiles/tramo_only.spc
+
+ Line #
+ ------
+      1: series{
+      2:   title = "Consumer Food Price Index - All India Combined"
+      3:   start = 2013.01
+      4:   span = (2013.01, 2024.08)
+      5:   data = (
+      6:     105.4 106.4 106.5 107.5 109.1 112.4 115.2 117.3 119.0 121.1 123.9 118.7
+      7:     115.6 114.8 115.7 117.4 118.8 120.5 125.4 127.5 126.4 125.8 125.3 123.4
+      8:     122.7 122.7 122.8 123.4 124.5 127.1 128.1 130.3 131.3 132.4 132.9 131.3
+      9:     131.1 129.2 129.2 131.3 133.8 137.0 138.8 138.0 136.5 136.8 135.6 133.1
+     10:     131.9 131.8 131.8 132.1 132.4 134.1 138.3 140.1 138.2 139.4 141.5 139.7
+     11:     138.1 136.1 135.5 135.8 136.5 138.0 140.1 140.5 138.9 138.2 137.8 136.0
+     12:     135.0 135.1 135.9 137.3 139.0 141.1 143.4 144.7 146.0 149.1 151.6 155.3
+     13:     153.4 149.7 147.8 153.4 151.8 153.4 156.7 157.8 161.6 165.5 166.0 160.6
+     14:     156.4 155.5 155.0 156.4 159.4 161.3 162.9 162.7 162.7 166.9 169.1 167.1
+     15:     164.9 164.6 166.9 169.4 172.1 173.8 173.8 175.1 176.7 178.6 177.0 174.1
+     16:     174.8 174.4 174.9 175.9 177.2 181.7 193.8 192.5 188.4 190.4 192.4 190.7
+     17:     189.3 189.5 189.8 191.2 192.6 198.7 204.3 203.4
+     18:   )
+     19: }
+     20:  
+     21: transform{
+     22:   function = auto
+     23: }
+     24:  
+     25:  
+     26: #regression {
+     27: ##  variables = (const)
+     28: #  user = (diwali)
+     29: #  start = 2013.01
+     30: #  data = (
+     31: #    0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0405 -0.0405  0.0000
+     32: #    0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3405 -0.3405  0.0000
+     33: #    0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000 -0.6595  0.6595  0.0000
+     34: #    0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3405 -0.3405  0.0000
+     35: #    0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3405 -0.3405  0.0000
+     36: #    0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000 -0.3595  0.3595  0.0000
+     37: #    0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3405 -0.3405  0.0000
+     38: #    0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000 -0.6595  0.6595  0.0000
+     39: #    0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000 -0.0595  0.0595  0.0000
+     40: #    0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3405 -0.3405  0.0000
+     41: #    0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000 -0.6595  0.6595  0.0000
+     42: #    0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3405 -0.3405  0.0000
+     43: #    0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3405 -0.3405  0.0000)
+     44: #print = rmx
+     45: #}
+     46:  
+     47:  
+     48: automdl{print = all}
+     49:  
+     50: outlier{print= all}
+     51:  
+
+
+ Likelihood statistics for model fit to untransformed series.
+
+ Likelihood Statistics
+ ------------------------------------------------------------------
+ Number of observations (nobs)                                  140
+ Effective number of observations (nefobs)                      127
+ Number of parameters estimated (np)                              3
+ Log likelihood (L)                                       -261.7271
+ AIC                                                       529.4543 
+ AICC (F-corrected-AIC)                                    529.6494 
+ Hannan Quinn                                              532.9210 
+ BIC                                                       537.9869 
+ ------------------------------------------------------------------
+
+
+ Likelihood statistics for model fit to log transformed series.
+
+ Likelihood Statistics
+ ------------------------------------------------------------------
+ Number of observations (nobs)                                  140
+ Effective number of observations (nefobs)                      127
+ Number of parameters estimated (np)                              3
+ Log likelihood                                            381.2523
+ Transformation Adjustment                                -635.4861
+ Adjusted Log likelihood (L)                              -254.2338
+ AIC                                                       514.4677 
+ AICC (F-corrected-AIC)                                    514.6628 
+ Hannan Quinn                                              517.9344 
+ BIC                                                       523.0002 
+ ------------------------------------------------------------------
+
+
+   *****   AICC (with aicdiff=-2.00) prefers log transformation   *****
+
+
+
+        Consumer Food Price Index - All India Combined            PAGE   2, SERIES CPI
+
+ A 1  Time series data (for the span analyzed)
+  From  2013.Jan to 2024.Aug
+  Observations        140
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec        TOTAL  
+ -----------------------------------------------------------------------------
+  2013         105.     106.     107.     108.     109.     112.
+               115.     117.     119.     121.     124.     119.         1363.
+ 
+  2014         116.     115.     116.     117.     119.     121.
+               125.     128.     126.     126.     125.     123.         1457.
+ 
+  2015         123.     123.     123.     123.     125.     127.
+               128.     130.     131.     132.     133.     131.         1530.
+ 
+  2016         131.     129.     129.     131.     134.     137.
+               139.     138.     137.     137.     136.     133.         1610.
+ 
+  2017         132.     132.     132.     132.     132.     134.
+               138.     140.     138.     139.     142.     140.         1631.
+ 
+  2018         138.     136.     136.     136.     137.     138.
+               140.     141.     139.     138.     138.     136.         1652.
+ 
+  2019         135.     135.     136.     137.     139.     141.
+               143.     145.     146.     149.     152.     155.         1713.
+ 
+  2020         153.     150.     148.     153.     152.     153.
+               157.     158.     162.     166.     166.     161.         1878.
+ 
+  2021         156.     156.     155.     156.     159.     161.
+               163.     163.     163.     167.     169.     167.         1935.
+ 
+  2022         165.     165.     167.     169.     172.     174.
+               174.     175.     177.     179.     177.     174.         2067.
+ 
+  2023         175.     174.     175.     176.     177.     182.
+               194.     193.     188.     190.     192.     191.         2207.
+ 
+  2024         189.     190.     190.     191.     193.     199.
+               204.     203.                                             1559.
+ 
+  AVGE         143.     142.     143.     144.     146.     148.
+               152.     152.     148.     149.     150.     148.
+
+  Table Total-     20601.30   Mean-     147.15   Std. Dev.-      23.91
+                              Min -     105.40        Max -     204.30
+        Consumer Food Price Index - All India Combined            PAGE   3, SERIES CPI
+                        Automatic ARIMA Model Selection
+
+                    Procedure based closely on TRAMO method 
+                         of Gomez and Maravall (2000)
+              "Automatic Modeling Methods for Univariate Series",
+                            A Course in Time Series
+                  (Edited by D. Pena, G. C. Tiao, R. S. Tsay),
+                         New York : J. Wiley and Sons
+
+
+     Maximum order for regular ARMA parameters :   2
+     Maximum order for seasonal ARMA parameters :   1
+     Maximum order for regular differencing :   2
+     Maximum order for seasonal differencing :   1
+
+  ARIMA Estimates (H-R) for Unit Root Identification : Model No.  1
+
+   Model Estimated : ( 2  0  0 ) ( 1  0  0 )
+              Regular AR :     1.3937   -0.4091
+             Seasonal AR :     0.4728
+  -----
+
+  ARIMA Estimates (H-R) for Unit Root Identification : Model No.  2
+
+   Model Estimated : ( 1  1  1 ) ( 1  0  1 )
+              Regular AR :     0.0905
+             Seasonal AR :     0.8439
+              Regular MA :    -0.5307
+             Seasonal MA :     0.6423
+  -----
+
+  ARIMA Estimates (H-R) for Unit Root Identification : Model No.  3
+
+   Model Estimated : ( 1  1  1 ) ( 1  1  1 )
+              Regular AR :     0.0558
+             Seasonal AR :    -0.4146
+              Regular MA :    -0.7034
+             Seasonal MA :     0.2763
+  -----
+
+   Results of Unit Root Test for identifying orders of differencing:
+     Regular difference order :   1
+     Seasonal difference order :   1
+
+     Mean is not significant.
+
+
+  ARIMA Estimates and Likelihood Values for ARMA Order Identification
+
+   Model Estimated : ( 3  1  0 ) ( 0  1  0 )
+              Regular AR :     0.5119   -0.4035    0.0375
+                     BIC :   501.0285
+                    BIC2 :    -6.0625
+  -----
+   Model Estimated : ( 3  1  0 ) ( 0  1  1 )
+              Regular AR :     0.5925   -0.4415    0.0449
+             Seasonal MA :     0.9921
+                     BIC :   442.7914
+                    BIC2 :    -6.5211
+  -----
+   Model Estimated : ( 3  1  0 ) ( 1  1  0 )
+              Regular AR :     0.5105   -0.4266    0.0521
+             Seasonal AR :    -0.5384
+                     BIC :   465.2397
+                    BIC2 :    -6.3444
+  -----
+   Model Estimated : ( 3  1  0 ) ( 1  1  1 )
+              Regular AR :     0.6015   -0.4464    0.0450
+             Seasonal AR :    -0.0640
+             Seasonal MA :     0.9873
+                     BIC :   447.2201
+                    BIC2 :    -6.4862
+  -----
+   Model Estimated : ( 0  1  0 ) ( 0  1  1 )
+             Seasonal MA :     0.9716
+                     BIC :   473.1318
+                    BIC2 :    -6.2822
+  -----
+   Model Estimated : ( 0  1  1 ) ( 0  1  1 )
+              Regular MA :    -0.6276
+             Seasonal MA :     0.9938
+                     BIC :   438.5922
+                    BIC2 :    -6.5542
+  -----
+   Model Estimated : ( 0  1  2 ) ( 0  1  1 )
+              Regular MA :    -0.6086    0.0323
+             Seasonal MA :     0.9918
+                     BIC :   443.3736
+                    BIC2 :    -6.5165
+  -----
+   Model Estimated : ( 1  1  0 ) ( 0  1  1 )
+              Regular AR :     0.4001
+             Seasonal MA :     0.9887
+                     BIC :   456.4050
+                    BIC2 :    -6.4139
+  -----
+   Model Estimated : ( 1  1  1 ) ( 0  1  1 )
+              Regular AR :    -0.0288
+              Regular MA :    -0.6460
+             Seasonal MA :     0.9932
+                     BIC :   443.4008
+                    BIC2 :    -6.5163
+  -----
+   Model Estimated : ( 1  1  2 ) ( 0  1  1 )
+              Regular AR :     0.6867
+              Regular MA :     0.1390    0.5367
+             Seasonal MA :     0.9929
+                     BIC :   445.5434
+                    BIC2 :    -6.4994
+  -----
+   Model Estimated : ( 2  1  0 ) ( 0  1  1 )
+              Regular AR :     0.5746   -0.4161
+             Seasonal MA :     0.9929
+                     BIC :   438.1908
+                    BIC2 :    -6.5573
+  -----
+   Model Estimated : ( 2  1  1 ) ( 0  1  1 )
+              Regular AR :     0.4845   -0.3795
+              Regular MA :    -0.1081
+             Seasonal MA :     0.9918
+                     BIC :   442.7914
+                    BIC2 :    -6.5211
+  -----
+   Model Estimated : ( 2  1  2 ) ( 0  1  1 )
+              Regular AR :     0.4962   -0.3732
+              Regular MA :    -0.0967    0.0158
+             Seasonal MA :     0.9946
+                     BIC :   447.6345
+                    BIC2 :    -6.4830
+  -----
+   Model Estimated : ( 2  1  0 ) ( 0  1  0 )
+              Regular AR :     0.4971   -0.3845
+                     BIC :   496.3625
+                    BIC2 :    -6.0993
+  -----
+
+
+  Best Five ARIMA Models
+
+     Model #  1 : (2 1 0)(0 1 1)       (BIC =     -6.557)
+     Model #  2 : (0 1 1)(0 1 1)       (BIC =     -6.554)
+     Model #  3 : (2 1 1)(0 1 1)       (BIC =     -6.521)
+     Model #  4 : (0 1 2)(0 1 1)       (BIC =     -6.517)
+     Model #  5 : (1 1 1)(0 1 1)       (BIC =     -6.516)
+
+  Automatic model choice : (2 1 0)(0 1 1)
+
+
+  Final Checks for Identified Model
+
+
+  Checking for Unit Roots.
+   No unit roots found.
+   Nonseasonal MA not within  0.001 of 1.0 - model passes test.
+
+  Checking for insignificant ARMA coefficients.
+
+  Final automatic model choice : (2 1 0)(0 1 1)
+   End of automatic model selection procedure.
+
+ Average absolute percentage error in within-sample forecasts:
+  Last year:   0.97      Last-1 year:   0.77     Last-2 year:   2.59
+  Last three years:    1.44
+
+ Estimation converged in   21 ARMA iterations,  118 function evaluations.
+
+ Regression Model
+ ------------------------------------------------------------------------------
+                             Parameter        Standard
+ Variable                     Estimate           Error      t-value
+ ------------------------------------------------------------------------------
+ Automatically Identified Outliers
+   AO2013.Nov                   0.0184         0.00365         5.05
+   LS2019.Dec                   0.0317         0.00642         4.94
+   AO2020.Apr                   0.0248         0.00362         6.85
+   LS2023.Jul                   0.0417         0.00637         6.55
+ ------------------------------------------------------------------------------
+
+
+ ARIMA Model:  (2 1 0)(0 1 1)
+   Nonseasonal differences: 1
+   Seasonal differences:    1
+                                              Standard
+ Parameter                    Estimate          Errors
+ -----------------------------------------------------
+ Nonseasonal AR                                    
+   Lag  1                       0.5803         0.07350
+   Lag  2                      -0.4151         0.07320
+
+ Seasonal MA                                       
+   Lag 12                       0.9993         0.06455
+
+ Variance                       0.56106E-04
+ SE of Var                      0.70408E-05
+ -----------------------------------------------------
+
+ Likelihood Statistics
+ ------------------------------------------------------------------
+ Number of observations (nobs)                                  140
+ Effective number of observations (nefobs)                      127
+ Number of parameters estimated (np)                              8
+ Log likelihood                                            426.4309
+ Transformation Adjustment                                -635.4861
+ Adjusted Log likelihood (L)                              -209.0552
+ AIC                                                       434.1104 
+ AICC (F-corrected-AIC)                                    435.3308 
+ Hannan Quinn                                              443.3549 
+ BIC                                                       456.8639 
+ ------------------------------------------------------------------
+
+ QS Statistic for regARIMA Model Residuals (full series):             0.00
+                                                       (P-Value =     1.0000)
+
+ QS Statistic for regARIMA Model Residuals (starting 2016.Sep):       0.00
+                                                       (P-Value =     1.0000)
+      10*LOG(SPECTRUM) of the regARIMA model residuals
+      Spectrum estimated from 2016.Sep to 2024.Aug.
+ ++++++++++I+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++I
+     -38.35I                                                *            I    -38.35
+           I                                                *            I
+           I                                                *            I
+           I                                               **            I
+     -39.29I                                               **            I    -39.29
+           I                                               **            I
+           I                                               **            I
+           I                                               **            I
+     -40.23I         *                           *         **            I    -40.23
+           I        **   *              *        *         **            I
+           I        **   *       *      *        *         **            I
+           I        **   *       *      *        *         **            I
+     -41.17I        **   *       *      *        *         **            I    -41.17
+           I     *  **   *       *      *        **        **            I
+           I     *  **   **     S*      **       **        **            I
+           I     *  **   **     S**    ***       **        **            I
+     -42.10I     *  **   **     S**    ***       **        **            I    -42.10
+           I     *  **   **     S** ** ***       **        **            I
+           I     *  **   **     S*********       **        **            I
+           I     *  **   **     S*********    *  **       ***            I
+     -43.04I     *****   **     S*********    *  **       ***            I    -43.04
+           I    ******   **     S*********   **  **       ****           I
+           I*   ******   **     S*********   ** ***       ****           I
+           I*   ******S ***     S*********   ** ***       ****      *    I
+     -43.98I*   ******S ***     S*********   ******       ****      *   SI    -43.98
+           I*   ******S ***    *S*********   ******       ****      ** *SI
+           I*   ******S ***    *S*********S  ******       ****     *****SI
+           I*   ******S ***    *S*********S  ******       ****     *****SI
+     -44.92I*   ******S****    *S*********S  ******      *****     *****SI    -44.92
+           I*   ******S*****   *S*********S *******      *****     *****SI
+           I**  ******S*****   *S*********S *******      *****     *****SI
+           I**  ******S*****   *S*********S *******      *****     *****SI
+     -45.86I**  ******S*****   *S*********S********      *****     *****SI    -45.86
+           I**  ******S*****   *S*********S********      *****    ******SI
+           I** *******S*****  **S*********S********      *****S   ******SI
+           I** *******S*****  **S*********S********     ******S   ******SI
+     -46.80I** *******S****** **S*********S*********    ******S   ******SI    -46.80
+           I**********S*********S*********S*********    ******S   ******SI
+           I**********S*********S*********S*********    ******S   ******SI
+           I**********S*********S*********S*********    ******S* *******SI
+     -47.74I**********S*********S*********S*********    ******S* *******SI    -47.74
+           I**********S*********S*********S*********    ******S*T*******SI
+           I**********S*********S*********S*********    ******S*T*******SI
+           I**********S*********S*********S*********    ******S*T*******SI
+     -48.68I**********S*********S*********S*********    ******S*T*******SI    -48.68
+           I**********S*********S*********S*********   *******S*T*******SI
+           I**********S*********S*********S*********   *******S*T*******SI
+           I**********S*********S*********S*********   *******S*T*******SI
+     -49.61I**********S*********S*********S*********   *******S*T*******SI    -49.61
+           I**********S*********S*********S*********S  *******S*T*******SI
+           I**********S*********S*********S*********S  *******S*T*******SI
+           I**********S*********S*********S*********S T*******S*T*******SI
+     -50.55I**********S*********S*********S*********S*T*******S*T*******SI    -50.55
+ ++++++++++I+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++I
+            S=SEASONAL FREQUENCIES, T=TRADING DAY FREQUENCIES
+        Consumer Food Price Index - All India Combined            PAGE   4, SERIES CPI
+  
+ A 8  RegARIMA combined outlier component
+      (AO, LS outliers included)
+  From  2013.Jan to 2024.Aug
+  Observations        140
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         AVGE  
+ -----------------------------------------------------------------------------
+  2013         92.9     92.9     92.9     92.9     92.9     92.9
+               92.9     92.9     92.9     92.9     94.6     92.9          93.1
+ 
+  2014         92.9     92.9     92.9     92.9     92.9     92.9
+               92.9     92.9     92.9     92.9     92.9     92.9          92.9
+ 
+  2015         92.9     92.9     92.9     92.9     92.9     92.9
+               92.9     92.9     92.9     92.9     92.9     92.9          92.9
+ 
+  2016         92.9     92.9     92.9     92.9     92.9     92.9
+               92.9     92.9     92.9     92.9     92.9     92.9          92.9
+ 
+  2017         92.9     92.9     92.9     92.9     92.9     92.9
+               92.9     92.9     92.9     92.9     92.9     92.9          92.9
+ 
+  2018         92.9     92.9     92.9     92.9     92.9     92.9
+               92.9     92.9     92.9     92.9     92.9     92.9          92.9
+ 
+  2019         92.9     92.9     92.9     92.9     92.9     92.9
+               92.9     92.9     92.9     92.9     92.9     95.9          93.2
+ 
+  2020         95.9     95.9     95.9     98.3     95.9     95.9
+               95.9     95.9     95.9     95.9     95.9     95.9          96.1
+ 
+  2021         95.9     95.9     95.9     95.9     95.9     95.9
+               95.9     95.9     95.9     95.9     95.9     95.9          95.9
+ 
+  2022         95.9     95.9     95.9     95.9     95.9     95.9
+               95.9     95.9     95.9     95.9     95.9     95.9          95.9
+ 
+  2023         95.9     95.9     95.9     95.9     95.9     95.9
+              100.0    100.0    100.0    100.0    100.0    100.0          98.0
+ 
+  2024        100.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0                                             100.0
+ 
+  AVGE         94.5     94.5     94.5     94.7     94.5     94.5
+               94.8     94.8     94.4     94.4     94.5     94.7
+
+  Table Total-     13240.93   Mean-      94.58   Std. Dev.-       5.88
+                              Min -      92.92        Max -     100.00
+
+ A 8.A  RegARIMA outlier component
+  From  2024.Sep to 2025.Aug
+  Observations         12
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         AVGE  
+ -----------------------------------------------------------------------------
+  2024                                                          
+                                100.0    100.0    100.0    100.0         100.0
+ 
+  2025        100.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0                                             100.0
+ 
+        Consumer Food Price Index - All India Combined            PAGE   5, SERIES CPI
+
+ A 8.AO  RegARIMA AO outlier component
+  From  2013.Jan to 2024.Aug
+  Observations        140
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         AVGE  
+ -----------------------------------------------------------------------------
+  2013        100.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0    100.0    100.0    101.9    100.0         100.2
+ 
+  2014        100.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0    100.0    100.0    100.0    100.0         100.0
+ 
+  2015        100.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0    100.0    100.0    100.0    100.0         100.0
+ 
+  2016        100.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0    100.0    100.0    100.0    100.0         100.0
+ 
+  2017        100.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0    100.0    100.0    100.0    100.0         100.0
+ 
+  2018        100.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0    100.0    100.0    100.0    100.0         100.0
+ 
+  2019        100.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0    100.0    100.0    100.0    100.0         100.0
+ 
+  2020        100.0    100.0    100.0    102.5    100.0    100.0
+              100.0    100.0    100.0    100.0    100.0    100.0         100.2
+ 
+  2021        100.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0    100.0    100.0    100.0    100.0         100.0
+ 
+  2022        100.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0    100.0    100.0    100.0    100.0         100.0
+ 
+  2023        100.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0    100.0    100.0    100.0    100.0         100.0
+ 
+  2024        100.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0                                             100.0
+ 
+  AVGE        100.0    100.0    100.0    100.2    100.0    100.0
+              100.0    100.0    100.0    100.0    100.2    100.0
+
+  Table Total-     14004.37   Mean-     100.03   Std. Dev.-       0.26
+                              Min -     100.00        Max -     102.51
+        Consumer Food Price Index - All India Combined            PAGE   6, SERIES CPI
+
+ A 8.LS  RegARIMA level change outlier component
+  From  2013.Jan to 2024.Aug
+  Observations        140
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         AVGE  
+ -----------------------------------------------------------------------------
+  2013         92.9     92.9     92.9     92.9     92.9     92.9
+               92.9     92.9     92.9     92.9     92.9     92.9          92.9
+ 
+  2014         92.9     92.9     92.9     92.9     92.9     92.9
+               92.9     92.9     92.9     92.9     92.9     92.9          92.9
+ 
+  2015         92.9     92.9     92.9     92.9     92.9     92.9
+               92.9     92.9     92.9     92.9     92.9     92.9          92.9
+ 
+  2016         92.9     92.9     92.9     92.9     92.9     92.9
+               92.9     92.9     92.9     92.9     92.9     92.9          92.9
+ 
+  2017         92.9     92.9     92.9     92.9     92.9     92.9
+               92.9     92.9     92.9     92.9     92.9     92.9          92.9
+ 
+  2018         92.9     92.9     92.9     92.9     92.9     92.9
+               92.9     92.9     92.9     92.9     92.9     92.9          92.9
+ 
+  2019         92.9     92.9     92.9     92.9     92.9     92.9
+               92.9     92.9     92.9     92.9     92.9     95.9          93.2
+ 
+  2020         95.9     95.9     95.9     95.9     95.9     95.9
+               95.9     95.9     95.9     95.9     95.9     95.9          95.9
+ 
+  2021         95.9     95.9     95.9     95.9     95.9     95.9
+               95.9     95.9     95.9     95.9     95.9     95.9          95.9
+ 
+  2022         95.9     95.9     95.9     95.9     95.9     95.9
+               95.9     95.9     95.9     95.9     95.9     95.9          95.9
+ 
+  2023         95.9     95.9     95.9     95.9     95.9     95.9
+              100.0    100.0    100.0    100.0    100.0    100.0          98.0
+ 
+  2024        100.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0                                             100.0
+ 
+  AVGE         94.5     94.5     94.5     94.5     94.5     94.5
+               94.8     94.8     94.4     94.4     94.4     94.7
+
+  Table Total-     13236.79   Mean-      94.55   Std. Dev.-       5.90
+                              Min -      92.92        Max -     100.00
+        Consumer Food Price Index - All India Combined            PAGE   7, SERIES CPI
+  
+ B 1  Original series (prior adjusted)
+      (adjusted for regARIMA factors)
+  From  2013.Jan to 2024.Aug
+  Observations        140
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec        TOTAL  
+ -----------------------------------------------------------------------------
+  2013         113.     115.     115.     116.     117.     121.
+               124.     126.     128.     130.     131.     128.         1464.
+ 
+  2014         124.     124.     125.     126.     128.     130.
+               135.     137.     136.     135.     135.     133.         1568.
+ 
+  2015         132.     132.     132.     133.     134.     137.
+               138.     140.     141.     142.     143.     141.         1646.
+ 
+  2016         141.     139.     139.     141.     144.     147.
+               149.     149.     147.     147.     146.     143.         1733.
+ 
+  2017         142.     142.     142.     142.     142.     144.
+               149.     151.     149.     150.     152.     150.         1756.
+ 
+  2018         149.     146.     146.     146.     147.     149.
+               151.     151.     149.     149.     148.     146.         1777.
+ 
+  2019         145.     145.     146.     148.     150.     152.
+               154.     156.     157.     160.     163.     162.         1839.
+ 
+  2020         160.     156.     154.     156.     158.     160.
+               163.     165.     168.     173.     173.     167.         1954.
+ 
+  2021         163.     162.     162.     163.     166.     168.
+               170.     170.     170.     174.     176.     174.         2018.
+ 
+  2022         172.     172.     174.     177.     179.     181.
+               181.     183.     184.     186.     185.     182.         2155.
+ 
+  2023         182.     182.     182.     183.     185.     189.
+               194.     193.     188.     190.     192.     191.         2252.
+ 
+  2024         189.     189.     190.     191.     193.     199.
+               204.     203.                                             1559.
+ 
+  AVGE         151.     150.     151.     152.     154.     156.
+               159.     160.     156.     158.     159.     156.
+
+  Table Total-     21719.85   Mean-     155.14   Std. Dev.-      21.68
+                              Min -     113.43        Max -     204.30
+
+  QS statistic for seasonality:
+  Original Series                                    10.02  (P-Value =     0.0067)
+  Original Series (EV adj)                           36.58  (P-Value =     0.0000)
+  Residuals                                           0.00  (P-Value =     1.0000)
+
+  QS statistic for seasonality (starting 2016.Sep):
+  Original Series                                     5.66  (P-Value =     0.0589)
+  Original Series (EV adj)                           26.78  (P-Value =     0.0000)
+  Residuals                                           0.00  (P-Value =     1.0000)
+        Consumer Food Price Index - All India Combined            PAGE   8, SERIES CPI
+
+
+  Visually significant residual seasonal peaks have been
+  found in the spectral plot of the following series starting in 2016.Sep:
+
+          differenced, transformed prior adjusted series (Table B1) (3 Seasonal peak(s))
+
+        Consumer Food Price Index - All India Combined            PAGE   9, SERIES CPI
+ G 0  10*LOG(SPECTRUM) of the differenced, transformed Prior Adjusted Series
+      (Table B1).  Spectrum estimated from 2016.Sep to 2024.Aug.
+ ++++++++++I+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++I
+     -23.13I          S                                                  I    -23.13
+           I          S                                                  I
+           I          S                                                  I
+           I          S                                                  I
+     -25.34I          S                                                  I    -25.34
+           I          S                                                  I
+           I          S                                                  I
+           I          S                                                  I
+     -27.55I          S                                                  I    -27.55
+           I          S                                                  I
+           I          S                                                  I
+           I          S                                                  I
+     -29.76I          S                                                  I    -29.76
+           I          S                                                  I
+           I          S                                                  I
+           I          S                                                  I
+     -31.97I          S                   S                              I    -31.97
+           I          S         S         S                              I
+           I          S         S         S                              I
+           I          S         S         S                              I
+     -34.17I          S*        S*        S                              I    -34.17
+           I          S*       *S*        S                              I
+           I         *S*       *S*        S                              I
+           I         *S*       *S*        S         S                    I
+     -36.38I         *S*       *S*    *   S         S                    I    -36.38
+           I         *S* *     *S**  **  *S         S                    I
+           I         *S***     *S**  **  *S*        S*                   I
+           I      *  *S****    *S**  **  *S*        S*                   I
+     -38.59I      *  *S****    *S**  *** *S*        S*                   I    -38.59
+           I     *****S****   **S*********S*        S*                   I
+           I     *****S****   **S*********S*        S*                   I
+           I     *****S****   **S*********S*        S*                   I
+     -40.80I     *****S*****  **S*********S*        S*                   I    -40.80
+           I    ******S*****  **S*********S*        S*                   I
+           I*   ******S***** ***S*********S**  *   *S*      *            I
+           I**  ******S*********S*********S** ***  *S*      *            I
+     -43.01I**********S*********S*********S******  *S*      *            I    -43.01
+           I**********S*********S*********S******  *S*     **            I
+           I**********S*********S*********S*********S*T    **            I
+           I**********S*********S*********S*********S*T    **            I
+     -45.21I**********S*********S*********S*********S*T    **            I    -45.21
+           I**********S*********S*********S*********S*T    **            I
+           I**********S*********S*********S*********S*T   ***            I
+           I**********S*********S*********S*********S*T*  ****           I
+     -47.42I**********S*********S*********S*********S*T* *****           I    -47.42
+           I**********S*********S*********S*********S*T*******           I
+           I**********S*********S*********S*********S*T*******           I
+           I**********S*********S*********S*********S*T*******    *      I
+     -49.63I**********S*********S*********S*********S*T*******    *    *SI    -49.63
+           I**********S*********S*********S*********S*T*******   **   **SI
+           I**********S*********S*********S*********S*T*******S  ***  **SI
+           I**********S*********S*********S*********S*T*******S  *** ***SI
+     -51.84I**********S*********S*********S*********S*T*******S*T*******SI    -51.84
+ ++++++++++I+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++I
+            S=SEASONAL FREQUENCIES, T=TRADING DAY FREQUENCIES
+        Consumer Food Price Index - All India Combined            PAGE  10, SERIES CPI
+
+  Peak probabilities for Tukey spectrum estimator
+  Spectrum estimated from 2016.Sep to 2024.Aug.
+
+                                          S1       S2       S3       S4       S5       S6       TD
+                                        ------   ------   ------   ------   ------   ------   ------
+  Model Residuals                        0.798    0.107    0.592    0.000    0.336    0.772    0.107  
+  Prior Adjusted Series (Table B1)       0.969*   0.780    0.980*   0.857    0.062    0.830    0.057  
+  ----------
+     ** - Peak Probability > 0.99,
+      * - 0.90 < Peak Probability < 0.99
+
+
