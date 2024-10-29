@@ -1,19 +1,25 @@
-
-# Assuming ddates is a dataframe with columns: year, month, and day for Diwali dates
 ddates <- read.csv('data/diwali.csv')
+# Assuming ddates is a dataframe with columns: year, month, and day for Diwali dates
 diwali_w <- function(year, w) {
-
+    
+    # Find Diwali month and day for the given year
     m <- ddates$month[which(ddates$year == year)]
     d <- ddates$day[which(ddates$year == year)]
     
-
+    # Create a Date object for Diwali
     diwali_date <- as.Date(paste(year, m, d, sep = "-"))
+    
+    # Calculate the date 'w' days before Diwali
+    start_date <- diwali_date - w
+    
+    # Initialize counts for each month
     sep_count <- 0
     oct_count <- 0
     nov_count <- 0
-
+    
+    # Iterate over each day in the range
     for (i in 1:w) {
-        current_date <- diwali_date - i+1
+        current_date <- diwali_date - i + 1
         current_month <- format(current_date, "%m")
         
         # Count days in each month
@@ -26,39 +32,11 @@ diwali_w <- function(year, w) {
         }
     }
     
-    return(c("sep" = sep_count / w, "oct" = oct_count / w, "nov" = nov_count / w))
+    total_days <- w
+    return(c("sep" = sep_count / total_days, "oct" = oct_count / total_days, "nov" = nov_count / total_days))
 }
-Dp <- list()
-for(w in 1:25){
-    Dpw <- matrix(0, 200, 3)
-    for(i in 1:200){
-        Dpw[i,] <- diwali_w(1899 + i, w)
-    }
-    print(colMeans(Dpw))
-    Dp[[w]] = Dpw
+P_diwali <- matrix(0,ncol  =3, nrow = 200)
+for(i in 1:200){
+    P_diwali[i,] <- diwali_w(1899+i, 20)
 }
-diwali_reg_values <- list()
-for(w in 1:25){
-    diwali_reg_values[[w]] <- t(t(Dp[[w]]) - colMeans(Dp[[w]]))
-}
-diwali_reg <- list()
-for(w in 1:25){
-    diwali_reg[[w]] <- matrix(0, 200*12, 3)
-    colnames(diwali_reg[[w]]) <- c("year", "month", "reg")
-    i = 1
-    for(y in 1900:2099){
-        for(m in 1:12){
-            diwali_reg[[w]][i, 1] <- y
-            diwali_reg[[w]][i, 2] <- m
-            if(m >=9 & m<=11){
-                diwali_reg[[w]][i, 3] <- diwali_reg_values[[w]][y-1899, m - 8]    
-            }
-            i = i+1
-        }
-    }
-    
-    diwali_reg[[w]] = data.frame(diwali_reg[[w]])
-}
-ll <- diwali_reg[[10]]
-
-ll[which(ll$year >= 2013 & ll$year <= 2025), 3]
+colMeans(P_diwali)

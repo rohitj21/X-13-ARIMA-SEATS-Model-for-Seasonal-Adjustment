@@ -23,9 +23,11 @@ transform{
   print = all
 }
 
-automdl{print = all}
+automdl{print = all 
+maxdiff = (2 1)}
 
 outlier{types = (ls ao)
+method = addone
 print = all
 }
 
@@ -35,6 +37,7 @@ estimate{
 }
 
 regression {
+  variables = (const, easter[10], td1nolpyear)
   user = (diwali)
   start = 2013.01
   data = (
@@ -51,4 +54,5 @@ regression {
    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0 -0.6595  0.6595  0.0
    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.3405 -0.3405  0.0
    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.3405 -0.3405  0.0)
+   print = all
 }
