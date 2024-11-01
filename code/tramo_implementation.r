@@ -29,16 +29,27 @@ diwali_ind = c(0.0000,  0.0000,  0.0000,  0.0000,  0.0000,  0.0000,  0.0000,  0.
       0.0000,  0.0000,  0.0000,  0.0000,  0.0000,  0.0000,  0.0000,  0.0000,  0.0000,  0.3405, -0.3405,  0.0000,
       0.0000,  0.0000,  0.0000,  0.0000,  0.0000,  0.0000,  0.0000,  0.0000,  0.0000,  0.3405, -0.3405,  0.0000)
 
+# for diwali regressor we have taken the impact period to be 10 days before diwali (inclusive)
+td1nolpyear = td1nolpyear_regressor(start = c(2013,1), n = length(data))
+# It matches exactly with the regressor being used in the program 
+# here is the image of the regressor of the program : <insert image>
+
+
 # create  timeseries object
 
 y = ts(data, start = c(2013, 1), frequency = 12)
 diwali = ts(diwali_ind[1:length(y)], start = c(2013, 1), frequency =  12)
+td1nolpyear = ts(td1nolpyear, start = c(2013, 1), frequency = 12)
+print(td1nolpyear)
 print(y)
 # we fit the default model on y and log(y) an compare the aic test to select. transformation
 # This corresponds to the following in the spec file:
 #           transform{function  = auto}
-no_transformation_test_fit = Arima(y , order =c(0,1,1), seasonal = c(0,1,1),include.mean = F, method = 'ML', lambda = NULL)
-log_transformation_test_fit = Arima(log(y), order =c(0,1,1), seasonal = c(0,1,1),include.mean = F,  method = 'ML',  lambda = NULL)
+
+# regression matrix 
+Xreg = cbind(td1nolpyear, diwali)
+no_transformation_test_fit = Arima(y , xreg = Xreg,  order =c(0,1,1), seasonal = c(0,1,1),include.mean = F, method = 'ML', lambda = NULL)
+log_transformation_test_fit = Arima(log(y), xreg= Xreg, order =c(0,1,1), seasonal = c(0,1,1),include.mean = F,  method = 'ML',  lambda = NULL)
 
 plot_model_output(no_transformation_test_fit, series_name = "No Transformation")
 plot_model_output(log_transformation_test_fit,series_name = "Log Transformed Series", adj_inf_criteria_for_log = T)
@@ -50,46 +61,85 @@ plot_model_output(log_transformation_test_fit,series_name = "Log Transformed Ser
 Z = log(y)
 
 
-## Default Model Estimation : initial outlier identification, tests for trading day and easter
+## Default Model Estimation : initial outlier identification, tests for trading day
 
-# including the interfears with the log level tests so i am not concidering them right now
 
 # test for the presence of constant term by a t-test on the residialsof default model with no intercept
 
 
-const = const_term(y, 1, 1)
-const = rep(1, 140)
+const = const_term(y, 1, 1) # funtion to create constant term
 
-default_model_fit1 = Arima(Z ,order =c(0,1,1), seasonal = c(0,1,1),include.mean = F,  method = 'ML',  lambda = NULL)
+
+default_model_fit1 = Arima(Z ,xreg = Xreg ,order =c(0,1,1), seasonal = c(0,1,1),include.mean = F,  method = 'ML',  lambda = NULL)
 
 plot_model_output( default_model_fit1, adj_inf_criteria_for_log = T)
 
 t.test(residuals(default_model_fit1))
-# the p value of 0.5394 indicates that the constant term is not significant
+# the p value of 0.5391 indicates that the constant term is not significant
 # the Null Hypothesis of absence of constant term is rejected if |t| < 1.96: See page 72
+
+# We will not use the constant term in the model
+
+# AIC test for td1nolpyear and diwali
+plot_model_output(Arima(Z,xreg = td1nolpyear,  order = c(0,1,1),seasonal = c(0,1,1), include.mean = F,  method = 'ML',  lambda = NULL) , T)
+plot_model_output(Arima(Z,  order = c(0,1,1),seasonal = c(0,1,1), include.mean = F,  method = 'ML',  lambda = NULL) , T)
+# AICC_with - AICC_without = -754.38 + 754.18  = 0.2 
+# 0.2 + aiccdiff(defaul = 0) = 0.2 > 0 
+# trading day regressor will not be included in the model
+
+plot_model_output(Arima(Z,xreg = diwali,  order = c(0,1,1),seasonal = c(0,1,1), include.mean = F,  method = 'ML',  lambda = NULL) , T)
+plot_model_output(Arima(Z,  order = c(0,1,1),seasonal = c(0,1,1), include.mean = F,  method = 'ML',  lambda = NULL) , T)
+# AICC_with - AICC_without = -754.57 + 754.18  = 0.39
+# 0.39 + aiccdiff(defaul = 0) = 0.39 > 0 
+# diwali regressor will not be included in the model
 
 
 # Now we fit the default model and try to find outliers
-# see page 40 for robust estimate formula for sig
+# see page 40 of the manual for robust estimate formula for sig
 # Deafault critical value is 3.88 for the test See table 7.22
 
+Xreg = NULL
 
-Arima(default_model_fit1$x,xreg = LS(Z, 45),  order = as.numeric(paste0(default_model_fit1$call$order)[2:4]),
-      seasonal = as.numeric(paste0(default_model_fit1$call$seasonal)[2:4]), 
-      include.mean = FALSE, method = 'ML', 
-      fixed = c(coef(default_model_fit1), NA))
+default_model = Arima(Z,  order = c(0,1,1),seasonal = c(0,1,1), xreg = Xreg,
+                     include.mean = F,  method = 'ML',  lambda = NULL) 
 
-for(i in 3:(length(Z)-1)){
-    ress_t = detect_outlier(default_model_fit1, i, "LS")
-    if(ress_t>3.88){
-        print(ress_t)
-    }
+default_model
+
+# note that the coeff are negative of what we get from X13 arima seats 
+#this is because of different parameterizations of the arima model used by Arima()
+# ref: https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/arima
+
+print("forward pass 1")
+curr_outlier = forward_pass(default_model,xreg = Xreg, types = c("AO", "LS"),
+                            tcritical = 3.88)
+k = 2
+while(! is.null(curr_outlier)){
+  Xreg = cbind(Xreg, curr_outlier)
+  print(paste("forward pass", k))
+  k = k +1
+  curr_outlier = forward_pass(default_model,xreg = Xreg, types = c("AO", "LS"),
+                              tcritical = 3.88)
 }
 
-for(i in 2:(length(Z)-1)){
-    ress_t = detect_outlier(default_model_fit1, i, "AO")
-    if(ress_t>3.88){
-        print(ress_t)
-    }
+
+k = 1
+
+while(T){
+  print(paste("backward_pass", k))
+  k = k+1
+  ind = backward_pass(default_model, Xreg, tcritical = 3.88)
+  if(is.null(ind)){
+    print("outlier detection is done")
+    break
+  }
+  else{
+    Xreg = Xreg[,-ind]
+  }
+
 }
-### values not matching 
+# outliers identified from the default model
+print(colnames(Xreg))
+# these match with those from the program
+
+# Our next goul is to understand and implement the IGLS algorithm so that 
+#we can match the results of paramenter estimates with the program

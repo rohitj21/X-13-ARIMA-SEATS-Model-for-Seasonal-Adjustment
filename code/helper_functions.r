@@ -1,6 +1,35 @@
 library(ggplot2)
 library(gridExtra)
 library(forecast)
+td1nolpyear_regressor <- function(start = c(2023, 1), n) {
+    # Initialize an empty vector to store the regressor values
+    regressor <- numeric(n)
+    
+    # Loop through each month from the start date for n months
+    for (i in 0:(n - 1)) {
+        # Calculate the year and month for the current iteration
+        year <- start[1] + (start[2] + i - 1) %/% 12
+        month <- (start[2] + i - 1) %% 12 + 1
+        
+        # Start and end dates for the current month
+        start_date <- as.Date(paste(year, sprintf("%02d", month), "01", sep = "-"))
+        end_date <- seq(start_date, by = "month", length.out = 2)[2] - 1
+        
+        # Get all dates in the current month
+        dates <- seq(start_date, end_date, by = "day")
+        
+        # Count weekdays and weekends (Saturday and Sunday)
+        weekdays_count <- sum(!weekdays(dates) %in% c("Saturday", "Sunday"))
+        weekends_count <- sum(weekdays(dates) %in% c("Saturday", "Sunday"))
+        
+        # Calculate the regressor for the month
+        regressor[i + 1] <- weekdays_count - (5 / 2) * weekends_count
+    }
+    
+    return(regressor)
+}
+
+
 selection_criteria <- function(model, adjust_for_log_transform = F) {
     
     # Extract log-likelihood from the model
@@ -14,6 +43,11 @@ selection_criteria <- function(model, adjust_for_log_transform = F) {
     arima_order <- eval(model$call$order)      # Non-seasonal order (p, d, q)
     seasonal_order <- eval(model$call$seasonal) # Seasonal order (P, D, Q)
     
+    number_of_regressors = dim(eval(model$call$xreg))[2]
+    if(is.null(number_of_regressors)){
+        number_of_regressors = 1
+    }
+    
     # Non-seasonal and seasonal differencing
     order_diff <- arima_order[2]         # Non-seasonal differencing (d)
     seasonal_diff <- seasonal_order[2]   # Seasonal differencing (D)
@@ -26,7 +60,8 @@ selection_criteria <- function(model, adjust_for_log_transform = F) {
     }
     # Calculate the number of parameters (including the variance term)
     # The number of parameters includes AR (p), MA (q), Seasonal AR (P), Seasonal MA (Q), and variance.
-    n_p <- arima_order[1] + arima_order[3] + seasonal_order[1] + seasonal_order[3] + 1  # Add 1 for variance
+    n_p <- number_of_regressors +  arima_order[1] + arima_order[3] +
+        seasonal_order[1] + seasonal_order[3] + 1  # Add 1 for variance
     
     # Calculate AIC
     aic <- -2 * loglik + 2 * n_p
@@ -42,7 +77,7 @@ selection_criteria <- function(model, adjust_for_log_transform = F) {
     hq <- -2 * loglik + 2 * n_p * log(log(effective_n))
     
     # Return the results as a list
-    return(list(AIC = aic, BIC = bic, AICc = aicc, HQ = hq))
+    return(list(AIC = aic, BIC = bic, AICc = aicc, HQ = hq, npar = n_p))
 }
 
     
@@ -68,6 +103,9 @@ plot_model_output <- function(model, series_name = "Series", adj_inf_criteria_fo
     # Use the selection_criteria function to get AIC, BIC, AICc, and HQ
     criteria <- selection_criteria(model,adjust_for_log_transform = adj_inf_criteria_for_log)
     
+    
+    n_p <- criteria$npar
+    
     # Create a dataframe to store the original series, fitted values, and residuals
     df <- data.frame(
         Time = as.numeric(time(original_series)),
@@ -84,6 +122,7 @@ plot_model_output <- function(model, series_name = "Series", adj_inf_criteria_fo
         xlab("Time") + ylab("Values") +
         theme_minimal() +
         labs(subtitle = paste("Model Summary: AIC =", round(criteria$AIC, 2), 
+                              ", npar= ", n_p,
                               ", BIC =", round(criteria$BIC, 2), 
                               ", AICc =", round(criteria$AICc, 2),
                               ", HQ =", round(criteria$HQ, 2),
@@ -112,47 +151,136 @@ plot_model_output <- function(model, series_name = "Series", adj_inf_criteria_fo
 const_term <-  function(y, d, D){
     return(diffinv(diffinv(rep(1, length(y)), lag = 1, differences =d), lag = 12, differences = D)[-(1:(d+D*frequency(y)))])
 }
-AO <- function(y, t_oa) {
-    as.integer(seq_along(y) == t_oa)
+AO <- function(y, t) {
+    time_point = start(y)
+    time_point[2] = time_point[2] + (t-1)
+    time_point[1]  = time_point[1] + ((time_point[2]-1) %/% 12)  
+    time_point[2] = ifelse( time_point[2] %% 12 == 0 , 12, time_point[2]%%12)
+    new_var_name = paste("AO",time_point[1] , ".", time_point[2], sep  = "")
+    if(time_point[2] <10){
+        new_var_name = paste("AO",time_point[1] , ".0", time_point[2], sep  = "")
+    }
+
+    x = as.integer(seq_along(y) == t)
+    x = matrix(x, ncol = 1)
+    colnames(x)[1] <- new_var_name
+    return(x)    
+    
 }
-LS <- function(y, t_ls) {
-    as.integer(seq_along(y) >= t_ls)-1
+LS <- function(y, t) {
+    time_point = start(y)
+    time_point[2] = time_point[2] + (t-1)
+    time_point[1]  = time_point[1] + ((time_point[2]-1) %/% 12)  
+    time_point[2] = ifelse( time_point[2] %% 12 == 0 , 12, time_point[2]%%12)
+    new_var_name = paste("LS", time_point[1] , ".", time_point[2], sep  = "")
+    if(time_point[2] <10){
+        new_var_name = paste("LS",time_point[1] , ".0", time_point[2], sep  = "")
+    }
+    x = as.integer(seq_along(y) >= t)-1
+
+    x = matrix(x, ncol = 1)
+    colnames(x)[1] <- new_var_name
+    return(x)
+    
 }
 
-get_time <- function(t){
-    return(c(floor(t), (t-floor(t))*12))
+
+outlier_t_value <- function(model, t, xreg = NULL, type = c("AO, LS")){
+    y = model$x
+    X = xreg
+    nreg = ifelse(is.null(xreg) ,  0, dim(xreg)[2])
+    ncoeff = sum(c(eval(model$call$order)[-2] , eval(model$call$seasonal)[-2]))
+    model_order = eval(model$call$order)
+    model_seasonal = eval(model$call$seasonal)
+    new_variable = NULL
+    if(type == 'AO'){
+        new_variable = AO(y, t)
+    }
+    else if(type == "LS"){
+        new_variable = LS(y, t)
+    }
+    X = cbind(X, new_variable)
+    if(abs(det(t(X) %*% X)) < 1e-10){
+        return(list(tvalue = 0, time_point =colnames(X)[dim(X)[2]] ))
+    }
+    fit = Arima(y, order = model_order,
+                seasonal = model_seasonal,
+                xreg = X,
+                include.mean = FALSE, method = 'ML', 
+                fixed = c(coef(model)[1:ncoeff], rep(NA, nreg + 1)))
+    ind = length(fit$coef)
+    ind2 = dim(fit$var.coef)[1]
+    return(list(tvalue = abs((fit$coef)[ind]) / sqrt((fit$var.coef)[ind2, ind2]), time_point = colnames(X)[dim(X)[2]]) )
 }
-detect_outlier <- function(default_model, t_outlier, type = c("AO", "LS")) {
-    y <- default_model$x
-    outlier_time <- time(y)[t_outlier]  # Find the time corresponding to the outlier index
+
+forward_pass <- function(model, xreg=NULL, types = c("AO", "LS"), tcritical=3.88){
+    y = model$x
+    n = length(y)
     
-    # Get the year and month using the get_time function
-    time_parts <- get_time(outlier_time)
-    year <- time_parts[1]
-    month <- sprintf("%02g", time_parts[2])  # Format month to be 2 digits
+    max_tvalue = 0
+    ind_max_tvalue = NULL
+    type_max_tvalue = NULL
+    for(outliertype in types){
+        for(i in 1:n){
+            foo = outlier_t_value(model, i,xreg, outliertype )
+            tvalue = foo$tvalue
+            time_point = foo$time_point
+            if(tvalue > tcritical){
+                print(paste(time_point, tvalue))
+                if(tvalue>max_tvalue){
+                    max_tvalue = tvalue
+                    ind_max_tvalue = i
+                    type_max_tvalue = outliertype
+                }
+            }
+        }
+    }
+    if(is.null(type_max_tvalue)){
+        return(NULL)
+    }
+    if(type_max_tvalue == "AO"){
+        return(AO(y, ind_max_tvalue))
+    }
+    if(type_max_tvalue == "LS"){
+        return(LS(y, ind_max_tvalue))
+    }
+    return(NULL)
+}
+
+backward_pass <-  function(model, xreg=NULL, tcritical=3.88){
+    y = model$x
+    X = xreg
+    nreg = ifelse(is.null(xreg) ,  0, dim(xreg)[2])
+    ncoeff = sum(c(eval(model$call$order)[-2] , eval(model$call$seasonal)[-2]))
+    model_order = eval(model$call$order)
+    model_seasonal = eval(model$call$seasonal)
+
+    fit = Arima(y, order = model_order,
+                seasonal = model_seasonal,
+                xreg = X,
+                include.mean = FALSE, method = 'ML', 
+                fixed = c(coef(model)[1:ncoeff], rep(NA, nreg)))
+    betas = abs(fit$coef[-c(1:ncoeff)])
+    se_betas = sqrt(diag(fit$var.coef))
+    tvalues  = betas/se_betas
     
-    # Create the name for the new variable based on outlier type and time
-    var_name <- paste0(type, year, ".", month)
+    min_tvalue = 1e8
+    min_ind = NULL
+    for(i in 1:length(tvalues)){
+        if(grepl("^(AO|LS)(1[6-9][0-9]|20[0-9][0-9])\\.(0[1-9]|1[0-2])$",
+                 colnames(X)[i])){
+            if(tvalues[i] < tcritical ){
+                print(paste(colnames(X)[i], tvalues[i]))
+                if( tvalues[i] < min_tvalue ){
+                    min_tvalue = tvalues[i]
+                    min_ind = i                    
+                }
+                
+            }
+        }
+    }
     
-    # Generate the regression variable based on outlier type
-    reg_var <- if (type == "AO") AO(y, t_outlier) else LS(y, t_outlier)
-    reg_var <- cbind(reg_var) # Assign the dynamically created name to the variable
-    colnames(reg_var) <- var_name
-    # Fit the RegARIMA model with the new regression variable
-    fit <- Arima(y, order = as.numeric(paste0(default_model$call$order)[2:4]), 
-                 seasonal =as.numeric(paste0(default_model$call$order)[2:4]), 
-                 include.mean = FALSE, xreg = reg_var,
-                 method = 'ML', 
-                 fixed = c(coef(default_model_fit1), NA))
-    
-    # Extract the coefficient and standard error for the outlier variable
-    coef_outlier <- coef(fit)[var_name]
-    se_outlier <- sqrt(diag(fit$var.coef))[var_name]
-    
-    # Calculate the t-value
-    t_value <- coef_outlier / se_outlier
-    names(t_value) <- var_name
-    return(t_value)
+    return(min_ind)
 }
 
 

@@ -32,13 +32,13 @@ print = all
 }
 
 estimate{
-
     print = all
 }
 
 regression {
-  variables = (const, easter[10], td1nolpyear)
+  variables = (td1nolpyear)
   user = (diwali)
+  aictest = (user td1nolpyear)
   start = 2013.01
   data = (
    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0405 -0.0405  0.0
