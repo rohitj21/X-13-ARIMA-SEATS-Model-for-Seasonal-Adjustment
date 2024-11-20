@@ -476,6 +476,7 @@ td1nolpyear <- td1nolpyear_regressor(start = c(2013, 1), n = length(data))
 
 # Create time series objects
 y <- ts(data, start = c(2013, 1), frequency = 12)
+plot(y, main = "Monthly CPI of India", lwd = 2, ylab = "CPI")
 diwali <- ts(diwali_ind[1:length(y)], start = c(2013, 1), frequency = 12)
 td1nolpyear <- ts(td1nolpyear, start = c(2013, 1), frequency = 12)
 

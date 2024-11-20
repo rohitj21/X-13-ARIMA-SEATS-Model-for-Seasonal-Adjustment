@@ -52,3 +52,11 @@ The `papers` folder contains a collection of referenced research papers relevant
 16. **Bell (1987)** - [A Note on Overdifferencing and the Equivalence of Seasonal Time Series Models](./papers/bell%201987%20-%20Notes%20on%20Overdifferencing.pdf)  
    This paper discusses the equivalence of seasonal time series models with monthly means and models with seasonal ARIMA structures. It highlights the issue of overdifferencing and analyzes the role of initial observations in model equivalence.
 
+
+17. **Maravall, Gómez (2001)** - [Automatic Modeling Procedure for Time Series Analysis](./papers/Gomez_marvella_2001a_automatic_modeling_procedure.pdf)  
+    This paper introduces an automatic modeling procedure designed to streamline the time series analysis process, enhancing model selection and parameter estimation.
+
+
+
+
+
